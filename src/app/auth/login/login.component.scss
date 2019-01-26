@@ -1,0 +1,12 @@
+.header{
+    --background: var(--azulPadrao);
+    --border-color: none;
+    --color: white;
+
+    ion-buttons{
+        .backButton{
+            --color: white;
+        }
+    }
+}
+
