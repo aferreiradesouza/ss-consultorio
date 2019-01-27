@@ -4,14 +4,26 @@
     > label {
         line-height: 2rem;
     }
+
+    .tooltilp{
+        float: right;
+        width: 40px;
+        background-color: gray;
+        height: 40.40px;
+        border-top-right-radius: 4px;
+        border-bottom-right-radius: 4px;
+        padding: 11px 0px;
+    }
 }
 
 .form-control {
     margin-bottom: 1rem;
     border: 1px solid #ccc;
-    border-radius: 4px;
+    border-top-left-radius: 4px;
+    border-bottom-left-radius: 4px;
     padding: 10px;
-    width: 100%;
+    width: calc(100% - 40px);
+    float: left;
 
     &:focus {
         box-shadow: none;
