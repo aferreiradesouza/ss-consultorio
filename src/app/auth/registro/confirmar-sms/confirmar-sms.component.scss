@@ -8,7 +8,7 @@
             --color: white;
         }
     }
-    
+
     ion-title{
         font-weight: normal;
         font-size: 12px;
@@ -23,8 +23,28 @@
     width: calc(100vw - 2rem);
     margin: 10px auto;
 
+    .sms{
+        width: calc(100% - 200px);
+        margin: 30px auto 20px;
+        height: 40px;
+    }
+
+    .texto{
+        margin-top: 30px;
+        text-align: center;
+        font-size: 14px;
+        color: #686868;
+    }
+
+    .textoSms{
+        text-align: center;
+        font-size: 14px;
+        color: #929292;
+        text-decoration: underline;
+    }
+
     ion-button{
-        margin-top: 80px;
+        margin-top: 30px;
     }
 }
 

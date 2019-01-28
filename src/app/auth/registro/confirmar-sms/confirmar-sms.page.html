@@ -1,0 +1,16 @@
+<ion-header>
+    <ion-toolbar class="header">
+        <ion-title><strong>Passo 5</strong> / 5</ion-title>
+    </ion-toolbar>
+</ion-header>
+<ion-content>
+    <ss-title-passos title="Confirmar SMS" icon="mail" urlBase="registro" urlSecundaria="confirmar-celular"></ss-title-passos>
+    <div class="form">
+        <div class="texto">Um SMS foi enviado para seu número.</div>
+        <div class="sms">
+            <ss-input label="" type="text"></ss-input>
+        </div>
+        <div class="textoSms" (click)="reenviar()">Não recebeu sms? Enviar novamente!</div>
+        <ion-button shape="round" color="primary" expand="full" (click)="ir()">Confirmar</ion-button>
+    </div>
+</ion-content>

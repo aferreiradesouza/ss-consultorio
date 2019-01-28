@@ -13,11 +13,7 @@ export class ContatoComponent implements OnInit {
 
   ngOnInit() {}
 
-  voltar() {
-    this.router.navigate(['auth']);
-  }
-
   ir() {
-    this.router.navigate(['auth', 'registro', 'conta']);
+    this.router.navigate(['auth', 'registro', 'confirmar-celular']);
   }
 }

@@ -11,24 +11,20 @@
     
     ion-title{
         font-weight: normal;
-        font-size: 13px;
+        font-size: 12px;
 
         strong{
-            font-size: 15px;
+            font-size: 17px;
         }
     }
 }
 
 .form{
-    width: calc(100vw - 4rem);
+    width: calc(100vw - 2rem);
     margin: 10px auto;
-
-    .esqueceuSenha{
-        text-align: right;
-        font-size: 13px;
-        text-decoration: underline;
-        margin-bottom: 25px;
-        margin-top: 20px;
+    
+    ion-button{
+        margin-top: 80px;
     }
 }
 

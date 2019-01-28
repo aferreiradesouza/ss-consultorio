@@ -1,13 +1,14 @@
 <ion-header>
-        <ion-toolbar class="header">
-            <ion-buttons mode="ios" color="light" slot="start">
-                <ion-back-button class="backButton" [text]="'Voltar'" color="light" (click)="voltar()"></ion-back-button>
-            </ion-buttons>
-            <ion-title><strong>Passo 3</strong> / 3</ion-title>
-        </ion-toolbar>
-    </ion-header>
+    <ion-toolbar class="header">
+        <ion-title><strong>Passo 3</strong> / 5</ion-title>
+    </ion-toolbar>
+</ion-header>
 
 <ion-content>
-    Contato<br>
-    <ion-button color="tertiary" (click)="ir()">Próximo</ion-button>
+    <ss-title-passos title="Contato" icon="call" urlBase="registro" urlSecundaria="perfil"></ss-title-passos>
+    <div class="form">
+        <ss-input label="Telefone" type="text"></ss-input>
+        <ss-input label="Celular" type="text"></ss-input>
+        <ion-button shape="round" expand="full" (click)="ir()">Próximo</ion-button>
+    </div>
 </ion-content>

@@ -1,8 +1,7 @@
 <div class="form-group">
-    <label>{{label}}</label>
+    <label *ngIf="label">{{label}}</label>
 
     <div class="input-group">
         <input class="form-control" [type]="type"/>
-        <div class="tooltilp"></div>
     </div>
 </div>

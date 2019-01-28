@@ -1,0 +1,9 @@
+<div class="area-title">
+    <div class="backButton" *ngIf="urlBase !== 'off'">
+        <ion-icon name="arrow-back" (click)="voltarPasso()"></ion-icon>
+    </div>
+    <div class="icon-title" [ngClass]="{'ajusteTitle' : urlBase === 'off'}">
+        <ion-icon [ios]="'ios-'+icon" [md]="'ios-'+icon"></ion-icon>
+    </div>
+    <div class="title" [ngClass]="{'ajusteTitle' : urlBase === 'off'}">{{title}}</div>
+</div>

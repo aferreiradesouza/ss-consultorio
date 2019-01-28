@@ -8,7 +8,7 @@
             --color: white;
         }
     }
-    
+
     ion-title{
         font-weight: normal;
         font-size: 12px;
@@ -22,9 +22,21 @@
 .form{
     width: calc(100vw - 2rem);
     margin: 10px auto;
+    text-align: center;
 
-    ion-button{
-        margin-top: 80px;
+    .telefone{
+        padding-top: 20px;
+        font-weight: bold;
+        display: table;
+        margin: 0 auto;
+        font-size: 20px;
+        padding-bottom: 40px;
+    }
+
+    .texto{
+        font-size: 15px;
+        color:#969696;
+        padding-bottom: 40px;
     }
 }
 

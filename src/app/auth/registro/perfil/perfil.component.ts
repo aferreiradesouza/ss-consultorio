@@ -13,10 +13,6 @@ export class PerfilComponent implements OnInit {
 
   ngOnInit() {}
 
-  voltar() {
-    this.router.navigate(['auth']);
-  }
-
   ir() {
     this.router.navigate(['auth', 'registro', 'contato']);
   }

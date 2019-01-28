@@ -6,12 +6,16 @@ import { RegistroRoutingModule } from './registro-routing.module';
 import { ContaComponent } from './conta/conta.component';
 import { PerfilComponent } from './perfil/perfil.component';
 import { ContatoComponent } from './contato/contato.component';
+import { ConfirmarCelularComponent } from './confirmar-celular/confirmar-celular.component';
+import { ConfirmarSMSComponent } from './confirmar-sms/confirmar-sms.component';
 
 @NgModule({
   declarations: [
       ContaComponent,
       PerfilComponent,
       ContatoComponent,
+      ConfirmarCelularComponent,
+      ConfirmarSMSComponent
   ],
   imports: [
     CommonModule,

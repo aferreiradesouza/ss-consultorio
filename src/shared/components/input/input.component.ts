@@ -13,7 +13,6 @@ export class InputComponent implements OnInit {
 
   @Input() label: string;
   @Input() type: TypeInput;
-  @Input() validacao: boolean;
 
   constructor(public router: Router) {}
 

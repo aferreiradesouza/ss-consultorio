@@ -11,7 +11,7 @@
 
     ion-title{
         font-weight: normal;
-        font-size: 14px;
+        font-size: 12px;
 
         strong{
             font-size: 17px;
@@ -22,5 +22,9 @@
 .form{
     width: calc(100vw - 2rem);
     margin: 10px auto;
+
+    ion-button{
+        margin-top: 80px;
+    }
 }
 

@@ -1,0 +1,45 @@
+.area-title{
+    width: calc(100vw - 2rem);
+    margin: 10px auto;
+    position: relative;
+    height: 33px;
+
+    .backButton{
+        position: absolute;
+        top: 50%;
+        transform: translate(0%, -50%);
+        font-size: 20px;
+
+        ion-icon{
+            position: absolute;
+            top: 50%;
+            transform: translate(0%, -50%);
+            padding: 3px;
+        }
+    }
+
+    .icon-title{
+        display: inline-flex;
+        margin-left: 35px;
+        border: 1px solid var(--azulPadrao);
+        padding: 3px;
+        font-size: 25px;
+        border-radius: 7px;
+        background-color: var(--azulPadrao);
+        color: white;
+    }
+
+    .title{
+        font-size: 17px;
+        position: absolute;
+        top: 50%;
+        left: 75px;
+        transform: translate(0%, -50%);
+        letter-spacing: 1px;
+    }
+
+    .ajusteTitle{
+        margin-left: 0 !important;
+        left: 40px !important;
+    }
+}

@@ -4,7 +4,6 @@ import { FormsModule } from '@angular/forms';
 import { AuthComponent } from './inicio/auth.component';
 import { AuthRoutingModule } from './auth-routing.module';
 import { LoginComponent } from './login/login.component';
-import { EsqueceuSenhaComponent } from './esqueceu-senha/esqueceu-senha.component';
 import { ComponentsModule } from 'src/shared/components/components.module';
 import { RegistroModule } from './registro/registro.module';
 
@@ -12,7 +11,6 @@ import { RegistroModule } from './registro/registro.module';
   declarations: [
     AuthComponent,
     LoginComponent,
-    EsqueceuSenhaComponent,
   ],
   imports: [
     CommonModule,
