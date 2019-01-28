@@ -1,7 +1,9 @@
 <div class="form-group">
     <label *ngIf="label">{{label}}</label>
 
-    <div class="input-group">
+    <div class="input-group" [ngClass]="{'sms' : mode != 'sms'}">
         <input class="form-control" [type]="type"/>
+        <ion-icon *ngIf="formValidacao" class="wait" name="square-outline"></ion-icon>
+        <ion-icon *ngIf="formValidacao" [ngClass]="{'confirmado' : formValidacao}" name="checkbox"></ion-icon>
     </div>
 </div>

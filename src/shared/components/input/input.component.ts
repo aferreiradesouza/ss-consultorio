@@ -13,9 +13,17 @@ export class InputComponent implements OnInit {
 
   @Input() label: string;
   @Input() type: TypeInput;
+  @Input() validacao: boolean;
+  @Input() formValidacao: any;
+  @Input() mode: string;
 
   constructor(public router: Router) {}
 
-  ngOnInit() {}
-
+  ngOnInit() {
+    if (this.formValidacao === 'true') {
+      this.formValidacao = true;
+    } else {
+      this.formValidacao = false;
+    }
+  }
 }

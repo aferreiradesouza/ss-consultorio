@@ -4,6 +4,31 @@
     > label {
         line-height: 2rem;
     }
+
+    .input-group{
+        position: relative;
+
+        ion-icon{
+            position: absolute;
+            top: 50%;
+            right: 10px;
+            transform: translate(0%, -50%);
+            font-size: 20px;
+        }
+
+        .confirmado{
+            color: #02bb02;
+        }
+
+        .wait{
+            color: #ccc;
+        }
+    }
+
+    .sms{
+        width: 347px;
+        height: 40px;
+    }
 }
 
 .form-control {

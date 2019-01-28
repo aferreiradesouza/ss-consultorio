@@ -8,7 +8,7 @@
     <div class="form">
         <div class="texto">Um SMS foi enviado para seu número.</div>
         <div class="sms">
-            <ss-input label="" type="text"></ss-input>
+            <ss-input formValidacao="false" label="" type="text" mode="sms"></ss-input>
         </div>
         <div class="textoSms" (click)="reenviar()">Não recebeu sms? Enviar novamente!</div>
         <ion-button shape="round" color="primary" expand="full" (click)="ir()">Confirmar</ion-button>
