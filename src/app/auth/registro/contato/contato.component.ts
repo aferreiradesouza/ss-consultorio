@@ -9,9 +9,12 @@ import { Router } from '@angular/router';
 
 export class ContatoComponent implements OnInit {
 
+  public customPatterns = {'0': { pattern: new RegExp('\[0-9\]')}};
+
   constructor(public router: Router) {}
 
-  ngOnInit() {}
+  ngOnInit() {
+  }
 
   ir() {
     this.router.navigate(['auth', 'registro', 'confirmar-celular']);

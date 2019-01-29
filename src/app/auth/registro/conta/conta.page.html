@@ -8,10 +8,17 @@
 </ion-header>
 <ion-content>
     <ss-title-passos title="Conta" icon="cog" urlBase="off" urlSecundaria="off"></ss-title-passos>
-    <div class="form">
-        <ss-input formValidacao="true" label="CPF" type="text"></ss-input>
-        <ss-input formValidacao="true" label="Senha" type="password"></ss-input>
-        <ss-input formValidacao="true" label="Confirmar Senha" type="password"></ss-input>
-        <ion-button shape="round" expand="full" (click)="ir()">Próximo</ion-button>
-    </div>
+    <form (ngSubmit)="action(dados)">
+        <div class="form">
+            <ss-input [formValidacao]="formValidacaoCpf" [(ngModel)]="dados.cpf" (ngModelChange)="verificarCPF(dados)" 
+            ngDefaultControl [ngModelOptions]="{standalone: true}" label="CPF" type="text" mask="000.000.000-00"></ss-input>
+
+            <ss-input [formValidacao]="formValidacaoSenha" [(ngModel)]="dados.senha" (ngModelChange)="verificarSenha(dados)" 
+            ngDefaultControl [ngModelOptions]="{standalone: true}" label="Senha" type="password"></ss-input>
+
+            <ss-input [formValidacao]="formValidacaoSenha" [(ngModel)]="dados.csenha" (ngModelChange)="verificarSenha(dados)" 
+            ngDefaultControl [ngModelOptions]="{standalone: true}" label="Confirmar Senha" type="password"></ss-input>
+            <ion-button shape="round" expand="full" (click)="ir()">Próximo</ion-button>
+        </div>
+    </form>
 </ion-content>

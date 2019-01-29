@@ -21,7 +21,7 @@ import { ConfirmarSMSComponent } from './confirmar-sms/confirmar-sms.component';
     CommonModule,
     FormsModule,
     ComponentsModule,
-    RegistroRoutingModule
+    RegistroRoutingModule,
   ],
   providers: [
   ],

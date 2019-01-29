@@ -3,6 +3,7 @@ import { CommonModule } from '@angular/common';
 import { FormsModule } from '@angular/forms';
 import { InputComponent } from './input/input.component';
 import { TitlePassosComponent } from './title-passos/title-passos.component';
+import {NgxMaskModule} from 'ngx-mask';
 
 @NgModule({
   declarations: [
@@ -11,11 +12,12 @@ import { TitlePassosComponent } from './title-passos/title-passos.component';
   ],
   imports: [
     CommonModule,
-    FormsModule
+    FormsModule,
+    NgxMaskModule
   ],
   exports: [
     InputComponent,
-    TitlePassosComponent
+    TitlePassosComponent,
   ],
   providers: [
   ],
