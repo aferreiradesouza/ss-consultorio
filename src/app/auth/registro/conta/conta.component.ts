@@ -1,5 +1,6 @@
 import { Component, OnInit } from '@angular/core';
 import { Router } from '@angular/router';
+import { FormGroup, FormControl } from '@angular/forms';
 
 @Component({
   selector: 'conta-page',
@@ -9,46 +10,24 @@ import { Router } from '@angular/router';
 
 export class ContaComponent implements OnInit {
 
-  public formValidacaoCpf: string;
-  public formValidacaoSenha: string;
-  public formValidacaoCSenha: string;
-  public dados: any = {};
-  public cpf: string;
+  public form = new FormGroup({
+    cpf: new FormControl('123'),
+    senha: new FormControl(''),
+    confSenha: new FormControl(''),
+  });
 
   constructor(public router: Router) {}
 
-  ngOnInit() {}
+  ngOnInit() {
+    console.log(this.form.value);
+  }
 
   voltar() {
     this.router.navigate(['auth']);
-
-    this.formValidacaoCpf = 'false';
-    this.formValidacaoSenha = 'false';
   }
 
   ir() {
-    this.router.navigate(['auth', 'registro', 'perfil']);
-  }
-
-  verificarCPF(dados) {
-    if (dados.cpf.length === 14) {
-      this.formValidacaoCpf = 'true';
-      console.log('1');
-    } else {
-      this.formValidacaoCpf = undefined;
-      console.log('2');
-    }
-  }
-
-  verificarSenha(dados) {
-    if (dados.senha === dados.csenha && dados.senha !== '' && dados.csenha !== '') {
-      this.formValidacaoSenha = 'true';
-    } else {
-      this.formValidacaoSenha = undefined;
-    }
-  }
-
-  action(dados) {
-    console.log(dados);
+    // this.router.navigate(['auth', 'registro', 'perfil']);
+    console.log(this.form.value);
   }
 }

@@ -6,6 +6,8 @@ import { AuthRoutingModule } from './auth-routing.module';
 import { LoginComponent } from './login/login.component';
 import { ComponentsModule } from 'src/shared/components/components.module';
 import { RegistroModule } from './registro/registro.module';
+import { SessionStorageService } from 'src/shared/service/session-storage.service';
+import { LocalStorageService } from 'src/shared/service/local-storage.service';
 
 @NgModule({
   declarations: [
@@ -17,9 +19,11 @@ import { RegistroModule } from './registro/registro.module';
     FormsModule,
     AuthRoutingModule,
     ComponentsModule,
-    RegistroModule
+    RegistroModule,
   ],
   providers: [
+    SessionStorageService,
+    LocalStorageService
   ],
   schemas: [ CUSTOM_ELEMENTS_SCHEMA ]
 })

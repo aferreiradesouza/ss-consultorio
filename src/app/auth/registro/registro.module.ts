@@ -1,6 +1,6 @@
-import { NgModule, CUSTOM_ELEMENTS_SCHEMA } from '@angular/core';
+import { NgModule, CUSTOM_ELEMENTS_SCHEMA, forwardRef } from '@angular/core';
 import { CommonModule } from '@angular/common';
-import { FormsModule } from '@angular/forms';
+import { FormsModule, ReactiveFormsModule, NG_VALUE_ACCESSOR } from '@angular/forms';
 import { ComponentsModule } from 'src/shared/components/components.module';
 import { RegistroRoutingModule } from './registro-routing.module';
 import { ContaComponent } from './conta/conta.component';
@@ -22,6 +22,7 @@ import { ConfirmarSMSComponent } from './confirmar-sms/confirmar-sms.component';
     FormsModule,
     ComponentsModule,
     RegistroRoutingModule,
+    ReactiveFormsModule
   ],
   providers: [
   ],

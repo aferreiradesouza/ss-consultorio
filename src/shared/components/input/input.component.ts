@@ -22,14 +22,10 @@ export class InputComponent implements OnInit {
   @Input() patterns: string;
   @Input() prefix: string;
   @Input() sufix: string;
+  @Input() form: any;
 
   constructor(public router: Router) {}
 
   ngOnInit() {
-    if (this.formValidacao === 'true') {
-      this.formValidacao = true;
-    } else {
-      this.formValidacao = false;
-    }
   }
 }
