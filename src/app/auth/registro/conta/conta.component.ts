@@ -1,6 +1,7 @@
 import { Component, OnInit } from '@angular/core';
 import { Router } from '@angular/router';
-import { FormGroup, FormControl } from '@angular/forms';
+import { FormGroup, FormBuilder, Validators } from '@angular/forms';
+import { SessionStorageService } from 'src/shared/service/session-storage.service';
 
 @Component({
   selector: 'conta-page',
@@ -10,24 +11,38 @@ import { FormGroup, FormControl } from '@angular/forms';
 
 export class ContaComponent implements OnInit {
 
-  public form = new FormGroup({
-    cpf: new FormControl('123'),
-    senha: new FormControl(''),
-    confSenha: new FormControl(''),
-  });
+  public formConta: FormGroup;
 
-  constructor(public router: Router) {}
+  constructor(public router: Router, private fb: FormBuilder, public sessionStorage: SessionStorageService) {}
 
   ngOnInit() {
-    console.log(this.form.value);
+    this.formConta = new FormGroup({
+      cpf: this.fb.control('', [Validators.required]),
+      senha: this.fb.control('', [Validators.required]),
+      confSenha: this.fb.control('', [Validators.required]),
+    });
+
+    this.preencherFormulario();
   }
 
   voltar() {
     this.router.navigate(['auth']);
   }
 
-  ir() {
-    // this.router.navigate(['auth', 'registro', 'perfil']);
-    console.log(this.form.value);
+  gravar() {
+      if (this.formConta.valid) {
+          this.sessionStorage.setJson('registro/conta', this.formConta.value);
+          this.proximo();
+      }
+  }
+
+  proximo() {
+    this.router.navigate(['auth', 'registro', 'perfil']);
+  }
+
+  preencherFormulario() {
+    if (this.sessionStorage.getJson('registro/conta')) {
+      this.formConta.setValue(this.sessionStorage.getJson('registro/conta'));
+    }
   }
 }

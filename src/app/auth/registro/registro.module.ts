@@ -8,6 +8,7 @@ import { PerfilComponent } from './perfil/perfil.component';
 import { ContatoComponent } from './contato/contato.component';
 import { ConfirmarCelularComponent } from './confirmar-celular/confirmar-celular.component';
 import { ConfirmarSMSComponent } from './confirmar-sms/confirmar-sms.component';
+import { NgxMaskModule } from 'ngx-mask';
 
 @NgModule({
   declarations: [
@@ -22,7 +23,8 @@ import { ConfirmarSMSComponent } from './confirmar-sms/confirmar-sms.component';
     FormsModule,
     ComponentsModule,
     RegistroRoutingModule,
-    ReactiveFormsModule
+    ReactiveFormsModule,
+    NgxMaskModule
   ],
   providers: [
   ],

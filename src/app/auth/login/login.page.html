@@ -8,10 +8,14 @@
 </ion-header>
 
 <ion-content>
-    <div class="form">
-        <ss-input formValidacao="false" label="CPF" type="text"></ss-input>
-        <ss-input formValidacao="false" label="Senha" type="password"></ss-input>
+    <form class="form" [formGroup]="formEntrar">
+        <ss-input label="CPF">
+            <input class="form-control" type="text" mask="000.000.000-00" formControlName="cpf"/>
+        </ss-input>
+        <ss-input label="Senha">
+            <input class="form-control" type="password" formControlName="senha"/>
+        </ss-input>
         <div class="esqueceuSenha"><strong>Esqueceu a senha?</strong></div>
-        <ion-button shape="round" expand="full">Logar</ion-button>
-    </div>
+        <ion-button shape="round" [disabled]="!formEntrar.valid" expand="full">Logar</ion-button>
+    </form>
 </ion-content>

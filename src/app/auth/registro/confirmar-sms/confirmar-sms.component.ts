@@ -1,6 +1,8 @@
 import { Component, OnInit } from '@angular/core';
 import { Router } from '@angular/router';
 import { ToastController } from '@ionic/angular';
+import { FormGroup, FormBuilder, Validators } from '@angular/forms';
+import { SessionStorageService } from 'src/shared/service/session-storage.service';
 
 @Component({
   selector: 'confirmar-sms-page',
@@ -10,16 +12,32 @@ import { ToastController } from '@ionic/angular';
 
 export class ConfirmarSMSComponent implements OnInit {
 
-  constructor(public router: Router, public toastController: ToastController) {}
+  public formSms: FormGroup;
 
-  ngOnInit() {}
+  constructor(public router: Router,
+    private fb: FormBuilder,
+    public sessionStorage: SessionStorageService,
+    public toastController: ToastController) {}
 
-  ir() {
-    this.router.navigate(['auth', 'registro', 'conta']);
+  ngOnInit() {
+    this.formSms = new FormGroup({
+      sms: this.fb.control('', [Validators.required]),
+    });
   }
 
   voltar() {
-    this.router.navigate(['auth', 'registro', 'contato']);
+    this.router.navigate(['auth']);
+  }
+
+  gravar() {
+      if (this.formSms.valid) {
+          this.sessionStorage.setJson('registro/codigo-sms', this.formSms.value);
+          this.proximo();
+      }
+  }
+
+  proximo() {
+    this.router.navigate(['auth', 'registro', 'conta']);
   }
 
   async reenviar() {

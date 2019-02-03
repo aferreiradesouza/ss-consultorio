@@ -2,9 +2,6 @@
     <label *ngIf="label">{{label}}</label>
 
     <div class="input-group" [ngClass]="{'sms' : mode != 'sms'}">
-        <input class="form-control" 
-        [prefix]="prefix" [sufix]="sufix" 
-        [patterns]="patterns" [mask]="mask" 
-        [type]="type"/>
+        <ng-content></ng-content>
     </div>
 </div>

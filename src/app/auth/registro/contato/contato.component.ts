@@ -1,5 +1,7 @@
 import { Component, OnInit } from '@angular/core';
 import { Router } from '@angular/router';
+import { FormGroup, FormBuilder, Validators } from '@angular/forms';
+import { SessionStorageService } from 'src/shared/service/session-storage.service';
 
 @Component({
   selector: 'contato-page',
@@ -9,14 +11,33 @@ import { Router } from '@angular/router';
 
 export class ContatoComponent implements OnInit {
 
-  public customPatterns = {'0': { pattern: new RegExp('\[0-9\]')}};
+  public formContato: FormGroup;
 
-  constructor(public router: Router) {}
+  constructor(public router: Router, private fb: FormBuilder, public sessionStorage: SessionStorageService) {}
 
   ngOnInit() {
+    this.formContato = new FormGroup({
+      telefone: this.fb.control('', [Validators.required]),
+      celular: this.fb.control('', [Validators.required]),
+    });
+
+    this.preencherFormulario();
   }
 
-  ir() {
+  gravar() {
+      if (this.formContato.valid) {
+          this.sessionStorage.setJson('registro/contato', this.formContato.value);
+          this.proximo();
+      }
+  }
+
+  proximo() {
     this.router.navigate(['auth', 'registro', 'confirmar-celular']);
+  }
+
+  preencherFormulario() {
+    if (this.sessionStorage.getJson('registro/contato')) {
+      this.formContato.setValue(this.sessionStorage.getJson('registro/contato'));
+    }
   }
 }

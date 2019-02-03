@@ -5,12 +5,14 @@
 </ion-header>
 <ion-content>
     <ss-title-passos title="Confirmar SMS" icon="mail" urlBase="registro" urlSecundaria="confirmar-celular"></ss-title-passos>
-    <div class="form">
+    <form class="form" [formGroup]="formSms">
         <div class="texto">Um SMS foi enviado para seu número.</div>
         <div class="sms">
-            <ss-input formValidacao="false" label="" type="text" mode="sms"></ss-input>
+            <ss-input label="" type="text" mode="sms">
+                <input class="form-control" type="text" formControlName="sms"/>
+            </ss-input>
         </div>
         <div class="textoSms" (click)="reenviar()">Não recebeu sms? Enviar novamente!</div>
-        <ion-button shape="round" color="primary" expand="full" (click)="ir()">Confirmar</ion-button>
-    </div>
+        <ion-button shape="round" color="primary" [disabled]="!formSms.valid" expand="full" (click)="gravar()">Confirmar</ion-button>
+    </form>
 </ion-content>

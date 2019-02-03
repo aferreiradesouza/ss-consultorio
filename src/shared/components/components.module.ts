@@ -13,7 +13,6 @@ import {NgxMaskModule} from 'ngx-mask';
   imports: [
     CommonModule,
     FormsModule,
-    NgxMaskModule
   ],
   exports: [
     InputComponent,
