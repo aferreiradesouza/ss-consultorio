@@ -1,0 +1,23 @@
+.validacao {
+    position: absolute;
+    top: 50%;
+    transform: translateY(-50%);
+    right: 10px;
+
+    ion-icon{
+        font-size: 19px;
+        position: absolute;
+        top: 50%;
+        right: 0;
+        transform: translateY(-50%);
+
+        &.circle{
+            color: #b6b6b6;
+        }
+    
+        &.verify{
+            color: #13a813;
+        }
+    }
+
+}

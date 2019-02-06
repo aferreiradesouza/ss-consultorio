@@ -1,0 +1,49 @@
+.header{
+    --background: var(--azulPadrao);
+    --border-color: none;
+    --color: white;
+
+    ion-buttons{
+        .backButton{
+            --color: white;
+        }
+    }
+}
+
+.loading {
+    position: relative;
+    top: 50%;
+    left: 50%;
+    transform: translate(-50%, -50%);
+    display: table;
+    text-align: center;
+    height: 120px;
+
+    .subTitulo{
+        font-size: 20px;
+        margin-bottom: 25px;
+        z-index: 999;
+    }
+
+    .icon{
+        font-size: 33px;
+
+        .success {
+            color: var(--ion-color-success);
+        }
+    }
+
+    .msg{
+        margin-top: 15px;
+        font-size: 14px;
+        z-index: 999;
+    }
+
+    .success {
+        color: var(--ion-color-success);
+    }
+
+    .erro {
+        color: var(--ion-color-danger);
+    }
+}

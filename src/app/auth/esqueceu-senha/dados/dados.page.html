@@ -8,13 +8,15 @@
 </ion-header>
 
 <ion-content>
-    <ss-title-passos title="Dados" icon="apps" urlBase="off" urlSecundaria="off"></ss-title-passos>
+    <ss-title-passos pagina="Esqueceu senha" title="Dados" icon="apps" urlBase="off" urlSecundaria="off"></ss-title-passos>
     <form class="form" [formGroup]="formDados">
         <ss-input label="CPF">
             <input class="form-control" type="text" mask="000.000.000-00" formControlName="cpf"/>
+            <ss-validacao [validacao]="formDados.controls.cpf.valid"></ss-validacao>
         </ss-input>
         <ss-input label="Data de nascimento">
             <input mask="d0/m0/0000" [dropSpecialCharacters]="true" class="form-control" type="text" formControlName="nascimento" />
+            <ss-validacao [validacao]="formDados.controls.nascimento.valid"></ss-validacao>
         </ss-input>
         <ion-button shape="round" expand="full" [disabled]="!formDados.valid" (click)="gravar()">Próximo</ion-button>
     </form>

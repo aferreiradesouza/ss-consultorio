@@ -7,17 +7,20 @@
     </ion-toolbar>
 </ion-header>
 <ion-content>
-    <ss-title-passos title="Conta" icon="cog" urlBase="off" urlSecundaria="off"></ss-title-passos>
+    <ss-title-passos pagina="Registro" title="Conta" icon="cog" urlBase="off" urlSecundaria="off"></ss-title-passos>
     <form class="form" [formGroup]="formConta">
 
         <ss-input label="CPF">
             <input class="form-control" type="text" mask="000.000.000-00" formControlName="cpf"/>
+            <ss-validacao [validacao]="formConta.value.cpf.length === 11"></ss-validacao>
         </ss-input>
         <ss-input label="Senha">
             <input class="form-control" type="password" formControlName="senha"/>
+            <ss-validacao [validacao]="formConta.value.senha === formConta.value.confSenha && formConta.value.senha !== '' && formConta.value.confSenha !== ''"></ss-validacao>
         </ss-input>
         <ss-input label="Confirmar Senha">
             <input class="form-control" type="password" formControlName="confSenha"/>
+            <ss-validacao [validacao]="formConta.value.senha === formConta.value.confSenha && formConta.value.senha !== '' && formConta.value.confSenha !== ''"></ss-validacao>
         </ss-input>
 
         <ion-button shape="round" [disabled]="!formConta.valid" expand="full" (click)="gravar()">Próximo</ion-button>

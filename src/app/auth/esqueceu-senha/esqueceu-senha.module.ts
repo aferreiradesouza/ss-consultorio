@@ -7,12 +7,13 @@ import { DadosComponent } from './dados/dados.component';
 import { ConfirmarSMSComponent } from './confirmar-sms/confirmar-sms.component';
 import { NovaSenhaComponent } from './nova-senha/nova-senha.component';
 import { NgxMaskModule } from 'ngx-mask';
+import { ConfirmacaoResolver } from '../confirmacao/confirmacao.resolver';
 
 @NgModule({
   declarations: [
       DadosComponent,
       ConfirmarSMSComponent,
-      NovaSenhaComponent
+      NovaSenhaComponent,
   ],
   imports: [
     CommonModule,
@@ -23,6 +24,7 @@ import { NgxMaskModule } from 'ngx-mask';
     NgxMaskModule
   ],
   providers: [
+    ConfirmacaoResolver
   ],
   schemas: [ CUSTOM_ELEMENTS_SCHEMA ]
 })

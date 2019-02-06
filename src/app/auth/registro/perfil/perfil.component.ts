@@ -12,6 +12,7 @@ import { SessionStorageService } from 'src/shared/service/session-storage.servic
 export class PerfilComponent implements OnInit {
 
   public formPerfil: FormGroup;
+  public regexEmail: any = /^[a-z0-9.]+@[a-z0-9]+\.[a-z]+(\.[a-z]+)?$/;
 
   constructor(public router: Router, private fb: FormBuilder, public sessionStorage: SessionStorageService) {}
 

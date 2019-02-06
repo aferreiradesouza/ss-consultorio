@@ -22,7 +22,8 @@ export class NovaSenhaComponent implements OnInit {
   }
 
   enviar() {
-    this.router.navigate(['auth', 'esqueceu-senha', 'dados']);
+    const queryParams = { mensagem: 'Registrando nova senha', titulo: 'Esqueceu Senha' };
+    this.router.navigate(['auth', 'confirmacao'], { queryParams });
   }
 
   public validateSenha(c: FormControl) {

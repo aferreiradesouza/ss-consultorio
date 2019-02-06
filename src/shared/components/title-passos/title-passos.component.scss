@@ -36,6 +36,16 @@
         left: 75px;
         transform: translate(0%, -50%);
         letter-spacing: 1px;
+
+        .titlePrincipal {
+            font-size: 17px;
+        }
+
+        .subTitle {
+            font-size: 10px;
+            letter-spacing: 0px;
+            color: #797979;
+        }
     }
 
     .ajusteTitle{

@@ -15,6 +15,7 @@ export class TitlePassosComponent implements OnInit {
   @Input() icon: string;
   @Input() urlBase: string;
   @Input() urlSecundaria: string;
+  @Input() pagina: string;
 
   constructor(public router: Router) {}
 

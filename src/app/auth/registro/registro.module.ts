@@ -9,6 +9,7 @@ import { ContatoComponent } from './contato/contato.component';
 import { ConfirmarCelularComponent } from './confirmar-celular/confirmar-celular.component';
 import { ConfirmarSMSComponent } from './confirmar-sms/confirmar-sms.component';
 import { NgxMaskModule } from 'ngx-mask';
+import { ConfirmacaoResolver } from '../confirmacao/confirmacao.resolver';
 
 @NgModule({
   declarations: [
@@ -16,7 +17,7 @@ import { NgxMaskModule } from 'ngx-mask';
       PerfilComponent,
       ContatoComponent,
       ConfirmarCelularComponent,
-      ConfirmarSMSComponent
+      ConfirmarSMSComponent,
   ],
   imports: [
     CommonModule,
@@ -27,6 +28,7 @@ import { NgxMaskModule } from 'ngx-mask';
     NgxMaskModule
   ],
   providers: [
+    ConfirmacaoResolver
   ],
   schemas: [ CUSTOM_ELEMENTS_SCHEMA ]
 })

@@ -12,7 +12,7 @@ const routes: Routes = [
   { path: 'perfil', component: PerfilComponent},
   { path: 'contato', component: ContatoComponent},
   { path: 'confirmar-celular', component: ConfirmarCelularComponent},
-  { path: 'confirmar-sms', component: ConfirmarSMSComponent},
+  { path: 'confirmar-sms', component: ConfirmarSMSComponent}
 ];
 
 @NgModule({

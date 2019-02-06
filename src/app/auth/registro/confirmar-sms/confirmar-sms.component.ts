@@ -37,7 +37,8 @@ export class ConfirmarSMSComponent implements OnInit {
   }
 
   proximo() {
-    this.router.navigate(['auth', 'registro', 'conta']);
+    const queryParams = {mensagem: 'Registrando', titulo: 'Registro'};
+    this.router.navigate(['auth', 'confirmacao'], { queryParams });
   }
 
   async reenviar() {

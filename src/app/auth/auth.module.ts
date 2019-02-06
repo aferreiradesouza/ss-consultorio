@@ -9,11 +9,14 @@ import { RegistroModule } from './registro/registro.module';
 import { SessionStorageService } from 'src/shared/service/session-storage.service';
 import { LocalStorageService } from 'src/shared/service/local-storage.service';
 import { NgxMaskModule } from 'ngx-mask';
+import { EsqueceuSenhaModule } from './esqueceu-senha/esqueceu-senha.module';
+import { ConfirmacaoComponent } from './confirmacao/confirmacao.component';
 
 @NgModule({
   declarations: [
     AuthComponent,
     LoginComponent,
+    ConfirmacaoComponent
   ],
   imports: [
     CommonModule,
@@ -23,6 +26,7 @@ import { NgxMaskModule } from 'ngx-mask';
     RegistroModule,
     NgxMaskModule,
     ReactiveFormsModule,
+    EsqueceuSenhaModule,
   ],
   providers: [
     SessionStorageService,

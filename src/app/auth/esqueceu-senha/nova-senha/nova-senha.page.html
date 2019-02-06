@@ -5,13 +5,15 @@
 </ion-header>
 
 <ion-content>
-    <ss-title-passos title="Nova senha" icon="lock" urlBase="esqueceu-senha" urlSecundaria="confirmar-sms"></ss-title-passos>
+    <ss-title-passos pagina="Esqueceu senha" title="Nova senha" icon="lock" urlBase="esqueceu-senha" urlSecundaria="confirmar-sms"></ss-title-passos>
     <form class="form" [formGroup]="formSenha">
         <ss-input formValidacao="true" label="Nova senha" type="password">
             <input class="form-control" type="password" formControlName="senha" />
+            <ss-validacao [validacao]="formSenha.value.senha === formSenha.value.confSenha && formSenha.value.senha !== '' && formSenha.value.confSenha !== ''"></ss-validacao>
         </ss-input>
         <ss-input formValidacao="true" label="Confirmar nova senha" type="password">
             <input class="form-control" type="password" formControlName="confSenha" />
+            <ss-validacao [validacao]="formSenha.value.senha === formSenha.value.confSenha && formSenha.value.senha !== '' && formSenha.value.confSenha !== ''"></ss-validacao>
         </ss-input>
         <ion-button shape="round" [disabled]="!formSenha.valid" color="primary" expand="full" (click)="enviar()">Confirmar</ion-button>
     </form>
