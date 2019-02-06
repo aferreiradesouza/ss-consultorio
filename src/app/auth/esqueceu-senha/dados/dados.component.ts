@@ -1,5 +1,7 @@
 import { Component, OnInit } from '@angular/core';
 import { Router } from '@angular/router';
+import { FormBuilder, FormGroup, Validators } from '@angular/forms';
+import { SessionStorageService } from 'src/shared/service/session-storage.service';
 
 @Component({
   selector: 'dados-page',
@@ -9,15 +11,29 @@ import { Router } from '@angular/router';
 
 export class DadosComponent implements OnInit {
 
-  constructor(public router: Router) {}
+  public formDados: FormGroup;
 
-  ngOnInit() {}
+  constructor(public router: Router, public fb: FormBuilder, public sessionStorage: SessionStorageService) {}
+
+  ngOnInit() {
+    this.formDados = this.fb.group({
+      cpf: this.fb.control('', [Validators.required, Validators.minLength(11)]),
+      nascimento: this.fb.control('', [Validators.required, Validators.minLength(8)]),
+    });
+  }
 
   voltar() {
     this.router.navigate(['auth']);
   }
 
-  ir() {
+  gravar() {
+      if (this.formDados.valid) {
+          this.sessionStorage.setJson('esqueceu-senha/dados', this.formDados.value);
+          this.proximo();
+      }
+  }
+
+  proximo() {
     this.router.navigate(['auth', 'esqueceu-senha', 'confirmar-sms']);
   }
 }

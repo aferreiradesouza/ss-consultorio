@@ -9,9 +9,13 @@
 
 <ion-content>
     <ss-title-passos title="Dados" icon="apps" urlBase="off" urlSecundaria="off"></ss-title-passos>
-    <div class="form">
-        <ss-input formValidacao="true" label="CPF" type="text"></ss-input>
-        <ss-input formValidacao="true" label="Data de nascimento" type="text"></ss-input>
-        <ion-button shape="round" expand="full" (click)="ir()">Próximo</ion-button>
-    </div>
+    <form class="form" [formGroup]="formDados">
+        <ss-input label="CPF">
+            <input class="form-control" type="text" mask="000.000.000-00" formControlName="cpf"/>
+        </ss-input>
+        <ss-input label="Data de nascimento">
+            <input mask="d0/m0/0000" [dropSpecialCharacters]="true" class="form-control" type="text" formControlName="nascimento" />
+        </ss-input>
+        <ion-button shape="round" expand="full" [disabled]="!formDados.valid" (click)="gravar()">Próximo</ion-button>
+    </form>
 </ion-content>

@@ -14,7 +14,7 @@
             <input class="form-control" type="text" formControlName="email" />
         </ss-input>
         <ss-input label="Data de nascimento">
-            <input mask="d0/m0/0000" [dropSpecialCharacters]="false" class="form-control" type="text" formControlName="nascimento" />
+            <input mask="d0/m0/0000" [dropSpecialCharacters]="true" class="form-control" type="text" formControlName="nascimento" />
         </ss-input>
         <ion-button shape="round" [disabled]="!formPerfil.valid" expand="full" (click)="gravar()">Próximo</ion-button>
     </form>

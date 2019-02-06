@@ -1,6 +1,6 @@
 import { Component, OnInit } from '@angular/core';
 import { Router } from '@angular/router';
-import { FormGroup, FormBuilder, Validators } from '@angular/forms';
+import { FormGroup, FormBuilder, Validators, FormControl } from '@angular/forms';
 import { SessionStorageService } from 'src/shared/service/session-storage.service';
 
 @Component({
@@ -16,11 +16,11 @@ export class ContaComponent implements OnInit {
   constructor(public router: Router, private fb: FormBuilder, public sessionStorage: SessionStorageService) {}
 
   ngOnInit() {
-    this.formConta = new FormGroup({
-      cpf: this.fb.control('', [Validators.required]),
+    this.formConta = this.fb.group({
+      cpf: this.fb.control('', [Validators.required, Validators.minLength(11)]),
       senha: this.fb.control('', [Validators.required]),
       confSenha: this.fb.control('', [Validators.required]),
-    });
+    }, { validator: this.validateSenha});
 
     this.preencherFormulario();
   }
@@ -44,5 +44,11 @@ export class ContaComponent implements OnInit {
     if (this.sessionStorage.getJson('registro/conta')) {
       this.formConta.setValue(this.sessionStorage.getJson('registro/conta'));
     }
+  }
+
+  public validateSenha(c: FormControl) {
+    const senha = c.value.senha;
+    const confSenha = c.value.confSenha;
+    return senha === confSenha && senha !== '' && confSenha !== '' ? null : { validateSenha: { valid: false } };
   }
 }

@@ -16,9 +16,9 @@ export class ContatoComponent implements OnInit {
   constructor(public router: Router, private fb: FormBuilder, public sessionStorage: SessionStorageService) {}
 
   ngOnInit() {
-    this.formContato = new FormGroup({
-      telefone: this.fb.control('', [Validators.required]),
-      celular: this.fb.control('', [Validators.required]),
+    this.formContato = this.fb.group({
+      telefone: this.fb.control('', [Validators.required, Validators.minLength(10)]),
+      celular: this.fb.control('', [Validators.required, Validators.minLength(11)]),
     });
 
     this.preencherFormulario();

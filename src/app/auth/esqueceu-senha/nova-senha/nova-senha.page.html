@@ -6,9 +6,13 @@
 
 <ion-content>
     <ss-title-passos title="Nova senha" icon="lock" urlBase="esqueceu-senha" urlSecundaria="confirmar-sms"></ss-title-passos>
-    <div class="form">
-        <ss-input formValidacao="true" label="Nova senha" type="password"></ss-input>
-        <ss-input formValidacao="true" label="Confirmar nova senha" type="password"></ss-input>
-        <ion-button shape="round" color="primary" expand="full" (click)="ir()">Confirmar</ion-button>
-    </div>
+    <form class="form" [formGroup]="formSenha">
+        <ss-input formValidacao="true" label="Nova senha" type="password">
+            <input class="form-control" type="password" formControlName="senha" />
+        </ss-input>
+        <ss-input formValidacao="true" label="Confirmar nova senha" type="password">
+            <input class="form-control" type="password" formControlName="confSenha" />
+        </ss-input>
+        <ion-button shape="round" [disabled]="!formSenha.valid" color="primary" expand="full" (click)="enviar()">Confirmar</ion-button>
+    </form>
 </ion-content>

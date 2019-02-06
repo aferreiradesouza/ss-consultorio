@@ -15,8 +15,8 @@ export class LoginComponent implements OnInit {
   constructor(public router: Router, private fb: FormBuilder) {}
 
   ngOnInit() {
-    this.formEntrar = new FormGroup({
-      cpf: this.fb.control('', [Validators.required]),
+    this.formEntrar = this.fb.group({
+      cpf: this.fb.control('', [Validators.required, Validators.minLength(11)]),
       senha: this.fb.control('', [Validators.required]),
     });
   }
