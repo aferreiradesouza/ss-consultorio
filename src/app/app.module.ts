@@ -10,11 +10,12 @@ import { AppRoutingModule } from './app-routing.module';
 import { AppComponent } from './app.component';
 import { AuthModule } from './auth/auth.module';
 import { NgxMaskModule } from 'ngx-mask';
+import { HomeModule } from './home/home.module';
 
 @NgModule({
   declarations: [AppComponent],
   entryComponents: [],
-  imports: [BrowserModule, IonicModule.forRoot(), AppRoutingModule, AuthModule, NgxMaskModule.forRoot(), ],
+  imports: [BrowserModule, HomeModule, IonicModule.forRoot(), AppRoutingModule, AuthModule, NgxMaskModule.forRoot(), ],
   providers: [
     StatusBar,
     SplashScreen,

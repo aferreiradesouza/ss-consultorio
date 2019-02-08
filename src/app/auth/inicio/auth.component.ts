@@ -24,4 +24,8 @@ export class AuthComponent implements OnInit {
   login() {
     this.router.navigate(['auth', 'login']);
   }
+
+  irHome() {
+    this.router.navigate(['home']);
+  }
 }
