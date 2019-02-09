@@ -11,11 +11,12 @@ import { AppComponent } from './app.component';
 import { AuthModule } from './auth/auth.module';
 import { NgxMaskModule } from 'ngx-mask';
 import { HttpClientModule } from '@angular/common/http';
+import { HomeModule } from './home/home.module';
 
 @NgModule({
   declarations: [AppComponent],
   entryComponents: [],
-  imports: [BrowserModule, IonicModule.forRoot(), AppRoutingModule, AuthModule, NgxMaskModule.forRoot(), HttpClientModule, ],
+  imports: [BrowserModule, HomeModule, IonicModule.forRoot(), AppRoutingModule, AuthModule, NgxMaskModule.forRoot(), HttpClientModule, ],
   providers: [
     StatusBar,
     SplashScreen,
