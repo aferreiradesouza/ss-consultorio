@@ -18,6 +18,6 @@
             <input mask="d0/m0/0000" [dropSpecialCharacters]="true" class="form-control" type="text" formControlName="nascimento" />
             <ss-validacao [validacao]="formDados.controls.nascimento.valid"></ss-validacao>
         </ss-input>
-        <ion-button shape="round" expand="full" [disabled]="!formDados.valid" (click)="gravar()">Próximo</ion-button>
+        <ion-button shape="round" expand="full" [disabled]="!formDados.valid" (click)="enviar()">Próximo</ion-button>
     </form>
 </ion-content>

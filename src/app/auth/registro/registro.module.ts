@@ -10,6 +10,7 @@ import { ConfirmarCelularComponent } from './confirmar-celular/confirmar-celular
 import { ConfirmarSMSComponent } from './confirmar-sms/confirmar-sms.component';
 import { NgxMaskModule } from 'ngx-mask';
 import { ConfirmacaoResolver } from '../confirmacao/confirmacao.resolver';
+import { AuthService } from '../service/auth.service';
 
 @NgModule({
   declarations: [
@@ -28,7 +29,8 @@ import { ConfirmacaoResolver } from '../confirmacao/confirmacao.resolver';
     NgxMaskModule
   ],
   providers: [
-    ConfirmacaoResolver
+    ConfirmacaoResolver,
+    AuthService
   ],
   schemas: [ CUSTOM_ELEMENTS_SCHEMA ]
 })

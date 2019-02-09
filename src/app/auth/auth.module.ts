@@ -30,7 +30,7 @@ import { ConfirmacaoComponent } from './confirmacao/confirmacao.component';
   ],
   providers: [
     SessionStorageService,
-    LocalStorageService
+    LocalStorageService,
   ],
   schemas: [ CUSTOM_ELEMENTS_SCHEMA ]
 })

@@ -8,20 +8,14 @@
 
       <div class="subTitulo" *ngIf="loading">{{data.mensagem}}</div>
       <div class="subTitulo success" *ngIf="enviado && !loading">Sucesso!</div>
-      <div class="subTitulo erro" *ngIf="!enviado && !loading">Ops! Algo deu errado</div>
 
       <div class="icon">
         <ion-spinner *ngIf="loading" name="lines"></ion-spinner>
         <ion-icon class="success" *ngIf="enviado && !loading" name="checkmark-circle-outline"></ion-icon>
-        <ion-icon class="erro" *ngIf="!enviado && !loading" name="close-circle-outline"></ion-icon>
       </div>
 
       <div class="msg success" *ngIf="enviado && !loading">
         Estamos te redirecionando para o início
-      </div>
-      <div class="msg erro" *ngIf="!enviado && !loading">
-          <ion-button shape="round" color="light" (click)="voltar()">Voltar</ion-button>
-          <ion-button shape="round" color="primary" (click)="chamar()">Tentar Novamente</ion-button>
       </div>
 
     </div>

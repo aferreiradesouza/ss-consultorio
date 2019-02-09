@@ -15,6 +15,6 @@
             <input class="form-control" type="password" formControlName="confSenha" />
             <ss-validacao [validacao]="formSenha.value.senha === formSenha.value.confSenha && formSenha.value.senha !== '' && formSenha.value.confSenha !== ''"></ss-validacao>
         </ss-input>
-        <ion-button shape="round" [disabled]="!formSenha.valid" color="primary" expand="full" (click)="enviar()">Confirmar</ion-button>
+        <ion-button shape="round" [disabled]="!formSenha.valid" color="primary" expand="full" (click)="alterarSenha()">Confirmar</ion-button>
     </form>
 </ion-content>

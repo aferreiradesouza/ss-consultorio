@@ -5,7 +5,8 @@ type StorageKey =   'registro/conta'
                     | 'registro/contato'
                     | 'registro/codigo-sms'
                     | 'esqueceu-senha/dados'
-                    | 'esqueceu-senha/codigo-sms';
+                    | 'esqueceu-senha/codigo-sms'
+                    | 'esqueceu-senha/senha-nova';
 
 @Injectable({
     providedIn: 'root'

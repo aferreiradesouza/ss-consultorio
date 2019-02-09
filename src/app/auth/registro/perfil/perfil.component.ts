@@ -20,7 +20,7 @@ export class PerfilComponent implements OnInit {
     this.formPerfil = this.fb.group({
       nome: this.fb.control('', [Validators.required]),
       email: this.fb.control('', [Validators.required, this.validateEmail]),
-      nascimento: this.fb.control('', [Validators.required, Validators.minLength(8)]),
+      nascimento: this.fb.control('', [Validators.required, Validators.minLength(10)]),
     });
 
     this.preencherFormulario();
