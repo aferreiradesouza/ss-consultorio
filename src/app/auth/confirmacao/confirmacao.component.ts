@@ -4,6 +4,7 @@ import { IConfirmacao } from 'src/shared/dto';
 import { AuthService } from '../service/auth.service';
 import { SessionStorageService } from 'src/shared/service/session-storage.service';
 import * as moment from 'moment';
+import { LocalStorageService } from 'src/shared/service/local-storage.service';
 
 @Component({
   selector: 'confirmacao-page',
@@ -20,7 +21,8 @@ export class ConfirmacaoComponent implements OnInit {
   constructor(public router: Router,
               public route: ActivatedRoute,
               public authService: AuthService,
-              public sessionStorage: SessionStorageService) {
+              public sessionStorage: SessionStorageService,
+              public storageService: LocalStorageService) {
     this.loading = true;
     this.enviado = false;
   }
@@ -31,9 +33,13 @@ export class ConfirmacaoComponent implements OnInit {
       this.loading = false;
       this.enviado = true;
       setTimeout(() => {
-        console.log('logado!');
-      }, 1000 );
-    }, 2000 );
+        if (this.storageService.getJson('user')) {
+          this.router.navigate(['home']);
+        } else {
+          console.log('deu merda');
+        }
+      }, 3000 );
+    }, 3000 );
   }
 
   voltar() {

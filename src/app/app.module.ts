@@ -12,6 +12,9 @@ import { AuthModule } from './auth/auth.module';
 import { NgxMaskModule } from 'ngx-mask';
 import { HttpClientModule } from '@angular/common/http';
 import { HomeModule } from './home/home.module';
+import { AutenticacaoService } from 'src/shared/service/autenticacao.service';
+import { TokenService } from 'src/shared/service/token.service';
+import { GuardService } from 'src/shared/guard/auth.guard';
 
 @NgModule({
   declarations: [AppComponent],
@@ -20,6 +23,9 @@ import { HomeModule } from './home/home.module';
   providers: [
     StatusBar,
     SplashScreen,
+    TokenService,
+    AutenticacaoService,
+    GuardService,
     { provide: RouteReuseStrategy, useClass: IonicRouteStrategy }
   ],
   bootstrap: [AppComponent]

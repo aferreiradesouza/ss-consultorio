@@ -42,7 +42,7 @@ export class LoginComponent implements OnInit {
     this.authService.efetuarLogin(data).then((response) => {
       if (response.sucesso) {
         this.storageService.setJson('user', response.objeto);
-        console.log('FOOOOI');
+        this.router.navigate(['home']);
       } else {
         erro.present();
       }
