@@ -5,13 +5,19 @@ import { InputComponent } from './input/input.component';
 import { TitlePassosComponent } from './title-passos/title-passos.component';
 import { ValidacaoComponent } from './validacao/validacao.component';
 import { MenuComponent } from './menu/menu.component';
+import { ItemAgendaComponent } from './item-agenda/item-agenda.component';
+import { TabsComponent } from './tabs/tabs.component';
+import { LoadingComponent } from './loading/loading.component';
 
 @NgModule({
   declarations: [
     InputComponent,
     TitlePassosComponent,
     ValidacaoComponent,
-    MenuComponent
+    MenuComponent,
+    ItemAgendaComponent,
+    TabsComponent,
+    LoadingComponent
   ],
   imports: [
     CommonModule,
@@ -21,7 +27,10 @@ import { MenuComponent } from './menu/menu.component';
     InputComponent,
     TitlePassosComponent,
     ValidacaoComponent,
-    MenuComponent
+    MenuComponent,
+    ItemAgendaComponent,
+    TabsComponent,
+    LoadingComponent
   ],
   providers: [
   ],

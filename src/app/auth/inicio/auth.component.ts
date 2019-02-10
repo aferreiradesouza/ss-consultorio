@@ -13,19 +13,11 @@ export class AuthComponent implements OnInit {
 
   ngOnInit() {}
 
-  esqueceuSenha() {
-    this.router.navigate(['auth', 'esqueceu-senha']);
-  }
-
   registro() {
     this.router.navigate(['auth', 'registro']);
   }
 
   login() {
     this.router.navigate(['auth', 'login']);
-  }
-
-  irHome() {
-    this.router.navigate(['home']);
   }
 }

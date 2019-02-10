@@ -11,7 +11,7 @@ type TypeInput = 'text' | 'password';
 
 export class MenuComponent implements OnInit {
 
-  @Input() items: any[];
+  @Input() itens: any[];
 
   constructor(public router: Router) {}
 

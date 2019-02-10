@@ -1,0 +1,5 @@
+<div class="tabs">
+    <div class="item" *ngFor="let item of itens" (click)="activeTab(item.id)" [ngClass]="{'item-ativo' : id == item.id}">
+        <div class="align-center">{{item.label}}</div>
+    </div>
+</div>
