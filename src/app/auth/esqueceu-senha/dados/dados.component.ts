@@ -4,7 +4,7 @@ import { FormBuilder, FormGroup, Validators } from '@angular/forms';
 import { SessionStorageService } from 'src/shared/service/session-storage.service';
 import { AuthService } from '../../service/auth.service';
 import * as moment from 'moment';
-import { ToastController } from '@ionic/angular';
+import { ToastController, LoadingController } from '@ionic/angular';
 
 @Component({
   selector: 'dados-page',
@@ -21,13 +21,15 @@ export class DadosComponent implements OnInit {
     public fb: FormBuilder,
     public toastController: ToastController,
     public sessionStorage: SessionStorageService,
-    public authService: AuthService) {}
+    public authService: AuthService,
+    public loadingController: LoadingController) {}
 
   ngOnInit() {
     this.formDados = this.fb.group({
       cpf: this.fb.control('', [Validators.required, Validators.minLength(11)]),
       nascimento: this.fb.control('', [Validators.required, Validators.minLength(8)]),
     });
+    this.preencherFormulario();
   }
 
   voltar() {
@@ -42,6 +44,10 @@ export class DadosComponent implements OnInit {
   }
 
   async enviar() {
+    const loading = await this.loadingController.create({
+      message: 'Enviando',
+    });
+    await loading.present();
     const data = {
       cpf: this.formDados.value.cpf,
       dataNascimento: moment(this.formDados.value.nascimento, 'DD-MM-YYYY').format('YYYY-MM-DD')
@@ -51,16 +57,22 @@ export class DadosComponent implements OnInit {
       duration: 3000,
       color: 'dark'
     });
-    this.authService.gerarCodigoSMS(data).then((response) => {
-      if (response.sucesso) {
+    const codigo = await this.authService.gerarCodigoSMS(data);
+    loading.dismiss();
+      if (codigo.sucesso) {
         this.gravar();
       } else {
         avisoErro.present();
       }
-    });
-  }
+    }
 
   proximo() {
     this.router.navigate(['auth', 'esqueceu-senha', 'confirmar-sms']);
+  }
+
+  preencherFormulario() {
+    if (this.sessionStorage.getJson('esqueceu-senha/dados')) {
+      this.formDados.setValue(this.sessionStorage.getJson('esqueceu-senha/dados'));
+    }
   }
 }

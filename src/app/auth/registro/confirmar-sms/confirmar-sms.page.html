@@ -1,10 +1,13 @@
 <ion-header>
     <ion-toolbar class="header">
-        <ion-title><strong>Passo 5</strong> / 5</ion-title>
+        <ion-title>
+            <strong>{{data.action ? 'Confirmar SMS' : 'Passo 5'}}</strong>
+            {{data.action ? '' : '/ 5'}}
+        </ion-title>
     </ion-toolbar>
 </ion-header>
 <ion-content>
-    <ss-title-passos pagina="Registro" title="Confirmar SMS" icon="mail" urlBase="registro" urlSecundaria="confirmar-celular"></ss-title-passos>
+    <ss-title-passos pagina="Registro" title="Confirmar SMS" icon="mail" [urlBase]="data.action ? 'off' : 'registro'" [urlSecundaria]="data.action ? 'off' : 'confirmar-celular'"></ss-title-passos>
     <form class="form" [formGroup]="formSms">
         <div class="texto">Um SMS foi enviado para seu número.</div>
         <div class="sms">
@@ -12,7 +15,7 @@
                 <input class="form-control" type="text" formControlName="sms"/>
             </ss-input>
         </div>
-        <div class="textoSms" (click)="reenviar()">Não recebeu sms? Enviar novamente!</div>
+        <ion-button class="btnSms" size="small" fill="clear" (click)="reenviar()">Não recebeu sms? Enviar novamente!</ion-button>
         <ion-button shape="round" color="primary" [disabled]="!formSms.valid" expand="full" (click)="enviar()">Confirmar</ion-button>
     </form>
 </ion-content>

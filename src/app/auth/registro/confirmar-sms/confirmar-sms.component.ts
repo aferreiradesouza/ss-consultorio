@@ -1,11 +1,12 @@
 import { Component, OnInit } from '@angular/core';
-import { Router } from '@angular/router';
-import { ToastController } from '@ionic/angular';
+import { Router, ActivatedRoute } from '@angular/router';
+import { ToastController, LoadingController } from '@ionic/angular';
 import { FormGroup, FormBuilder, Validators } from '@angular/forms';
 import { SessionStorageService } from 'src/shared/service/session-storage.service';
 import { AuthService } from '../../service/auth.service';
 import { LocalStorageService } from 'src/shared/service/local-storage.service';
 import * as moment from 'moment';
+import { IConfirmarSms } from 'src/shared/dto';
 
 @Component({
   selector: 'confirmar-sms-page',
@@ -15,6 +16,7 @@ import * as moment from 'moment';
 
 export class ConfirmarSMSComponent implements OnInit {
 
+  public data: IConfirmarSms;
   public formSms: FormGroup;
 
   constructor(public router: Router,
@@ -22,9 +24,13 @@ export class ConfirmarSMSComponent implements OnInit {
     public sessionStorage: SessionStorageService,
     public toastController: ToastController,
     public authService: AuthService,
-    public storageService: LocalStorageService) {}
+    public storageService: LocalStorageService,
+    public route: ActivatedRoute,
+    public loadingController: LoadingController) {
+  }
 
   ngOnInit() {
+    this.data = this.route.snapshot.data['data'];
     this.formSms = new FormGroup({
       sms: this.fb.control('', [Validators.required]),
     });
@@ -35,55 +41,140 @@ export class ConfirmarSMSComponent implements OnInit {
   }
 
   async enviar() {
-    const data = {
-      senha: this.pegarSenha,
-      usuario: this.pegarCpf,
-      codigoSMS: this.formSms.value.sms
-    };
+    if (this.data.action) {
+      const loading = await this.loadingController.create({
+        message: 'Enviando',
+      });
+      await loading.present();
+      const data = {
+        usuario: this.data.usuario,
+        senha: this.data.senha,
+        codigoSMS: this.formSms.value.sms
+      };
 
-    const erro = await this.toastController.create({
-      message: 'Código incorreto.',
-      duration: 2000,
-      color: 'dark'
-    });
+      const login = await this.authService.efetuarLogin(data);
 
-    this.authService.efetuarLogin(data).then((response) => {
-      if (response.sucesso) {
-        this.storageService.setJson('user', response.objeto);
-        this.proximo();
+      loading.dismiss();
+
+      if (login.sucesso) {
+        this.storageService.setJson('user', login.objeto);
+        this.router.navigate(['home']);
       } else {
-        erro.present();
+        if (login.mensagens) {
+          const erro = await this.toastController.create({
+            message: login.mensagens[0],
+            color: 'dark',
+            showCloseButton: true,
+            closeButtonText: 'Entendi'
+          });
+          erro.present();
+        } else {
+          const erro = await this.toastController.create({
+            message: 'Algo de errado aconteceu',
+            color: 'dark',
+            showCloseButton: true,
+            closeButtonText: 'Entendi'
+          });
+          erro.present();
+        }
       }
-    });
+    } else {
+      const data = {
+        senha: this.pegarSenha,
+        usuario: this.pegarCpf,
+        codigoSMS: this.formSms.value.sms
+      };
+
+      const login = await this.authService.efetuarLogin(data);
+
+      if (login.sucesso) {
+        this.storageService.setJson('user', login.objeto);
+        const queryParams = { mensagem: 'Registrando', titulo: 'Registro', action: 'registro' };
+        this.router.navigate(['auth', 'confirmacao'], { queryParams });
+      } else {
+        if (login.mensagens) {
+          const erro = await this.toastController.create({
+            message: login.mensagens[0],
+            color: 'dark',
+            showCloseButton: true,
+            closeButtonText: 'Entendi'
+          });
+          erro.present();
+        } else {
+          const erro = await this.toastController.create({
+            message: 'Algo de errado aconteceu',
+            color: 'dark',
+            showCloseButton: true,
+            closeButtonText: 'Entendi'
+          });
+          erro.present();
+        }
+      }
+    }
   }
 
   proximo() {
-    const queryParams = {mensagem: 'Registrando', titulo: 'Registro', action: 'registro'};
+    const queryParams = { mensagem: 'Registrando', titulo: 'Registro', action: 'registro' };
     this.router.navigate(['auth', 'confirmacao'], { queryParams });
   }
 
   async reenviar() {
-    const data = {
-      cpf: this.pegarCpf,
-      dataNascimento: moment(this.pegarNascimento, 'DD-MM-YYYY').format('YYYY-MM-DD'),
-    };
-    const avisoSucesso = await this.toastController.create({
-      message: 'Código enviado novamente.',
-      duration: 2000,
-      color: 'dark'
+    const loading = await this.loadingController.create({
+      message: 'Enviando',
     });
-    const avisoErro = await this.toastController.create({
-      message: 'Não foi possível enviar novamente',
-      duration: 2000,
-      color: 'dark'
-    });
-    this.authService.reenviarCodigo(data).then((response) => {
-      if (response.sucesso) {
+    if (this.data.action) {
+      const data = {
+        cpf: this.data.usuario,
+        dataNascimento: this.data.nascimento,
+      };
+      const avisoSucesso = await this.toastController.create({
+        message: 'Código enviado novamente.',
+        duration: 2000,
+        color: 'dark'
+      });
+      const avisoErro = await this.toastController.create({
+        message: 'Não foi possível enviar novamente',
+        color: 'dark',
+        showCloseButton: true,
+        closeButtonText: 'Entendi'
+      });
+      const sms = await this.authService.reenviarCodigo(data);
+
+      loading.dismiss();
+
+      if (sms.sucesso) {
         avisoSucesso.present();
       } else {
         avisoErro.present();
       }
-    });
+
+    } else {
+
+      const data = {
+        cpf: this.pegarCpf,
+        dataNascimento: moment(this.pegarNascimento, 'DD-MM-YYYY').format('YYYY-MM-DD'),
+      };
+      const avisoSucesso = await this.toastController.create({
+        message: 'Código enviado novamente.',
+        duration: 2000,
+        color: 'dark'
+      });
+      const avisoErro = await this.toastController.create({
+        message: 'Não foi possível enviar novamente',
+        color: 'dark',
+        showCloseButton: true,
+        closeButtonText: 'Entendi'
+      });
+      const sms = await this.authService.reenviarCodigo(data);
+
+      loading.dismiss();
+
+      if (sms.sucesso) {
+        avisoSucesso.present();
+      } else {
+        avisoErro.present();
+      }
+    }
   }
 
   public get pegarCpf() {

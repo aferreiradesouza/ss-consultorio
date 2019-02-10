@@ -5,6 +5,7 @@ import { PerfilComponent } from './perfil/perfil.component';
 import { ContatoComponent } from './contato/contato.component';
 import { ConfirmarCelularComponent } from './confirmar-celular/confirmar-celular.component';
 import { ConfirmarSMSComponent } from './confirmar-sms/confirmar-sms.component';
+import { ConfirmarSmsResolver } from './confirmar-sms/confirmar-sms.resolver';
 
 const routes: Routes = [
   { path: '', redirectTo: 'conta', pathMatch: 'full'},
@@ -12,7 +13,7 @@ const routes: Routes = [
   { path: 'perfil', component: PerfilComponent},
   { path: 'contato', component: ContatoComponent},
   { path: 'confirmar-celular', component: ConfirmarCelularComponent},
-  { path: 'confirmar-sms', component: ConfirmarSMSComponent}
+  { path: 'confirmar-sms', component: ConfirmarSMSComponent, resolve: {data: ConfirmarSmsResolver}}
 ];
 
 @NgModule({

@@ -4,6 +4,13 @@ export interface IConfirmacao {
     action: string;
 }
 
+export interface IConfirmarSms {
+    usuario: string;
+    senha: string;
+    action: string;
+    nascimento: string;
+}
+
 export interface Usuario {
     cpf: string,
     email: string,

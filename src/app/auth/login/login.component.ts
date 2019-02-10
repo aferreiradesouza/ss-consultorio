@@ -15,16 +15,13 @@ import { ToastController, LoadingController } from '@ionic/angular';
 export class LoginComponent implements OnInit {
 
   public formEntrar: FormGroup;
-  public loading: boolean;
 
   constructor(public router: Router,
     private fb: FormBuilder,
     public toastController: ToastController,
     public authService: AuthService,
     public storageService: LocalStorageService,
-    public loadingController: LoadingController) {
-      this.loading = false;
-    }
+    public loadingController: LoadingController) {}
 
   ngOnInit() {
     this.formEntrar = this.fb.group({
@@ -34,35 +31,36 @@ export class LoginComponent implements OnInit {
   }
 
   async entrar() {
-    this.loading = true;
+    const loading = await this.loadingController.create({
+      message: 'Entrando',
+    });
+    await loading.present();
+
     const data = {
       usuario: this.formEntrar.value.cpf,
       senha: this.formEntrar.value.senha,
     };
+
     const erro = await this.toastController.create({
       message: 'Conta invalida',
+      color: 'dark',
       showCloseButton: true,
-      closeButtonText: 'Entendi',
-      color: 'dark'
+      closeButtonText: 'Entendi'
     });
+
     const login = await this.authService.efetuarLogin(data);
-    this.loading = false;
+    loading.dismiss();
     if (login.sucesso) {
       this.storageService.setJson('user', login.objeto);
       this.router.navigate(['home']);
     } else {
-      erro.present();
+      if (login.codigo === 'smsnaoconfirmado') {
+        const queryParams = {usuario: data.usuario, senha: data.senha, action: 'smsNaoConfirmado', nascimento: login.mensagens[2]} ;
+        this.router.navigate(['auth', 'registro', 'confirmar-sms'], { queryParams });
+      } else {
+        erro.present();
+      }
     }
-
-    // this.authService.efetuarLogin(data).then((response) => {
-    //   loading.onDidDismiss();
-    //   if (response.sucesso) {
-    //     this.storageService.setJson('user', response.objeto);
-    //     this.router.navigate(['home']);
-    //   } else {
-    //     erro.present();
-    //   }
-    // });
   }
 
   esqueceuSenha() {

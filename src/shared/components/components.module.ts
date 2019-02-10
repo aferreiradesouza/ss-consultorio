@@ -7,7 +7,6 @@ import { ValidacaoComponent } from './validacao/validacao.component';
 import { MenuComponent } from './menu/menu.component';
 import { ItemAgendaComponent } from './item-agenda/item-agenda.component';
 import { TabsComponent } from './tabs/tabs.component';
-import { LoadingComponent } from './loading/loading.component';
 
 @NgModule({
   declarations: [
@@ -17,7 +16,6 @@ import { LoadingComponent } from './loading/loading.component';
     MenuComponent,
     ItemAgendaComponent,
     TabsComponent,
-    LoadingComponent
   ],
   imports: [
     CommonModule,
@@ -30,7 +28,6 @@ import { LoadingComponent } from './loading/loading.component';
     MenuComponent,
     ItemAgendaComponent,
     TabsComponent,
-    LoadingComponent
   ],
   providers: [
   ],

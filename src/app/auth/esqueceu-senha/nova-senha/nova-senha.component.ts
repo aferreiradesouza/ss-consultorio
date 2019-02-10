@@ -3,7 +3,7 @@ import { Router } from '@angular/router';
 import { FormGroup, FormBuilder, Validators, FormControl } from '@angular/forms';
 import { SessionStorageService } from 'src/shared/service/session-storage.service';
 import { AuthService } from '../../service/auth.service';
-import { ToastController } from '@ionic/angular';
+import { ToastController, LoadingController } from '@ionic/angular';
 import { LocalStorageService } from 'src/shared/service/local-storage.service';
 
 @Component({
@@ -22,7 +22,8 @@ export class NovaSenhaComponent implements OnInit {
     public toastController: ToastController,
     public sessionStorage: SessionStorageService,
     public storageService: LocalStorageService,
-    public authService: AuthService) { }
+    public authService: AuthService,
+    public loadingController: LoadingController) { }
 
   ngOnInit() {
     this.formSenha = this.fb.group({
@@ -37,6 +38,11 @@ export class NovaSenhaComponent implements OnInit {
   }
 
   async alterarSenha() {
+    const loading = await this.loadingController.create({
+      message: 'Carregando',
+    });
+    await loading.present();
+
     const data = {
       usuario: this.sessionStorage.getJson('esqueceu-senha/dados').cpf,
       senha: this.formSenha.value.senha,
@@ -47,14 +53,14 @@ export class NovaSenhaComponent implements OnInit {
       duration: 3000,
       color: 'dark'
     });
-    this.authService.alterarSenhaEsqueciSenha(data).then((response) => {
-      if (response.sucesso) {
-        this.storageService.setJson('user', response.objeto);
+    const senha = await this.authService.alterarSenhaEsqueciSenha(data);
+    loading.dismiss();
+      if (senha.sucesso) {
+        this.storageService.setJson('user', senha.objeto);
         this.proximo();
       } else {
         avisoErro.present();
       }
-    });
   }
 
   public validateSenha(c: FormControl) {

@@ -45,6 +45,7 @@
 .form{
     width: calc(100vw - 2rem);
     margin: 10px auto;
+    text-align: center;
 
     .sms{
         width: calc(100% - 200px);
@@ -68,5 +69,10 @@
 
     ion-button{
         margin-top: 30px;
+    }
+    
+    .btnSms{
+        margin: 0 auto;
+        color: var(--azulPadrao);
     }
 }

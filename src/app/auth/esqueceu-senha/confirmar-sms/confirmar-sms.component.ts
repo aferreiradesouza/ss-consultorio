@@ -3,7 +3,7 @@ import { Router } from '@angular/router';
 import { Validators, FormBuilder, FormGroup } from '@angular/forms';
 import { SessionStorageService } from 'src/shared/service/session-storage.service';
 import { AuthService } from '../../service/auth.service';
-import { ToastController } from '@ionic/angular';
+import { ToastController, LoadingController } from '@ionic/angular';
 import * as moment from 'moment';
 
 @Component({
@@ -20,7 +20,8 @@ export class ConfirmarSMSComponent implements OnInit {
               public fb: FormBuilder,
               public toastController: ToastController,
               public sessionStorage: SessionStorageService,
-              public authService: AuthService) {}
+              public authService: AuthService,
+              public loadingController: LoadingController) {}
 
   ngOnInit() {
     this.formSms = this.fb.group({
@@ -40,6 +41,11 @@ export class ConfirmarSMSComponent implements OnInit {
   }
 
   async reenviar() {
+    const loading = await this.loadingController.create({
+      message: 'Enviando',
+    });
+    await loading.present();
+
     const data = {
       cpf: this.sessionStorage.getJson('esqueceu-senha/dados').cpf,
       dataNascimento: moment(this.sessionStorage.getJson('esqueceu-senha/dados').nascimento, 'DD-MM-YYYY').format('YYYY-MM-DD'),
@@ -50,20 +56,28 @@ export class ConfirmarSMSComponent implements OnInit {
       color: 'dark'
     });
     const avisoErro = await this.toastController.create({
-      message: 'Não foi possível enviar novamente',
-      duration: 2000,
-      color: 'dark'
+      message: 'Não foi possível enviar o código novamente',
+      color: 'dark',
+      showCloseButton: true,
+      closeButtonText: 'Entendi',
     });
-    this.authService.reenviarCodigo(data).then((response) => {
-      if (response.sucesso) {
+
+    const codigo = await this.authService.reenviarCodigo(data);
+    loading.dismiss();
+
+      if (codigo.sucesso) {
         avisoSucesso.present();
       } else {
         avisoErro.present();
       }
-    });
   }
 
   async enviar() {
+    const loading = await this.loadingController.create({
+      message: 'Enviando',
+    });
+    await loading.present();
+
     const data = {
       usuario: this.sessionStorage.getJson('esqueceu-senha/dados').cpf,
       codigoSMS: this.formSms.value.sms
@@ -73,13 +87,15 @@ export class ConfirmarSMSComponent implements OnInit {
       duration: 3000,
       color: 'dark'
     });
-    this.authService.confirmarCodigoEsqueciSenha(data).then((response) => {
-      if (response.sucesso) {
+
+    const codigo = await this.authService.confirmarCodigoEsqueciSenha(data);
+    loading.dismiss();
+
+      if (codigo.sucesso) {
         this.gravar();
       } else {
         avisoErro.present();
       }
-    });
   }
 
   proximo() {

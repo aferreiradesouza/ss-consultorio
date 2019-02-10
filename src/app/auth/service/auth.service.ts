@@ -13,7 +13,7 @@ export class AuthService {
 
     async registro(usuario) {
         const url = `${environment.apiBase}autenticacao/registrar`;
-        return this.ajaxService.post<Usuario>(url, usuario);
+        return this.ajaxService.post<any>(url, usuario);
     }
 
     async efetuarLogin(usuario) {
