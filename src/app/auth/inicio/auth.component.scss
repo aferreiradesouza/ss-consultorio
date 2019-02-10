@@ -2,7 +2,7 @@ ion-content{
     --ion-background-color: white;
 
     .msgBemVindo{
-        margin-top: 35px;
+        margin-top: 10%;
         width: 100vw;
         color: black;
         font-size: 14px;
@@ -46,7 +46,7 @@ ion-content{
 
     .buttons{
         position: absolute;
-        bottom: 10px;
+        top: 75%;
         left: 50%;
         text-align: center;
         transform: translate(-50%, 0%);
