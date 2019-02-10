@@ -15,7 +15,9 @@
         <ss-input label="Senha">
             <input class="form-control" type="password" formControlName="senha"/>
         </ss-input>
-        <div class="esqueceuSenha" (click)="esqueceuSenha()"><strong>Esqueceu a senha?</strong></div>
+        <div class="esqueceuSenha">
+            <ion-button color="dark" class="esqueceuSenha" size="small" fill="clear" (click)="esqueceuSenha()">Esqueceu a senha?</ion-button>
+        </div>
         <ion-button shape="round" [disabled]="!formEntrar.valid" expand="full" (click)="entrar()">Logar</ion-button>
     </form>
 </ion-content>

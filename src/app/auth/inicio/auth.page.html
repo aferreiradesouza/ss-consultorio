@@ -1,13 +1,14 @@
 <ion-content>
         <div class="msgBemVindo">
-            Bem vindo ao <strong>SS Consultorio</strong>
+            Bem vindo ao<br> <strong>SS Consultorio</strong>
         </div>
-        <div class="background"><img src="../../../assets/img/background-auth.jpg"></div>
+        <div class="background"><img src="../../../assets/img/background.png"></div>
 
         <div class="painel-login">
-          <div>O QUE DESEJA FAZER?</div>
-          <ion-button shape="round" color="primary" size="large" (click)="registro()">Registrar</ion-button>
-          <div>OU</div>
-          <ion-button shape="round" fill="outline" color="primary" size="small" (click)="login()">Entrar</ion-button>
+          <div class="subTitle">Agende, organize, e cancele suas consultas aonde estiver</div>
         </div>
+          <div class="buttons">
+              <ion-button shape="round" color="primary" size="large" (click)="registro()">Primeiro acesso </ion-button><br>
+              <ion-button shape="round" fill="clear" color="primary" (click)="login()">Entrar</ion-button>
+          </div>
 </ion-content>

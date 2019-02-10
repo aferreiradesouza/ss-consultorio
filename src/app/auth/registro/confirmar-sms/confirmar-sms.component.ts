@@ -79,6 +79,10 @@ export class ConfirmarSMSComponent implements OnInit {
         }
       }
     } else {
+      const loading = await this.loadingController.create({
+        message: 'Enviando',
+      });
+      await loading.present();
       const data = {
         senha: this.pegarSenha,
         usuario: this.pegarCpf,
@@ -86,6 +90,7 @@ export class ConfirmarSMSComponent implements OnInit {
       };
 
       const login = await this.authService.efetuarLogin(data);
+      loading.dismiss();
 
       if (login.sucesso) {
         this.storageService.setJson('user', login.objeto);
