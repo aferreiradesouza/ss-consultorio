@@ -11,6 +11,7 @@ import { LocalStorageService } from 'src/shared/service/local-storage.service';
 import { NgxMaskModule } from 'ngx-mask';
 import { EsqueceuSenhaModule } from './esqueceu-senha/esqueceu-senha.module';
 import { ConfirmacaoComponent } from './confirmacao/confirmacao.component';
+import { UtilService } from './service/util.service';
 
 @NgModule({
   declarations: [
@@ -30,7 +31,8 @@ import { ConfirmacaoComponent } from './confirmacao/confirmacao.component';
   ],
   providers: [
     SessionStorageService,
-    LocalStorageService
+    LocalStorageService,
+    UtilService
   ],
   schemas: [ CUSTOM_ELEMENTS_SCHEMA ]
 })
