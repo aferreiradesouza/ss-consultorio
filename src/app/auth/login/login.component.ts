@@ -41,12 +41,6 @@ export class LoginComponent implements OnInit {
       senha: this.formEntrar.value.senha,
     };
 
-    const erro = await this.toastController.create({
-      message: 'Conta invalida',
-      color: 'dark',
-      showCloseButton: true,
-      closeButtonText: 'Entendi'
-    });
 
     const login = await this.authService.efetuarLogin(data);
     loading.dismiss();
@@ -58,6 +52,12 @@ export class LoginComponent implements OnInit {
         const queryParams = {usuario: data.usuario, senha: data.senha, action: 'smsNaoConfirmado', nascimento: login.mensagens[2]} ;
         this.router.navigate(['auth', 'registro', 'confirmar-sms'], { queryParams });
       } else {
+        const erro = await this.toastController.create({
+          message: login.mensagens[0],
+          color: 'dark',
+          showCloseButton: true,
+          closeButtonText: 'Entendi'
+        });
         erro.present();
       }
     }

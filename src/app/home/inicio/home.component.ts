@@ -36,7 +36,7 @@ export class HomeComponent implements OnInit {
   ngOnInit() {}
 
   deslogar() {
-    this.storageService.setJson('user', []);
+    this.storageService.setJson('user', {});
     this.router.navigate(['auth']);
   }
 }
