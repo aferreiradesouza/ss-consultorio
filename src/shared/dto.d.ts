@@ -11,6 +11,10 @@ export interface IConfirmarSms {
     nascimento: string;
 }
 
+export interface IHome {
+    currentUser: any;
+}
+
 export interface Usuario {
     cpf: string,
     email: string,

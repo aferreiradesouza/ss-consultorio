@@ -15,6 +15,7 @@ import { HomeModule } from './home/home.module';
 import { AutenticacaoService } from 'src/shared/service/autenticacao.service';
 import { TokenService } from 'src/shared/service/token.service';
 import { GuardService } from 'src/shared/guard/auth.guard';
+import { CurrentUserService } from 'src/shared/service/currentUser.service';
 
 @NgModule({
   declarations: [AppComponent],
@@ -26,6 +27,7 @@ import { GuardService } from 'src/shared/guard/auth.guard';
     TokenService,
     AutenticacaoService,
     GuardService,
+    CurrentUserService,
     { provide: RouteReuseStrategy, useClass: IonicRouteStrategy }
   ],
   bootstrap: [AppComponent]

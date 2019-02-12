@@ -1,6 +1,7 @@
 import { Component, OnInit } from '@angular/core';
-import { Router } from '@angular/router';
+import { Router, ActivatedRoute } from '@angular/router';
 import { LocalStorageService } from 'src/shared/service/local-storage.service';
+import { IHome } from 'src/shared/dto';
 
 @Component({
   selector: 'home-page',
@@ -10,11 +11,12 @@ import { LocalStorageService } from 'src/shared/service/local-storage.service';
 
 export class HomeComponent implements OnInit {
 
+  public data: IHome;
   public menu: any[];
   public tabs: any[];
   public itens: any[];
 
-  constructor(public router: Router, public storageService: LocalStorageService) {
+  constructor(public router: Router, public storageService: LocalStorageService, public route: ActivatedRoute) {
     this.menu = [
       {label: 'Agendar consulta', icon: 'create', url: 'agendar-consulta'},
       {label: 'Cancelar consulta', icon: 'close-circle', url: 'cancelar-consulta'},
@@ -33,10 +35,12 @@ export class HomeComponent implements OnInit {
     ];
   }
 
-  ngOnInit() {}
+  ngOnInit() {
+    this.data = this.route.snapshot.data['data'];
+  }
 
   deslogar() {
-    this.storageService.setJson('user', {});
+    localStorage.removeItem('user');
     this.router.navigate(['auth']);
   }
 }

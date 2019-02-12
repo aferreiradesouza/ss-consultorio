@@ -33,5 +33,9 @@ ion-content{
         border-top-left-radius: 10px;
         box-shadow: 0px 0px 20px 0px rgba(0,0,0,0.45);
         overflow: hidden;
+
+        ion-card{
+            background-color: white;
+        }
     }
 }

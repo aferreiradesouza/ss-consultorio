@@ -7,6 +7,7 @@ import { LocalStorageService } from 'src/shared/service/local-storage.service';
 import { NgxMaskModule } from 'ngx-mask';
 import { HomeComponent } from './inicio/home.component';
 import { HomeRoutingModule } from './home-routing.module';
+import { HomeResolver } from './inicio/home.resolver';
 
 @NgModule({
   declarations: [
@@ -22,7 +23,8 @@ import { HomeRoutingModule } from './home-routing.module';
   ],
   providers: [
     SessionStorageService,
-    LocalStorageService
+    LocalStorageService,
+    HomeResolver
   ],
   schemas: [ CUSTOM_ELEMENTS_SCHEMA ]
 })
