@@ -2,18 +2,19 @@
     background-color: white;
     width: calc(100vw - 20px);
     margin: 10px auto 0;
-    height: 75px;
     border-radius: 10px;
     box-shadow: 0 4px 16px rgba(0,0,0,.12);
     overflow: hidden;
+    position: relative;
 
     .dia-horario{
         text-align: center;
-        float: left;
+        width: 80px;
         color: white;
+        display: inline-block;
 
         .dia{
-            font-size: 20px;
+            font-size: 36px;
             padding-top: 5px;
             background-color: var(--azulPadrao);
         }
@@ -35,23 +36,27 @@
 
     .informacoes{
         height: 100%;
-        float: left;
+        width: calc(100vw - 100px);
         padding: 5px;
         border-left: 1px solid #fff;
+        display: inline-block;
+        position: absolute;
+        top: 0;
 
         .header {
             height: 38px;
-            width: calc(100vw - 106px);
+            width: 100%;
             position: relative;
 
             .informacoes-medico{
                 position: absolute;
                 top: 50%;
-                left: 5px;
+                left: 3px;
                 transform: translateY(-50%);
 
                 .medico{
-                    font-size: 17px;
+                    font-size: 20px;
+                    font-weight: bold;
                 }
 
                 .especialidade{
@@ -61,22 +66,23 @@
         }
 
         .localizacao {
-            display: flex;
             font-size: 13px;
-            position: relative;
+            position: absolute;
             margin-top: 8px;
             height: 20px;
+            width: 100%;
+            bottom: 5px;
             
             ion-icon{
                 position: absolute;
                 top: 50%;
                 transform: translateY(-50%);
-                font-size: 15px;
+                font-size: 18px;
             }
 
             .local{
                 position: absolute;
-                left: 17px;
+                left: 19px;
                 top: 50%;
                 transform: translateY(-50%);
             }
