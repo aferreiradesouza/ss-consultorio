@@ -9,10 +9,12 @@ import { HomeComponent } from './inicio/home.component';
 import { HomeRoutingModule } from './home-routing.module';
 import { HomeResolver } from './inicio/home.resolver';
 import { HomeService } from './services/home.service';
+import { DetalhesComponent } from './modal/detalhes.component';
 
 @NgModule({
   declarations: [
-      HomeComponent
+      HomeComponent,
+      DetalhesComponent
   ],
   imports: [
     CommonModule,
@@ -27,6 +29,9 @@ import { HomeService } from './services/home.service';
     LocalStorageService,
     HomeResolver,
     HomeService
+  ],
+  entryComponents: [
+    DetalhesComponent
   ],
   schemas: [ CUSTOM_ELEMENTS_SCHEMA ]
 })

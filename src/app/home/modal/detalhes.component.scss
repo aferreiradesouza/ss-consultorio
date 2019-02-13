@@ -1,0 +1,20 @@
+.header{
+    --background: var(--azulPadrao);
+    --border-color: none;
+    --color: white;
+    --border-color: var(--azulPadrao);
+
+    ion-icon{
+        position: absolute;
+        top: 50%;
+        transform: translateY(-50%);
+        right: 5px;
+        font-size: 40px;
+    }
+
+    ion-buttons{
+        .backButton{
+            --color: white;
+        }
+    }
+}

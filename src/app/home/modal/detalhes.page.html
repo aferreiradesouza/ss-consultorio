@@ -1,0 +1,14 @@
+<ion-header>
+    <ion-toolbar class="header">
+        <ion-title>
+          Detalhes da consulta
+        </ion-title>
+        <ion-icon (click)="close()" name="close"></ion-icon>
+    </ion-toolbar>
+</ion-header>
+
+<ion-content>
+  Status: {{value.statusConsulta.nome}}<br>
+  Medico: {{value.usuario.nome}}
+
+</ion-content>

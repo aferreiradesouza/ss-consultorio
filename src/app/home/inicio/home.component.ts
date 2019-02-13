@@ -2,6 +2,8 @@ import { Component, OnInit } from '@angular/core';
 import { Router, ActivatedRoute } from '@angular/router';
 import { LocalStorageService } from 'src/shared/service/local-storage.service';
 import { IHome } from 'src/shared/dto';
+import { ModalController } from '@ionic/angular';
+import { DetalhesComponent } from '../modal/detalhes.component';
 
 @Component({
   selector: 'home-page',
@@ -14,9 +16,11 @@ export class HomeComponent implements OnInit {
   public data: IHome;
   public menu: any[];
   public tabs: any[];
-  public itens: any[];
 
-  constructor(public router: Router, public storageService: LocalStorageService, public route: ActivatedRoute) {
+  constructor(public router: Router,
+              public storageService: LocalStorageService,
+              public route: ActivatedRoute,
+              public modalController: ModalController) {
     this.menu = [
       {label: 'Agendar consulta', icon: 'create', url: 'agendar-consulta'},
       {label: 'Cancelar consulta', icon: 'close-circle', url: 'cancelar-consulta'},
@@ -26,12 +30,6 @@ export class HomeComponent implements OnInit {
     this.tabs = [
       {label: 'Próximas consultas', id: '1'},
       {label: 'Consultas anteriores', id: '2'}
-    ];
-
-    this.itens = [
-      {medico: 'Andre Domarco'},
-      {medico: 'Arthur Ferreira'},
-      {medico: 'Rafael Silveira'},
     ];
   }
 
@@ -43,5 +41,13 @@ export class HomeComponent implements OnInit {
   deslogar() {
     localStorage.removeItem('user');
     this.router.navigate(['auth']);
+  }
+
+  async modalDetalhes(detalhes) {
+      const modal = await this.modalController.create({
+        component: DetalhesComponent,
+        componentProps: { value: detalhes }
+      });
+      return await modal.present();
   }
 }

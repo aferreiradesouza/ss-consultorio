@@ -7,6 +7,7 @@ import { ValidacaoComponent } from './validacao/validacao.component';
 import { MenuComponent } from './menu/menu.component';
 import { ItemAgendaComponent } from './item-agenda/item-agenda.component';
 import { TabsComponent } from './tabs/tabs.component';
+import { ButtonComponent } from './button/button.component';
 
 @NgModule({
   declarations: [
@@ -16,6 +17,7 @@ import { TabsComponent } from './tabs/tabs.component';
     MenuComponent,
     ItemAgendaComponent,
     TabsComponent,
+    ButtonComponent,
   ],
   imports: [
     CommonModule,
@@ -28,6 +30,7 @@ import { TabsComponent } from './tabs/tabs.component';
     MenuComponent,
     ItemAgendaComponent,
     TabsComponent,
+    ButtonComponent
   ],
   providers: [
   ],

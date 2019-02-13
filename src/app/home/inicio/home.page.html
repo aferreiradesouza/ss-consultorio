@@ -6,6 +6,6 @@
   <ss-menu [itens]="menu"></ss-menu>
   <div class="lista">
     <ss-tabs [itens]="tabs"></ss-tabs>
-    <ss-item-agenda [itens]="data.consultas.objeto"></ss-item-agenda>
+    <ss-item-agenda [itens]="data.consultas.objeto" (detalhes)='modalDetalhes($event)'></ss-item-agenda>
   </div>
 </ion-content>
