@@ -9,7 +9,9 @@ import { LocalStorageService } from './local-storage.service';
 
 export class AutenticacaoService {
 
-    constructor(public ajaxService: AjaxService, public tokenService: TokenService, public storageService: LocalStorageService) {}
+    constructor(public ajaxService: AjaxService,
+                public tokenService: TokenService,
+                public storageService: LocalStorageService) { }
 
     async verificarToken() {
         const token = await this.tokenService.verificarToken();
@@ -18,5 +20,4 @@ export class AutenticacaoService {
         }
         return token.sucesso;
     }
-
 }

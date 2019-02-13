@@ -37,6 +37,7 @@ export class HomeComponent implements OnInit {
 
   ngOnInit() {
     this.data = this.route.snapshot.data['data'];
+    console.log(this.data.consultas);
   }
 
   deslogar() {

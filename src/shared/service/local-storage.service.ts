@@ -1,6 +1,6 @@
 import { Injectable } from '@angular/core';
 
-type StorageKey = 'user' | 'usid' | 'auth' | 'broker-list';
+type StorageKey = 'user' | 'usid' | 'auth' | 'broker-list' | 'consulta';
 
 @Injectable({
     providedIn: 'root'

@@ -1,19 +1,19 @@
 <div class="item" *ngFor="let item of itens">
     <div class="dia-horario">
-        <div class="dia">20</div>
-        <div class="mes">NOVEMBRO</div>
-        <div class="horario">08:00</div>
+        <div class="dia">{{formaterData(item.data)}}</div>
+        <div class="mes">{{formaterMes(item.data) | uppercase}}</div>
+        <div class="horario">{{item.hora}}</div>
     </div>
     <div class="informacoes">
         <div class="header">
             <div class="informacoes-medico">
-                <div class="especialidade">Clínico geral</div>
-                <div class="medico">{{item.medico}}</div>
+                <div class="especialidade">{{item.especialidade.nome}}</div>
+                <div class="medico">{{formaterName(item.usuario.nome)}}</div>
             </div>
         </div>
         <div class="localizacao">
             <ion-icon name="pin"></ion-icon>
-            <div class="local">Nova América</div>
+            <div class="local">{{item.consultorio.nome}}</div>
         </div>
     </div>
 </div>
