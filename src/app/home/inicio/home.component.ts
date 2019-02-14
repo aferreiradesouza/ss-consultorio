@@ -23,8 +23,8 @@ export class HomeComponent implements OnInit {
               public modalController: ModalController) {
     this.menu = [
       {label: 'Agendar consulta', icon: 'create', url: 'agendar-consulta'},
-      {label: 'Cancelar consulta', icon: 'close-circle', url: 'cancelar-consulta'},
       {label: 'Alterar perfil', icon: 'contact', url: 'alterar-perfil'},
+      {label: 'Contato', icon: 'contact', url: 'contato'},
     ];
 
     this.tabs = [

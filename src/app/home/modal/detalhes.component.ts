@@ -2,6 +2,7 @@ import { Component, OnInit, Input } from '@angular/core';
 import { Router, ActivatedRoute } from '@angular/router';
 import { LocalStorageService } from 'src/shared/service/local-storage.service';
 import { ModalController } from '@ionic/angular';
+import * as moment from 'moment';
 
 @Component({
   selector: 'detalhes-page',
@@ -20,6 +21,15 @@ export class DetalhesComponent implements OnInit {
   }
 
   ngOnInit() {
+  }
+
+  public formaterName(name) {
+    const regex = /^([a-zA-Z]{2,}\s[a-zA-z]{1,}'?-?[a-zA-Z]{2,}?)/;
+    return name.match(regex)[0];
+  }
+
+  public formaterData(data) {
+    return moment(data).format('DD/MM/YYYY');
   }
 
   close() {

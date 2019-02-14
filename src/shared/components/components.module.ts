@@ -8,6 +8,7 @@ import { MenuComponent } from './menu/menu.component';
 import { ItemAgendaComponent } from './item-agenda/item-agenda.component';
 import { TabsComponent } from './tabs/tabs.component';
 import { ButtonComponent } from './button/button.component';
+import { ItemComponent } from './item/item.component';
 
 @NgModule({
   declarations: [
@@ -18,6 +19,7 @@ import { ButtonComponent } from './button/button.component';
     ItemAgendaComponent,
     TabsComponent,
     ButtonComponent,
+    ItemComponent,
   ],
   imports: [
     CommonModule,
@@ -30,6 +32,7 @@ import { ButtonComponent } from './button/button.component';
     MenuComponent,
     ItemAgendaComponent,
     TabsComponent,
+    ItemComponent,
     ButtonComponent
   ],
   providers: [

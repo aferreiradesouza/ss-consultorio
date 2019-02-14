@@ -11,11 +11,17 @@
                 <div class="medico">{{formaterName(item.usuario.nome)}}</div>
             </div>
         </div>
-        <div class="localizacao">
+        <ion-chip>
             <ion-icon name="pin"></ion-icon>
-            <div class="local">{{item.consultorio.nome}}</div>
-        </div>
+            <ion-label>{{item.consultorio.nome}}</ion-label>
+        </ion-chip>
         <!-- <ss-button class="button" label="Informações" type="button-card"></ss-button> -->
-        <ion-button fill="clear" color="primary" size="small" (click)="obterDetalhes(item)">Informações</ion-button>
+        <!-- <ion-button fill="clear" color="primary" size="small" (click)="obterDetalhes(item)">Informações</ion-button> -->
+        <!-- <ion-chip class="consultorio">
+            <ion-icon name="pin"></ion-icon>
+        </ion-chip> -->
+        <ion-button (click)="obterDetalhes(item)">
+            <ion-icon slot="icon-only" name="information-circle-outline"></ion-icon>
+          </ion-button>
     </div>
 </div>
