@@ -1,8 +1,14 @@
+<ion-header>
+  <ion-toolbar class="header">
+    <ion-title>
+      Bem vindo, <strong>{{data.currentUser.nome}}</strong>
+    </ion-title>
+      <ion-button slot="end" fill="clear" color="light" (click)="deslogar()">
+        <ion-icon slot="icon-only" name="log-out"></ion-icon>
+      </ion-button>
+  </ion-toolbar>
+</ion-header>
 <ion-content>
-  <div class="msgBemVindo">
-    Bem vindo, <strong>{{data.currentUser.nome}}</strong>
-    <ion-icon name="log-out" (click)="deslogar()"></ion-icon>
-  </div>
   <ss-menu [itens]="menu"></ss-menu>
   <div class="lista">
     <ss-tabs [itens]="tabs"></ss-tabs>

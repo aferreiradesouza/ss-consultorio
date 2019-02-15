@@ -1,5 +1,33 @@
+.header{
+    --background: var(--azulPadrao);
+    --border-color: none;
+    --color: white;
+    --border-style: none;
+
+    .toolbar-background{
+        --border-color: none;
+        border-color: red !important;
+    }
+
+    ion-buttons{
+        .backButton{
+            --color: white;
+        }
+    }
+
+    ion-title{
+        font-weight: normal;
+        font-size: 12px;
+
+        strong{
+            font-size: 17px;
+        }
+    }
+}
+
 ion-content{
     --ion-background-color: var(--azulPadrao);
+    --overflow: hidden;
 
     .msgBemVindo{
         margin-top: 40px;
@@ -27,7 +55,7 @@ ion-content{
     .lista{
         width: 100vw;
         margin-top: 5px;
-        height: calc(100vh - 171px);
+        height: calc(100vh - 146px);
         background-color: #ececec;
         border-top-right-radius: 10px;
         border-top-left-radius: 10px;

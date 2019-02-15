@@ -15,13 +15,8 @@
             <ion-icon name="pin"></ion-icon>
             <ion-label>{{item.consultorio.nome}}</ion-label>
         </ion-chip>
-        <!-- <ss-button class="button" label="Informações" type="button-card"></ss-button> -->
-        <!-- <ion-button fill="clear" color="primary" size="small" (click)="obterDetalhes(item)">Informações</ion-button> -->
-        <!-- <ion-chip class="consultorio">
-            <ion-icon name="pin"></ion-icon>
-        </ion-chip> -->
-        <ion-button (click)="obterDetalhes(item)">
+        <ion-button (click)="obterDetalhes(item)" fill="clear" color="primary">
             <ion-icon slot="icon-only" name="information-circle-outline"></ion-icon>
-          </ion-button>
+        </ion-button>
     </div>
 </div>

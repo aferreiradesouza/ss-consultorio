@@ -4,7 +4,7 @@
 
 export const environment = {
   production: false,
-  apiBase: 'http://192.168.0.11:2001/api/'
+  apiBase: 'http://app.authoriun.com:2001/api/'
 };
 
 /*

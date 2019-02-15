@@ -1,7 +1,11 @@
 .header{
     --background: var(--azulPadrao);
-    --border-color: none;
     --color: white;
+    border-color: var(--azulPadrao);
+
+    .toolbar-background{
+        border-color: var(--azulPadrao);
+    }
 
     ion-buttons{
         .backButton{
