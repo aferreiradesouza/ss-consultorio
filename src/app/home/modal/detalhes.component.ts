@@ -59,15 +59,20 @@ export class DetalhesComponent implements OnInit {
             await loading.present();
             const cancelamento = await this.homeService.cancelarConsulta(this.value.id);
             loading.dismiss();
-            const toast = await this.toastController.create({
-              message: cancelamento.mensagens[0],
-              duration: 3000,
-              color: 'dark'
-            });
             if (cancelamento.sucesso) {
+              const toast = await this.toastController.create({
+                message: 'Consulta cancelada com sucesso',
+                duration: 3000,
+                color: 'dark'
+              });
               toast.present();
               this.close();
             } else {
+              const toast = await this.toastController.create({
+                message: cancelamento.mensagens[0],
+                duration: 3000,
+                color: 'dark'
+              });
               toast.present();
             }
           }
