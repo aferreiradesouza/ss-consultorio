@@ -1,7 +1,7 @@
 <ion-header>
   <ion-toolbar class="header">
     <ion-title>
-      Bem vindo, <strong>{{data.currentUser.nome}}</strong>
+      Bem vindo, <strong>{{formatarNome}}</strong>
     </ion-title>
       <ion-button slot="end" fill="clear" color="light" (click)="deslogar()">
         <ion-icon slot="icon-only" name="log-out"></ion-icon>

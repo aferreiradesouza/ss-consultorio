@@ -1,8 +1,9 @@
 import { Component, OnInit, Input } from '@angular/core';
 import { Router, ActivatedRoute } from '@angular/router';
 import { LocalStorageService } from 'src/shared/service/local-storage.service';
-import { ModalController } from '@ionic/angular';
+import { ModalController, AlertController, ToastController, LoadingController } from '@ionic/angular';
 import * as moment from 'moment';
+import { HomeService } from '../services/home.service';
 
 @Component({
   selector: 'detalhes-page',
@@ -17,7 +18,11 @@ export class DetalhesComponent implements OnInit {
   constructor(public router: Router,
               public modalController: ModalController,
               public storageService: LocalStorageService,
-              public route: ActivatedRoute) {
+              public route: ActivatedRoute,
+              public alertController: AlertController,
+              public homeService: HomeService,
+              public toastController: ToastController,
+              public loadingController: LoadingController) {
   }
 
   ngOnInit() {
@@ -35,4 +40,41 @@ export class DetalhesComponent implements OnInit {
   close() {
     this.modalController.dismiss();
   }
+
+  async cancelarConsulta() {
+    const loading = await this.loadingController.create({
+      message: 'Enviando',
+    });
+    const alert = await this.alertController.create({
+      header: 'Cancelar consulta',
+      message: 'Você realmente deseja cancelar essa consulta?',
+      buttons: [
+        {
+          text: 'Cancelar',
+          role: 'cancel',
+          cssClass: 'secondary'
+        }, {
+          text: 'Confirmar',
+          handler: async () => {
+            await loading.present();
+            const cancelamento = await this.homeService.cancelarConsulta(this.value.id);
+            loading.dismiss();
+            const toast = await this.toastController.create({
+              message: cancelamento.mensagens[0],
+              duration: 3000,
+              color: 'dark'
+            });
+            if (cancelamento.sucesso) {
+              toast.present();
+              this.close();
+            } else {
+              toast.present();
+            }
+          }
+        }
+      ]
+    });
+    await alert.present();
+  }
+
 }

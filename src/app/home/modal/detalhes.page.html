@@ -1,60 +1,63 @@
 <ion-header>
-    <ion-toolbar class="header">
-        <ion-title>
-          Detalhes da consulta
-        </ion-title>
-        <ion-icon (click)="close()" name="close"></ion-icon>
-    </ion-toolbar>
+  <ion-toolbar class="header">
+    <ion-title>
+      Detalhes da consulta
+    </ion-title>
+    <ion-icon (click)="close()" name="close"></ion-icon>
+  </ion-toolbar>
 </ion-header>
 
 <ion-content>
   <div class="subheader">
     <span>Status:</span>
-    <ion-chip [color]="value.statusConsulta.codigo == 'pre_agendamento' ? 'warning' : 'success'">
+    <ion-chip [color]="value.statusConsulta.codigo == 'pre_agendamento' ? 'warning' : value.statusConsulta.codigo == 'cancelado' ? 'danger' : 'success'">
       <ion-label>
-          {{value.statusConsulta.nome}}
+        {{value.statusConsulta.nome}}
       </ion-label>
     </ion-chip>
   </div>
 
   <div class="item">
-      <div class="medico">
-          <div class="foto-medico">
-              <img [src]="value.usuario.urlFoto">
-          </div>
-          <div class="nome-medico">
-              <div>MÉDICO</div>
-              <div class="nome">{{formaterName(value.usuario.nome)}}</div>
-          </div>
+    <div class="medico">
+      <div class="foto-medico">
+        <img [src]="value.usuario.urlFoto">
       </div>
-      <div class="informacoes">
-          <div class="especialidade">
-              <div>ESPECIALIDADE</div>
-              <div class="especialidade-text">{{value.especialidade.nome}}</div>
-          </div>
-          <div class="crm">
-              <div>CRM</div>
-              <div class="crm-text">{{value.usuario.crm}}</div>
-          </div>
+      <div class="nome-medico">
+        <div>MÉDICO</div>
+        <div class="nome">{{formaterName(value.usuario.nome)}}</div>
       </div>
+    </div>
+    <div class="buttonCancelar" (click)="cancelarConsulta()" *ngIf="value.statusConsulta.codigo !== 'cancelado'">
+      Cancelar consulta
+    </div>
+    <div class="informacoes">
+      <div class="especialidade">
+        <div>ESPECIALIDADE</div>
+        <div class="especialidade-text">{{value.especialidade.nome}}</div>
+      </div>
+      <div class="crm">
+        <div>CRM</div>
+        <div class="crm-text">{{value.usuario.crm}}</div>
+      </div>
+    </div>
   </div>
 
   <div class="datas">
     <ion-grid>
-        <ion-row>
-          <ion-col class="individual">
-              DATA MARCADA
-              <div class="texto">{{formaterData(value.data)}}</div>
-          </ion-col>
-          <ion-col class="individual">
-              HORA
-              <div class="texto">{{value.hora}}</div>
-          </ion-col>
-          <ion-col class="individual">
-              TELEFONE
-              <div class="texto">{{value.consultorio.telefone1 | mask: '(00) 0000-0000'}}</div>
-          </ion-col>
-        </ion-row>
+      <ion-row>
+        <ion-col class="individual">
+          DATA MARCADA
+          <div class="texto">{{formaterData(value.data)}}</div>
+        </ion-col>
+        <ion-col class="individual">
+          HORA
+          <div class="texto">{{value.hora}}</div>
+        </ion-col>
+        <ion-col class="individual">
+          TELEFONE
+          <div class="texto">{{value.consultorio.telefone1 | mask: '(00) 0000-0000'}}</div>
+        </ion-col>
+      </ion-row>
     </ion-grid>
   </div>
 

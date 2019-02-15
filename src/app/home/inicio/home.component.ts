@@ -43,6 +43,10 @@ export class HomeComponent implements OnInit {
     this.router.navigate(['auth']);
   }
 
+  get formatarNome() {
+    return this.data.currentUser.nome.split(' ')[0];
+  }
+
   async modalDetalhes(detalhes) {
       const modal = await this.modalController.create({
         component: DetalhesComponent,

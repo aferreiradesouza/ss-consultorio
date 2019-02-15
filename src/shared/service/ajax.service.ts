@@ -29,4 +29,17 @@ export class AjaxService {
 
         return this.http.post<T>(url, body, options).toPromise();
     }
+
+    public async put<T>(url: string, body: any = {}) {
+
+        const options = {
+            headers: {
+                'Content-Type': 'application/json; charset=UTF-8',
+                'Authorization': 'bearer ' + this.storageService.getJson('user').token ? this.storageService.getJson('user').token : '111'
+            }
+        };
+
+        return this.http.put<T>(url, body, options).toPromise();
+    }
+
 }
