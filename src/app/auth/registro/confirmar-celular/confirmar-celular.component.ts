@@ -10,30 +10,32 @@ import { ToastController, LoadingController } from '@ionic/angular';
   templateUrl: './confirmar-celular.page.html',
   styleUrls: ['./confirmar-celular.component.scss']
 })
-
 export class ConfirmarCelularComponent implements OnInit {
-
   public maskCelular = ['(00) 00000-0000'];
 
-  constructor(public router: Router,
+  constructor(
+    public router: Router,
     public sessionStorage: SessionStorageService,
     public authService: AuthService,
     public toastController: ToastController,
-    public loadingController: LoadingController) {}
+    public loadingController: LoadingController
+  ) {}
 
   ngOnInit() {}
 
   async ir() {
     const loading = await this.loadingController.create({
-      message: 'Enviando',
+      message: 'Enviando'
     });
     await loading.present();
-
 
     const data = {
       cpf: this.registro_conta.cpf,
       email: this.registro_perfil.email,
-      dataNascimento: moment(this.registro_perfil.nascimento, 'DD-MM-YYYY').format('YYYY-MM-DD'),
+      dataNascimento: moment(
+        this.registro_perfil.nascimento,
+        'DD-MM-YYYY'
+      ).format('YYYY-MM-DD'),
       nome: this.registro_perfil.nome,
       celular: this.registro_contato.celular,
       telefone: this.registro_contato.telefone,
@@ -43,6 +45,7 @@ export class ConfirmarCelularComponent implements OnInit {
     const login = await this.authService.registro(data);
     loading.dismiss();
     if (login.sucesso) {
+      this.sessionStorage.remove('registro/contato');
       this.router.navigate(['auth', 'registro', 'confirmar-sms']);
     } else {
       if (login.mensagens) {
