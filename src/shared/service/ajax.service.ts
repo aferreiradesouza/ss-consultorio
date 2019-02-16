@@ -24,6 +24,7 @@ export class AjaxService {
         const options = {
             headers: {
                 'Content-Type': 'application/json; charset=UTF-8',
+                'Authorization': 'bearer ' + this.storageService.getJson('user').token ? this.storageService.getJson('user').token : '111'
             }
         };
 

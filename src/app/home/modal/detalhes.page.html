@@ -10,9 +10,17 @@
 <ion-content>
   <div class="subheader">
     <span>Status:</span>
-    <ion-chip [color]="value.statusConsulta.codigo == 'pre_agendamento' ? 'warning' : value.statusConsulta.codigo == 'cancelado' ? 'danger' : 'success'">
+    <ion-chip
+      [color]="
+        value.statusConsulta.codigo == 'pre_agendamento'
+          ? 'warning'
+          : value.statusConsulta.codigo == 'cancelado'
+          ? 'danger'
+          : 'success'
+      "
+    >
       <ion-label>
-        {{value.statusConsulta.nome}}
+        {{ value.statusConsulta.nome }}
       </ion-label>
     </ion-chip>
   </div>
@@ -20,24 +28,28 @@
   <div class="item">
     <div class="medico">
       <div class="foto-medico">
-        <img [src]="value.usuario.urlFoto">
+        <img [src]="value.usuario.urlFoto" />
       </div>
       <div class="nome-medico">
         <div>MÉDICO</div>
-        <div class="nome">{{formaterName(value.usuario.nome)}}</div>
+        <div class="nome">{{ formaterName(value.usuario.nome) }}</div>
       </div>
     </div>
-    <div class="buttonCancelar" (click)="cancelarConsulta()" *ngIf="value.statusConsulta.codigo !== 'cancelado'">
+    <div
+      class="buttonCancelar"
+      (click)="cancelarConsulta()"
+      *ngIf="value.statusConsulta.codigo !== 'cancelado'"
+    >
       Cancelar consulta
     </div>
     <div class="informacoes">
       <div class="especialidade">
         <div>ESPECIALIDADE</div>
-        <div class="especialidade-text">{{value.especialidade.nome}}</div>
+        <div class="especialidade-text">{{ value.especialidade.nome }}</div>
       </div>
       <div class="crm">
         <div>CRM</div>
-        <div class="crm-text">{{value.usuario.crm}}</div>
+        <div class="crm-text">{{ value.usuario.crm }}</div>
       </div>
     </div>
   </div>
@@ -47,15 +59,19 @@
       <ion-row>
         <ion-col class="individual">
           DATA MARCADA
-          <div class="texto">{{formaterData(value.data)}}</div>
+          <div class="texto">{{ formaterData(value.data) }}</div>
         </ion-col>
         <ion-col class="individual">
           HORA
-          <div class="texto">{{value.hora}}</div>
+          <div class="texto">{{ value.hora }}</div>
         </ion-col>
         <ion-col class="individual">
           TELEFONE
-          <div class="texto">{{value.consultorio.telefone1 | mask: '(00) 0000-0000'}}</div>
+          <div class="texto">
+            <a [href]="'tel:+55' + value.consultorio.telefone1">{{
+              value.consultorio.telefone1 | mask: "(00) 0000-0000"
+            }}</a>
+          </div>
         </ion-col>
       </ion-row>
     </ion-grid>
@@ -65,20 +81,21 @@
     <div class="header">INFORMAÇÕES DO LOCAL</div>
     <div class="info">
       <div class="label">ENDEREÇO</div>
-      <div class="text">{{value.consultorio.logradouro}}, {{value.consultorio.numero}}</div>
+      <div class="text">
+        {{ value.consultorio.logradouro }}, {{ value.consultorio.numero }}
+      </div>
     </div>
     <div class="info">
       <div class="label">BAIRRO</div>
-      <div class="text">{{value.consultorio.bairro}}</div>
+      <div class="text">{{ value.consultorio.bairro }}</div>
     </div>
     <div class="info">
       <div class="label">COMPLEMENTO</div>
-      <div class="text">{{value.consultorio.complemento}}</div>
+      <div class="text">{{ value.consultorio.complemento }}</div>
     </div>
     <div class="info">
       <div class="label">CIDADE</div>
-      <div class="text">{{value.consultorio.cidade}}</div>
+      <div class="text">{{ value.consultorio.cidade }}</div>
     </div>
   </div>
-
 </ion-content>
