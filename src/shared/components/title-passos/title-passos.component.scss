@@ -1,5 +1,6 @@
 .area-title{
-    width: calc(100vw - 2rem);
+    width: calc(100% - 2rem);
+    max-width: 400px;
     margin: 10px auto;
     position: relative;
     height: 33px;

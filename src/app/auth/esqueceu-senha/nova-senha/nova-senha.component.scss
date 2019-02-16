@@ -1,50 +1,51 @@
-.header{
-    --background: var(--azulPadrao);
-    --border-color: none;
-    --color: white;
+.header {
+  --background: var(--azulPadrao);
+  --border-color: none;
+  --color: white;
 
-    ion-buttons{
-        .backButton{
-            --color: white;
-        }
+  ion-buttons {
+    .backButton {
+      --color: white;
     }
+  }
 
-    ion-title{
-        font-weight: normal;
-        font-size: 12px;
+  ion-title {
+    font-weight: normal;
+    font-size: 12px;
 
-        strong{
-            font-size: 17px;
-        }
+    strong {
+      font-size: 17px;
     }
+  }
 }
 
 .form-control {
-    margin-bottom: 1rem;
-    border: 1px solid #ccc;
-    border-radius: 4px;
-    padding: 10px;
-    width: 100%;
-    float: left;
-    -webkit-box-shadow: inset 0 5px 9px -7px rgba(0,0,0,0.7);
-    -moz-box-shadow: inset 0 5px 9px -7px rgba(0,0,0,0.7);
-    box-shadow: inset 0 5px 9px -7px rgba(0,0,0,0.7);
+  margin-bottom: 1rem;
+  border: 1px solid #ccc;
+  border-radius: 4px;
+  padding: 10px;
+  width: 100%;
+  float: left;
+  -webkit-box-shadow: inset 0 5px 9px -7px rgba(0, 0, 0, 0.7);
+  -moz-box-shadow: inset 0 5px 9px -7px rgba(0, 0, 0, 0.7);
+  box-shadow: inset 0 5px 9px -7px rgba(0, 0, 0, 0.7);
 
-    &:focus {
-        box-shadow: none;
-    }
+  &:focus {
+    box-shadow: none;
+  }
 
-    &.is-invalid {
-        border-color: red;
-        margin-bottom: 0;
-    }
+  &.is-invalid {
+    border-color: red;
+    margin-bottom: 0;
+  }
 }
 
-.form{
-    width: calc(100vw - 2rem);
-    margin: 10px auto;
-    
-    ion-button{
-        margin-top: 40px;
-    }
+.form {
+  width: calc(100% - 2rem);
+  max-width: 400px;
+  margin: 10px auto;
+
+  ion-button {
+    margin-top: 40px;
+  }
 }

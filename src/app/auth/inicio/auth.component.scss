@@ -1,54 +1,53 @@
-ion-content{
-    --ion-background-color: white;
+ion-content {
+  --ion-background-color: white;
 
-    .msgBemVindo{
-        margin-top: 10%;
-        width: 100vw;
-        color: black;
-        font-size: 14px;
-        text-align: center;
-        z-index: 99;
+  .msgBemVindo {
+    margin-top: calc(env(safe-area-inset-top) + 10%);
+    width: 100vw;
+    color: black;
+    font-size: 14px;
+    text-align: center;
+    z-index: 99;
 
-        strong{
-            font-size: 18px;
-        }
+    strong {
+      font-size: 18px;
     }
+  }
 
-    .background{
-        width: calc(100vw - 70px);
-        position: absolute;
-        z-index: 0;
-        top: 15%;
-        left: 50%;
-        transform: translateY(-50%);
-        transform: translateX(-50%);
+  .background {
+    // width: calc(100vw - 70px);
+    // position: absolute;
+    z-index: 0;
+    // top: 15%;
+    // left: 50%;
+    // transform: translateY(-50%);
+    // transform: translateX(-50%);
+    text-align: center;
+    margin-top: 20px;
 
-        img{
-            width: 100%;
-        }
+    img {
+      width: calc(100% - 70px);
+      max-width: 300px;
     }
+  }
 
-    .painel-login{
-        width: calc(100vw - 20px);
-        position: absolute;
-        border-radius: 10px;
-        margin: 20px auto;
-        text-align: center;
-        padding: 0 20px;
-        top: 50%;
-        left: 50%;
-        transform: translateX(-50%);
-    
-        .subTitle{
-            margin-bottom: 20px;
-        }
-    }
+  .painel-login {
+    width: calc(100% - 20px);
+    border-radius: 10px;
+    margin: 20px auto;
+    text-align: center;
+    padding: 0 20px;
 
-    .buttons{
-        position: absolute;
-        top: 75%;
-        left: 50%;
-        text-align: center;
-        transform: translate(-50%, 0%);
+    .subTitle {
+      margin-bottom: 20px;
     }
+  }
+
+  .buttons {
+    position: absolute;
+    top: 75%;
+    left: 50%;
+    text-align: center;
+    transform: translate(-50%, 0%);
+  }
 }

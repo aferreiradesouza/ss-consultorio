@@ -1,69 +1,71 @@
-.header{
-    --background: var(--azulPadrao);
+.header {
+  --background: var(--azulPadrao);
+  --border-color: none;
+  --color: white;
+  --border-style: none;
+
+  .toolbar-background {
     --border-color: none;
-    --color: white;
-    --border-style: none;
+    border-color: red !important;
+  }
 
-    .toolbar-background{
-        --border-color: none;
-        border-color: red !important;
+  ion-buttons {
+    .backButton {
+      --color: white;
     }
+  }
 
-    ion-buttons{
-        .backButton{
-            --color: white;
-        }
+  ion-title {
+    font-weight: normal;
+    font-size: 12px;
+
+    strong {
+      font-size: 17px;
     }
-
-    ion-title{
-        font-weight: normal;
-        font-size: 12px;
-
-        strong{
-            font-size: 17px;
-        }
-    }
+  }
 }
 
-ion-content{
-    --ion-background-color: var(--azulPadrao);
-    --overflow: hidden;
+ion-content {
+  --ion-background-color: var(--azulPadrao);
+  --overflow: hidden;
 
-    .msgBemVindo{
-        margin-top: 40px;
-        width: 100vw;
-        color: white;
-        font-size: 13px;
-        text-align: center;
-        margin-bottom: 25px;
-        position: relative;
+  .msgBemVindo {
+    margin-top: 40px;
+    width: 100vw;
+    color: white;
+    font-size: 13px;
+    text-align: center;
+    margin-bottom: 25px;
+    position: relative;
 
-        strong{
-            font-size: 18px;
-        }
-
-        ion-icon{
-            position: absolute;
-            right: 0px;
-            top: 50%;
-            transform: translateY(-50%);
-            font-size: 25px;
-            margin-right: 10px;
-        }
+    strong {
+      font-size: 18px;
     }
 
-    .lista{
-        width: 100vw;
-        margin-top: 5px;
-        height: calc(100vh - 146px);
-        background-color: #ececec;
-        border-top-right-radius: 10px;
-        border-top-left-radius: 10px;
-        box-shadow: 0px 0px 20px 0px rgba(0,0,0,0.45);
-        overflow: hidden;
-
-        ion-card{
-            background-color: white;
-        }
+    ion-icon {
+      position: absolute;
+      right: 0px;
+      top: 50%;
+      transform: translateY(-50%);
+      font-size: 25px;
+      margin-right: 10px;
     }
+  }
+
+  .lista {
+    width: 100%;
+    max-width: 400px;
+    margin: auto;
+    margin-top: 5px;
+    height: calc(100vh - 146px);
+    background-color: #ececec;
+    border-top-right-radius: 10px;
+    border-top-left-radius: 10px;
+    box-shadow: 0px 0px 20px 0px rgba(0, 0, 0, 0.45);
+    overflow: hidden;
+
+    ion-card {
+      background-color: white;
+    }
+  }
 }
