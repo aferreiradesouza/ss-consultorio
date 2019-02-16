@@ -1,192 +1,193 @@
-.header{
-    --background: var(--azulPadrao);
-    --border-color: none;
-    --color: white;
-    --border-color: var(--azulPadrao);
+.header {
+  --background: var(--azulPadrao);
+  --border-color: none;
+  --color: white;
+  --border-color: var(--azulPadrao);
 
-    ion-icon{
-        position: absolute;
-        top: 50%;
-        transform: translateY(-50%);
-        right: 5px;
-        font-size: 40px;
-    }
+  ion-icon {
+    position: absolute;
+    top: 50%;
+    transform: translateY(-50%);
+    right: 5px;
+    font-size: 40px;
+    cursor: pointer;
+  }
 }
 
 .subheader {
-    text-align: center;
-    padding-top: 8px;
-    padding-bottom: 8px;
-    font-size: 14px;
-    background-color: white;
-    box-shadow: 0 3px 1px -2px rgba(0,0,0,.2);
+  text-align: center;
+  padding-top: 8px;
+  padding-bottom: 8px;
+  font-size: 14px;
+  background-color: white;
+  box-shadow: 0 3px 1px -2px rgba(0, 0, 0, 0.2);
 
-    span{
-        font-size: 12px;
-        color: #3b3b3b;
-    }
+  span {
+    font-size: 12px;
+    color: #3b3b3b;
+  }
 }
 
-ion-content{
-    --background: #d2d9e0;
+ion-content {
+  --background: #d2d9e0;
 }
 
-.item{
-    width: calc(100% - 20px);
-    margin: 10px auto 0;
-    padding: 15px;
-    border: 1px solid #ccc;
-    box-shadow: 0 3px 1px -2px rgba(0,0,0,.2);
-    background-color: white;
-    border-radius: 3px;
-    position: relative;
+.item {
+  width: calc(100% - 20px);
+  margin: 10px auto 0;
+  padding: 15px;
+  border: 1px solid #ccc;
+  box-shadow: 0 3px 1px -2px rgba(0, 0, 0, 0.2);
+  background-color: white;
+  border-radius: 3px;
+  position: relative;
 
-    .buttonCancelar{
-        position: absolute;
-        top: 15px;
-        right: 15px;
-        padding: 4px 10px;
-        background-color: var(--ion-color-danger);
-        color: white;
-        font-size: 12px;
-        border-radius: 4px;
+  .buttonCancelar {
+    cursor: pointer;
+    position: absolute;
+    top: 15px;
+    right: 15px;
+    padding: 4px 10px;
+    background-color: var(--ion-color-danger);
+    color: white;
+    font-size: 12px;
+    border-radius: 4px;
 
-        &:active{
-            background-color: var(--ion-color-danger-shade);
-        }
+    &:active {
+      background-color: var(--ion-color-danger-shade);
     }
+  }
 
-    .medico {
-        width: 100%;
-        height: 50px;
-        display: inline-block;
-
-        .foto-medico{
-            float: left;
-            width: 50px;
-            height: 100%;
-            
-            img{
-                height: 100%;
-                border-radius: 25px;
-            }
-        }
-
-        .nome-medico{
-            float: left;
-            width: calc(100% - 60px);
-            height: 100%;
-            margin-left: 10px;
-            font-size: 11px;
-            display: flex;
-            flex-direction: column;
-
-            .nome{
-                margin-top: auto;
-                font-size: 18px;
-                font-weight: bold;
-            }
-        }
-    }
-
-    .informacoes{
-        width: 100%;
-        height: 50px;
-        margin-top: 10px;
-        display: inline-block;
-
-        .especialidade{
-            width: calc(60% - 2.5px);
-            height: 50px;
-            float: left;
-            background-color: var(--azulPadrao);
-            color: white;
-            font-size: 10px;
-            display: flex;
-            flex-direction: column;
-            padding: 7px;
-            border-radius: 4px;
-
-            .especialidade-text{
-                margin-top: auto;
-                font-size: 13px;
-                font-weight: bold;
-            }
-        }
-
-        .crm{
-            width: calc(40% - 2.5px);
-            height: 50px;
-            float: left;
-            background-color: var(--azulPadrao);
-            color: white;
-            margin-left: 5px;
-            font-size: 10px;
-            display: flex;
-            flex-direction: column;
-            padding: 7px;
-            border-radius: 4px;
-
-            .crm-text{
-                margin-top: auto;
-                font-size: 13px;
-                font-weight: bold;
-            }
-        }
-    }
-}
-
-.datas{
+  .medico {
     width: 100%;
-    margin: 10px auto;
-    background-color: white;
-    height: 65px;
-    padding: 10px;
-    box-shadow: 0 3px 1px -2px rgba(0,0,0,.2);
+    height: 50px;
+    display: inline-block;
 
-    ion-grid{
+    .foto-medico {
+      float: left;
+      width: 50px;
+      height: 100%;
 
-        ion-row{
-            .individual{
-                height: 100%;
-                float: left;
-                width: calc(33.33% - 5px);
-                display: flex;
-                flex-direction: column;
-                font-size: 10px;
-                text-align: center;
-                margin: 0 auto;
-        
-                .texto{
-                    margin-top: auto;
-                    font-size: 12px;
-                    font-weight: bold;
-                }
-            }
-        }
+      img {
+        height: 100%;
+        border-radius: 25px;
+      }
     }
+
+    .nome-medico {
+      float: left;
+      width: calc(100% - 60px);
+      height: 100%;
+      margin-left: 10px;
+      font-size: 11px;
+      display: flex;
+      flex-direction: column;
+
+      .nome {
+        margin-top: auto;
+        font-size: 18px;
+        font-weight: bold;
+      }
+    }
+  }
+
+  .informacoes {
+    width: 100%;
+    height: 50px;
+    margin-top: 10px;
+    display: inline-block;
+
+    .especialidade {
+      width: calc(60% - 2.5px);
+      height: 50px;
+      float: left;
+      background-color: var(--azulPadrao);
+      color: white;
+      font-size: 10px;
+      display: flex;
+      flex-direction: column;
+      padding: 7px;
+      border-radius: 4px;
+
+      .especialidade-text {
+        margin-top: auto;
+        font-size: 13px;
+        font-weight: bold;
+      }
+    }
+
+    .crm {
+      width: calc(40% - 2.5px);
+      height: 50px;
+      float: left;
+      background-color: var(--azulPadrao);
+      color: white;
+      margin-left: 5px;
+      font-size: 10px;
+      display: flex;
+      flex-direction: column;
+      padding: 7px;
+      border-radius: 4px;
+
+      .crm-text {
+        margin-top: auto;
+        font-size: 13px;
+        font-weight: bold;
+      }
+    }
+  }
 }
 
-.consultorio{
-    width: 100vw;
-    background-color: white;
-    padding: 15px;
-    box-shadow: 0 3px 1px -2px rgba(0,0,0,.2);
+.datas {
+  width: 100%;
+  margin: 10px auto;
+  background-color: white;
+  height: 65px;
+  padding: 10px;
+  box-shadow: 0 3px 1px -2px rgba(0, 0, 0, 0.2);
 
-    .header{
-        font-size: 12px;
-    }
+  ion-grid {
+    ion-row {
+      .individual {
+        height: 100%;
+        float: left;
+        width: calc(33.33% - 5px);
+        display: flex;
+        flex-direction: column;
+        font-size: 10px;
+        text-align: center;
+        margin: 0 auto;
 
-    .info{
-        margin-top: 20px;
-
-        .label{
-            font-weight: bold;
-            font-size: 11px;
-            margin-bottom: 5px;
+        .texto {
+          margin-top: auto;
+          font-size: 12px;
+          font-weight: bold;
         }
-        .text{
-            font-size: 13px;
-        }
+      }
     }
+  }
+}
+
+.consultorio {
+  width: 100vw;
+  background-color: white;
+  padding: 15px;
+  box-shadow: 0 3px 1px -2px rgba(0, 0, 0, 0.2);
+
+  .header {
+    font-size: 12px;
+  }
+
+  .info {
+    margin-top: 20px;
+
+    .label {
+      font-weight: bold;
+      font-size: 11px;
+      margin-bottom: 5px;
+    }
+    .text {
+      font-size: 13px;
+    }
+  }
 }
