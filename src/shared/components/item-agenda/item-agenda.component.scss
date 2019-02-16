@@ -43,6 +43,25 @@
         position: absolute;
         top: 0px;
 
+        .status{
+            position: absolute;
+            top: 8px;
+            right: 16px;
+            font-size: 18px;
+        }
+
+        .orange{
+            color: var(--ion-color-warning);
+        }
+
+        .red{
+            color: var(--ion-color-danger-shade);
+        }
+
+        .green{
+            color: var(--ion-color-success-shade);
+        }
+
         .header {
             height: 38px;
             width: 100%;

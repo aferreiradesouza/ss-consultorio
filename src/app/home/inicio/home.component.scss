@@ -65,5 +65,20 @@ ion-content{
         ion-card{
             background-color: white;
         }
+
+        ion-content{
+            --ion-background-color: #ececec;
+
+
+            ion-refresher{
+                color: black;
+                z-index: 99999;
+                
+                ion-refresher-content{
+                    color: black;
+                }
+            }
+
+        }
     }
 }
