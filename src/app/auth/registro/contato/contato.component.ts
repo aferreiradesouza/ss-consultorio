@@ -26,7 +26,7 @@ export class ContatoComponent implements OnInit {
 
   gravar() {
       if (this.formContato.valid) {
-          this.sessionStorage.setJson('registro/contato', this.formContato.value);
+          this.sessionStorage.remove('registro/contato');
           this.proximo();
       }
   }
