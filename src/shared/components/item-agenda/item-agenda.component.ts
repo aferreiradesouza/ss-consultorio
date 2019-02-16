@@ -21,6 +21,18 @@ export class ItemAgendaComponent implements OnInit {
   ngOnInit() {
   }
 
+  public formatarStatus(codigo) {
+    let status;
+    if (codigo === 'pre_agendamento') {
+      status = 'remove-circle';
+    } else if (codigo === 'cancelado') {
+      status = 'close-circle';
+    } else {
+      status = 'checkmark-circle';
+    }
+    return status;
+  }
+
   public formaterName(name) {
     const regex = /^([a-zA-Z]{2,}\s[a-zA-z]{1,}'?-?[a-zA-Z]{2,}?)/;
     return name.match(regex)[0];

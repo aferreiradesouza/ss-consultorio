@@ -38,12 +38,14 @@ export class DetalhesComponent implements OnInit {
   }
 
   close() {
-    this.modalController.dismiss();
+    this.modalController.dismiss({
+      'result': 'fechar'
+    });
   }
 
   async cancelarConsulta() {
     const loading = await this.loadingController.create({
-      message: 'Enviando',
+      message: 'Cancelando',
     });
     const alert = await this.alertController.create({
       header: 'Cancelar consulta',
@@ -59,15 +61,21 @@ export class DetalhesComponent implements OnInit {
             await loading.present();
             const cancelamento = await this.homeService.cancelarConsulta(this.value.id);
             loading.dismiss();
+
             if (cancelamento.sucesso) {
+
               const toast = await this.toastController.create({
                 message: 'Consulta cancelada com sucesso',
                 duration: 3000,
                 color: 'dark'
               });
               toast.present();
-              this.close();
+              this.modalController.dismiss({
+                'result': 'cancelar'
+              });
+
             } else {
+
               const toast = await this.toastController.create({
                 message: cancelamento.mensagens[0],
                 duration: 3000,
