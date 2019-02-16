@@ -7,13 +7,13 @@
 <ion-content>
     <ss-title-passos pagina="Registro" title="Contato" icon="call" urlBase="registro" urlSecundaria="perfil"></ss-title-passos>
     <form class="form" [formGroup]="formContato">
-        <ss-input label="Telefone">
-            <input class="form-control" type="text" mask="(00) 0000-0000" formControlName="telefone"/>
-            <ss-validacao [validacao]="formContato.controls.telefone.valid"></ss-validacao>
-        </ss-input>
         <ss-input label="Celular" type="text">
             <input class="form-control" mask="(00) 00000-0000" type="text" formControlName="celular"/>
             <ss-validacao [validacao]="formContato.controls.celular.valid"></ss-validacao>
+        </ss-input>
+        <ss-input label="Telefone">
+            <input class="form-control" type="text" mask="(00) 0000-0000" formControlName="telefone"/>
+            <ss-validacao [validacao]="formContato.controls.telefone.valid"></ss-validacao>
         </ss-input>
         <ion-button shape="round" expand="full" [disabled]="!formContato.valid" (click)="gravar()">Próximo</ion-button>
     </form>

@@ -17,7 +17,7 @@ export class ContatoComponent implements OnInit {
 
   ngOnInit() {
     this.formContato = this.fb.group({
-      telefone: this.fb.control('', [Validators.required, Validators.minLength(10)]),
+      telefone: this.fb.control('', [Validators.minLength(10)]),
       celular: this.fb.control('', [Validators.required, Validators.minLength(11)]),
     });
 
