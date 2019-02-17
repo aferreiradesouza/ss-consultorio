@@ -10,11 +10,14 @@ import { HomeRoutingModule } from './home-routing.module';
 import { HomeResolver } from './inicio/home.resolver';
 import { HomeService } from './services/home.service';
 import { DetalhesComponent } from './modal/detalhes.component';
+import { AgendaCompletaComponent } from './agenda-completa/agenda-completa.component';
+import { UtilHomeService } from './services/util.service';
 
 @NgModule({
   declarations: [
       HomeComponent,
-      DetalhesComponent
+      DetalhesComponent,
+      AgendaCompletaComponent
   ],
   imports: [
     CommonModule,
@@ -28,7 +31,8 @@ import { DetalhesComponent } from './modal/detalhes.component';
     SessionStorageService,
     LocalStorageService,
     HomeResolver,
-    HomeService
+    HomeService,
+    UtilHomeService
   ],
   entryComponents: [
     DetalhesComponent

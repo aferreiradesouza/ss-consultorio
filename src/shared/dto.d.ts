@@ -13,7 +13,7 @@ export interface IConfirmarSms {
 
 export interface IHome {
     currentUser: any;
-    consultas: Consultas[];
+    consultas: any;
 }
 
 export interface Usuario {

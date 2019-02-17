@@ -11,19 +11,18 @@
 <ion-content>
   <ss-menu [itens]="menu"></ss-menu>
   <div class="lista">
-    <ss-tabs [itens]="tabs"></ss-tabs>
+    <ss-tabs [itens]="tabs" (tabClick)="obterTabAtual($event)"></ss-tabs>
     <ion-content>
       <ion-refresher slot="fixed" (ionRefresh)="atualizarLista($event)">
         <ion-refresher-content
         pullingIcon="arrow-dropdown"
         pullingText="Pull to refresh"
-        refreshingSpinner="circles"
         refreshingText="Refreshing..."></ion-refresher-content>
       </ion-refresher>
-      <ss-item-agenda [itens]="data.consultas.objeto" (detalhes)='modalDetalhes($event)'></ss-item-agenda>
+      <ss-item-agenda [itens]="agenda" (detalhes)='modalDetalhes($event)'></ss-item-agenda>
     </ion-content>
   </div>
 </ion-content>
 <ion-footer>
-    <ss-button label="Agenda Completa" type="button-lista"></ss-button>
+    <ss-button label="Agenda Completa" type="button-lista" (clickAgenda)="verAgendaCompleta()"></ss-button>
 </ion-footer>

@@ -1,0 +1,12 @@
+<ion-header>
+    <ion-toolbar class="header">
+        <ion-buttons mode="ios" color="light" slot="start">
+            <ion-back-button class="backButton" [text]="'Voltar'" color="light" (click)="voltar()"></ion-back-button>
+        </ion-buttons>
+        <ion-title>Sua agenda</ion-title>
+    </ion-toolbar>
+    <ss-tabs [itens]="tabs" (tabClick)="obterTabAtual($event)"></ss-tabs>
+</ion-header>
+<ion-content>
+    <ss-item-agenda *ngIf="agenda" [itens]="agenda" (detalhes)='modalDetalhes($event)'></ss-item-agenda>
+</ion-content>

@@ -5,6 +5,7 @@ import { IHome } from 'src/shared/dto';
 import { ModalController, LoadingController } from '@ionic/angular';
 import { DetalhesComponent } from '../modal/detalhes.component';
 import { HomeService } from '../services/home.service';
+import { UtilHomeService } from '../services/util.service';
 
 @Component({
   selector: 'home-page',
@@ -17,13 +18,15 @@ export class HomeComponent implements OnInit {
   public data: IHome;
   public menu: any[];
   public tabs: any[];
+  public agenda: any;
 
   constructor(public router: Router,
               public storageService: LocalStorageService,
               public route: ActivatedRoute,
               public modalController: ModalController,
               public homeService: HomeService,
-              public loadingController: LoadingController) {
+              public loadingController: LoadingController,
+              public utilService: UtilHomeService) {
     this.menu = [
       {label: 'Agendar consulta', icon: 'create', url: 'agendar-consulta'},
       {label: 'Alterar perfil', icon: 'contact', url: 'alterar-perfil'},
@@ -38,7 +41,15 @@ export class HomeComponent implements OnInit {
 
   ngOnInit() {
     this.data = this.route.snapshot.data['data'];
-    console.log(this.data.consultas);
+    this.obterTabAtual('1');
+  }
+
+  async obterTabAtual(id) {
+    if (id === '1') {
+      this.agenda = await this.utilService.formatarConsultas(this.data.consultas.objeto, 'proximas');
+    } else {
+      this.agenda = await this.utilService.formatarConsultas(this.data.consultas.objeto, 'anteriores');
+    }
   }
 
   deslogar() {
@@ -51,6 +62,10 @@ export class HomeComponent implements OnInit {
         this.data.consultas = await this.homeService.obterConsultas();
         event.target.complete();
       }, 2000);
+  }
+
+  verAgendaCompleta() {
+    this.router.navigate(['agenda-completa']);
   }
 
   get formatarNome() {

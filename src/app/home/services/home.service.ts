@@ -13,7 +13,7 @@ export class HomeService {
 
     async obterConsultas() {
         const url = `${environment.apiBase}agenda/obterMinhasConsultas`;
-        return this.ajaxService.get<Consultas[]>(url);
+        return this.ajaxService.get<Consultas>(url);
     }
 
     async cancelarConsulta(id) {

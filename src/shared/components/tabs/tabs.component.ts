@@ -1,4 +1,4 @@
-import { Component, OnInit, Input } from '@angular/core';
+import { Component, OnInit, Input, Output, EventEmitter } from '@angular/core';
 import { Router } from '@angular/router';
 
 @Component({
@@ -11,6 +11,8 @@ export class TabsComponent implements OnInit {
 
   @Input() itens: any[];
 
+  @Output() tabClick = new EventEmitter();
+
   public id: string;
 
   constructor(public router: Router) {
@@ -22,5 +24,10 @@ export class TabsComponent implements OnInit {
 
   activeTab(id) {
     this.id = id;
+  }
+
+  public tabAtual(id) {
+    this.activeTab(id);
+    this.tabClick.emit(id);
   }
 }

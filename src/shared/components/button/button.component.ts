@@ -1,4 +1,4 @@
-import { Component, OnInit, Input } from '@angular/core';
+import { Component, OnInit, Input, Output, EventEmitter } from '@angular/core';
 import { Router } from '@angular/router';
 
 @Component({
@@ -12,8 +12,14 @@ export class ButtonComponent implements OnInit {
   @Input() label: string;
   @Input() type: string;
 
+  @Output() clickAgenda = new EventEmitter();
+
   constructor(public router: Router) {}
 
   ngOnInit() {
+  }
+
+  irAgendaCompleta() {
+    this.clickAgenda.emit();
   }
 }
