@@ -30,7 +30,7 @@ export class AgendaCompletaComponent implements OnInit {
 
     this.tabs = [
       { label: 'Próximas consultas', id: '1' },
-      { label: 'Consultas anteriores', id: '2' }
+      { label: 'Consultas finalizadas', id: '2' }
     ];
 
   }

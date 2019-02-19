@@ -9,6 +9,10 @@ import { Router } from '@angular/router';
 
 export class ItemComponent implements OnInit {
 
+  @Input() label: string;
+  @Input() text: string;
+  @Input() type: string;
+
   constructor(public router: Router) {}
 
   ngOnInit() {

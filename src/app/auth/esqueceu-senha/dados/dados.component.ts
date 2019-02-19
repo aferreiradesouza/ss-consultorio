@@ -4,7 +4,7 @@ import { FormBuilder, FormGroup, Validators } from '@angular/forms';
 import { SessionStorageService } from 'src/shared/service/session-storage.service';
 import { AuthService } from '../../service/auth.service';
 import * as moment from 'moment';
-import { ToastController, LoadingController } from '@ionic/angular';
+import { ToastController, LoadingController, NavController } from '@ionic/angular';
 
 @Component({
   selector: 'dados-page',
@@ -22,7 +22,8 @@ export class DadosComponent implements OnInit {
     public toastController: ToastController,
     public sessionStorage: SessionStorageService,
     public authService: AuthService,
-    public loadingController: LoadingController) {}
+    public loadingController: LoadingController,
+    public navController: NavController) {}
 
   ngOnInit() {
     this.formDados = this.fb.group({
@@ -33,7 +34,7 @@ export class DadosComponent implements OnInit {
   }
 
   voltar() {
-    this.router.navigate(['auth']);
+    this.navController.pop();
   }
 
   gravar() {

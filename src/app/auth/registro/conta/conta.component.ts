@@ -2,6 +2,7 @@ import { Component, OnInit } from '@angular/core';
 import { Router } from '@angular/router';
 import { FormGroup, FormBuilder, Validators, FormControl } from '@angular/forms';
 import { SessionStorageService } from 'src/shared/service/session-storage.service';
+import { NavController } from '@ionic/angular';
 
 @Component({
   selector: 'conta-page',
@@ -13,7 +14,9 @@ export class ContaComponent implements OnInit {
 
   public formConta: FormGroup;
 
-  constructor(public router: Router, private fb: FormBuilder, public sessionStorage: SessionStorageService) {}
+  constructor(public router: Router, private fb: FormBuilder,
+    public sessionStorage: SessionStorageService,
+    public navController: NavController) {}
 
   ngOnInit() {
     this.formConta = this.fb.group({
@@ -26,7 +29,7 @@ export class ContaComponent implements OnInit {
   }
 
   voltar() {
-    this.router.navigate(['auth']);
+    this.navController.pop();
   }
 
   gravar() {

@@ -1,5 +1,6 @@
 import { Component, OnInit, Input } from '@angular/core';
 import { Router } from '@angular/router';
+import { NavController } from '@ionic/angular';
 
 type TypeInput = 'text' | 'password';
 
@@ -17,12 +18,12 @@ export class TitlePassosComponent implements OnInit {
   @Input() urlSecundaria: string;
   @Input() pagina: string;
 
-  constructor(public router: Router) {}
+  constructor(public router: Router, public navController: NavController) {}
 
   ngOnInit() {}
 
   voltarPasso() {
-    this.router.navigate(['auth', this.urlBase, this.urlSecundaria]);
+    this.navController.pop();
   }
 
 }

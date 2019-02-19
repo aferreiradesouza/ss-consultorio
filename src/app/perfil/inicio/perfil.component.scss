@@ -1,0 +1,34 @@
+.header {
+  --background: var(--azulPadrao);
+  --border-color: none;
+  --color: white;
+  --border-style: none;
+
+  .toolbar-background {
+    --border-color: none;
+  }
+
+  ion-buttons {
+    .backButton {
+      --color: white;
+    }
+  }
+}
+
+ion-content{
+  --background: #d2d9e0;
+}
+
+.content-perfil{
+  height: 100%;
+  width: 100%;
+  padding: 10px;
+}
+
+.divisor{
+  margin-top: 10px;
+}
+
+.list-ios{
+  margin-bottom: 10px !important;
+}

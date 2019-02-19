@@ -1,6 +1,6 @@
 import { Component, OnInit } from '@angular/core';
 import { Router, ActivatedRoute } from '@angular/router';
-import { ToastController, LoadingController } from '@ionic/angular';
+import { ToastController, LoadingController, NavController } from '@ionic/angular';
 import { FormGroup, FormBuilder, Validators } from '@angular/forms';
 import { SessionStorageService } from 'src/shared/service/session-storage.service';
 import { AuthService } from '../../service/auth.service';
@@ -26,7 +26,8 @@ export class ConfirmarSMSComponent implements OnInit {
     public authService: AuthService,
     public storageService: LocalStorageService,
     public route: ActivatedRoute,
-    public loadingController: LoadingController) {
+    public loadingController: LoadingController,
+    public navController: NavController) {
   }
 
   ngOnInit() {
@@ -37,7 +38,7 @@ export class ConfirmarSMSComponent implements OnInit {
   }
 
   voltar() {
-    this.router.navigate(['auth']);
+    this.navController.pop();
   }
 
   async enviar() {

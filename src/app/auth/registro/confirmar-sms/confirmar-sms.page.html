@@ -1,5 +1,8 @@
 <ion-header>
     <ion-toolbar class="header">
+        <ion-buttons mode="ios" color="light" slot="start" *ngIf="data.action">
+            <ion-back-button class="backButton" [text]="'Voltar'" color="light" (click)="voltar()"></ion-back-button>
+        </ion-buttons>
         <ion-title>
             <strong>{{data.action ? 'Confirmar SMS' : 'Passo 5'}}</strong>
             {{data.action ? '' : '/ 5'}}

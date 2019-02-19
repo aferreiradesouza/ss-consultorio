@@ -5,18 +5,12 @@ import { ComponentsModule } from 'src/shared/components/components.module';
 import { SessionStorageService } from 'src/shared/service/session-storage.service';
 import { LocalStorageService } from 'src/shared/service/local-storage.service';
 import { NgxMaskModule } from 'ngx-mask';
-import { HomeComponent } from './inicio/home.component';
-import { HomeRoutingModule } from './home-routing.module';
-import { HomeService } from './services/home.service';
-import { DetalhesComponent } from './modal/detalhes.component';
-import { AgendaCompletaComponent } from './agenda-completa/agenda-completa.component';
-import { UtilHomeService } from './services/util.service';
+import { PerfilComponent } from './inicio/perfil.component';
+import { PerfilRoutingModule } from './perfil-routing.module';
 
 @NgModule({
   declarations: [
-      HomeComponent,
-      DetalhesComponent,
-      AgendaCompletaComponent
+    PerfilComponent
   ],
   imports: [
     CommonModule,
@@ -24,17 +18,14 @@ import { UtilHomeService } from './services/util.service';
     ComponentsModule,
     NgxMaskModule,
     ReactiveFormsModule,
-    HomeRoutingModule
+    PerfilRoutingModule
   ],
   providers: [
     SessionStorageService,
     LocalStorageService,
-    HomeService,
-    UtilHomeService
   ],
   entryComponents: [
-    DetalhesComponent
   ],
   schemas: [ CUSTOM_ELEMENTS_SCHEMA ]
 })
-export class HomeModule {}
+export class PerfilModule {}

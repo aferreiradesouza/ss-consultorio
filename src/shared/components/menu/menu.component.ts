@@ -19,7 +19,6 @@ export class MenuComponent implements OnInit {
   }
 
   ir(url) {
-    // this.router.navigate(['home', url]);
-    console.log(url);
+    this.router.navigate([url]);
   }
 }
