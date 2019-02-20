@@ -20,9 +20,10 @@
       </ion-label>
     </ion-item>
     <ion-item>
-      <ion-label>
+      <ion-label class="labelEditar">
         <h2>E-mail</h2>
         <p>{{user.email}}</p>
+        <div class="buttonEditar" (click)="editar('e-mail', 'email', 'E-mail' )">Editar</div>
       </ion-label>
     </ion-item>
     <ion-item>
@@ -44,9 +45,10 @@
       </ion-label>
     </ion-item>
     <ion-item>
-      <ion-label>
+      <ion-label class="labelEditar">
         <h2>Senha</h2>
         <p>************</p>
+        <div class="buttonEditar" (click)="editar('senha', 'senha', 'Senha' )">Editar</div>
       </ion-label>
     </ion-item>
   </ion-list>
@@ -57,7 +59,7 @@
       </ion-list-header>
     <ion-item>
       <ion-label>
-        <h2>Endereço</h2>
+        <h2>Logradouro</h2>
         <p>{{user.logradouro}}, {{user.numero}}</p>
       </ion-label>
     </ion-item>
@@ -92,9 +94,10 @@
       </ion-label>
     </ion-item>
     <ion-item>
-      <ion-label>
+      <ion-label class="labelEditar">
         <h2>Celular</h2>
         <p>{{user.celular | mask:'(00) 00000-0000'}}</p>
+        <div class="buttonEditar" (click)="editar('celular', 'celular', 'Celular' )">Editar</div>
       </ion-label>
     </ion-item>
   </ion-list>

@@ -5,11 +5,13 @@ import { ComponentsModule } from 'src/shared/components/components.module';
 import { SessionStorageService } from 'src/shared/service/session-storage.service';
 import { LocalStorageService } from 'src/shared/service/local-storage.service';
 import { NgxMaskModule } from 'ngx-mask';
-import { PerfilComponent } from './inicio/perfil.component';
+import { EditarComponent } from './modal/editar.component';
 import { PerfilRoutingModule } from './perfil-routing.module';
+import { PerfilComponent } from './inicio/perfil.component';
 
 @NgModule({
   declarations: [
+    EditarComponent,
     PerfilComponent
   ],
   imports: [
@@ -25,6 +27,7 @@ import { PerfilRoutingModule } from './perfil-routing.module';
     LocalStorageService,
   ],
   entryComponents: [
+    EditarComponent
   ],
   schemas: [ CUSTOM_ELEMENTS_SCHEMA ]
 })

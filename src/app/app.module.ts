@@ -16,11 +16,20 @@ import { AutenticacaoService } from 'src/shared/service/autenticacao.service';
 import { TokenService } from 'src/shared/service/token.service';
 import { GuardService } from 'src/shared/guard/auth.guard';
 import { CurrentUserService } from 'src/shared/service/currentUser.service';
+import { PerfilModule } from './perfil/perfil.module';
 
 @NgModule({
   declarations: [AppComponent],
   entryComponents: [],
-  imports: [BrowserModule, HomeModule, IonicModule.forRoot(), AppRoutingModule, AuthModule, NgxMaskModule.forRoot(), HttpClientModule, ],
+  imports: [
+    BrowserModule,
+    HomeModule, PerfilModule,
+    IonicModule.forRoot(),
+    AppRoutingModule,
+    AuthModule,
+    NgxMaskModule.forRoot(),
+    HttpClientModule,
+  ],
   providers: [
     StatusBar,
     SplashScreen,
@@ -32,4 +41,4 @@ import { CurrentUserService } from 'src/shared/service/currentUser.service';
   ],
   bootstrap: [AppComponent]
 })
-export class AppModule {}
+export class AppModule { }

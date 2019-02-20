@@ -32,3 +32,23 @@ ion-content{
 .list-ios{
   margin-bottom: 10px !important;
 }
+
+.labelEditar{
+  position: relative;
+
+  .buttonEditar{
+    position: absolute;
+    right: 0px;
+    top: 50%;
+    transform: translateY(-50%);
+    font-size: 13px;
+    padding: 2px 10px;
+    background-color: var(--azulPadrao);
+    border-radius: 4px;
+    color: white;
+
+    &:active{
+      background-color: var(--azulPadrao-active);
+    }
+  }
+}

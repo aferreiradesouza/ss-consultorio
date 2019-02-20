@@ -1,7 +1,7 @@
 import { Component, OnInit } from '@angular/core';
 import { Router, ActivatedRoute } from '@angular/router';
 import { LocalStorageService } from 'src/shared/service/local-storage.service';
-import { ModalController, LoadingController } from '@ionic/angular';
+import { ModalController, LoadingController, NavController } from '@ionic/angular';
 import { HomeService } from '../services/home.service';
 import { Consultas } from 'src/shared/dto';
 import { DetalhesComponent } from '../modal/detalhes.component';
@@ -26,7 +26,8 @@ export class AgendaCompletaComponent implements OnInit {
     public modalController: ModalController,
     public homeService: HomeService,
     public loadingController: LoadingController,
-    public utilService: UtilHomeService) {
+    public utilService: UtilHomeService,
+    public navController: NavController) {
 
     this.tabs = [
       { label: 'Próximas consultas', id: '1' },
@@ -48,7 +49,7 @@ export class AgendaCompletaComponent implements OnInit {
   }
 
   voltar() {
-    this.router.navigate(['home']);
+    this.navController.pop();
   }
 
   async obterLista() {

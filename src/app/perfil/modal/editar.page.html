@@ -1,0 +1,42 @@
+<ion-header>
+  <ion-toolbar class="header">
+    <ion-title>
+      Editar {{title}}
+    </ion-title>
+    <ion-icon (click)="close()" name="close"></ion-icon>
+  </ion-toolbar>
+</ion-header>
+
+<ion-content>
+  <ss-title-passos pagina="Editar" [title]="label"
+    [icon]="action == 'email' ? 'at' : action == 'senha' ? 'lock' : 'phone-portrait'" urlBase="off" urlSecundaria="off">
+  </ss-title-passos>
+
+  <form class="form" *ngIf="action == 'email'">
+    <ss-input label="E-mail">
+      <input class="form-control" type="text" />
+      <!-- <ss-validacao [validacao]="formConta.value.cpf.length === 11"></ss-validacao> -->
+    </ss-input>
+    <ion-button shape="round" [disabled]="true" expand="full" (click)="editar()">Próximo</ion-button>
+  </form>
+
+  <form class="form" *ngIf="action == 'senha'">
+    <ss-input label="Senha">
+      <input class="form-control" type="password" />
+      <!-- <ss-validacao [validacao]="formConta.value.cpf.length === 11"></ss-validacao> -->
+    </ss-input>
+    <ss-input label="Confirmar senha">
+      <input class="form-control" type="password" />
+      <!-- <ss-validacao [validacao]="formConta.value.cpf.length === 11"></ss-validacao> -->
+    </ss-input>
+    <ion-button shape="round" [disabled]="true" expand="full" (click)="editar()">Próximo</ion-button>
+  </form>
+
+  <form class="form" *ngIf="action == 'celular'">
+    <ss-input label="Celular">
+      <input class="form-control" type="text" mask="(00) 00000-0000" />
+      <!-- <ss-validacao [validacao]="formConta.value.cpf.length === 11"></ss-validacao> -->
+    </ss-input>
+    <ion-button shape="round" [disabled]="true" expand="full" (click)="editar()">Próximo</ion-button>
+  </form>
+</ion-content>
