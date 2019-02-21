@@ -4,6 +4,7 @@ import { CurrentUserService } from 'src/shared/service/currentUser.service';
 import * as moment from 'moment';
 import { ModalController, NavController } from '@ionic/angular';
 import { EditarComponent } from '../modal/editar.component';
+import { LocalStorageService } from 'src/shared/service/local-storage.service';
 
 @Component({
   selector: 'perfil-page',
@@ -19,6 +20,7 @@ export class PerfilComponent implements OnInit {
     public router: Router,
     public userService: CurrentUserService,
     public modalController: ModalController,
+    public storageService: LocalStorageService,
     public navController: NavController) {}
 
   ngOnInit() {
@@ -26,7 +28,7 @@ export class PerfilComponent implements OnInit {
   }
 
   voltar() {
-    this.router.navigate(['home']);
+    this.navController.pop();
   }
 
   get formatarDataNascimento() {
@@ -39,6 +41,10 @@ export class PerfilComponent implements OnInit {
       componentProps: { title, action, label }
     });
     await modal.present();
+    const {data} = await modal.onDidDismiss();
+      if (data.result === 'fechar') {
+        this.user = this.storageService.getJson('user');
+      }
   }
 
 }

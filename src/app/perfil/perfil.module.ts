@@ -8,6 +8,7 @@ import { NgxMaskModule } from 'ngx-mask';
 import { EditarComponent } from './modal/editar.component';
 import { PerfilRoutingModule } from './perfil-routing.module';
 import { PerfilComponent } from './inicio/perfil.component';
+import { PerfilService } from './service/perfil.service';
 
 @NgModule({
   declarations: [
@@ -25,6 +26,7 @@ import { PerfilComponent } from './inicio/perfil.component';
   providers: [
     SessionStorageService,
     LocalStorageService,
+    PerfilService
   ],
   entryComponents: [
     EditarComponent
