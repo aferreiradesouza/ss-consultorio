@@ -38,7 +38,7 @@ export class ConfirmarSMSComponent implements OnInit {
   }
 
   voltar() {
-    this.navController.pop();
+    this.router.navigate(['auth']);
   }
 
   async enviar() {
