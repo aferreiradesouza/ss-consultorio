@@ -1,7 +1,12 @@
 <ion-header>
   <ion-toolbar class="header">
     <ion-buttons mode="ios" color="light" slot="start">
-      <ion-back-button class="backButton" [text]="'Voltar'" color="light" (click)="voltar()"></ion-back-button>
+      <ion-back-button
+        class="backButton"
+        [text]="'Voltar'"
+        color="light"
+        (click)="voltar()"
+      ></ion-back-button>
     </ion-buttons>
     <ion-title>
       Seu perfil
@@ -10,94 +15,103 @@
 </ion-header>
 <ion-content>
   <ion-list lines="none">
-      <ion-list-header>
-        <ion-label>Perfil</ion-label>
-      </ion-list-header>
+    <ion-list-header>
+      <ion-label>Perfil</ion-label>
+    </ion-list-header>
     <ion-item>
       <ion-label>
         <h2>Nome</h2>
-        <p>{{user.nome}}</p>
+        <p>{{ user.nome }}</p>
       </ion-label>
     </ion-item>
     <ion-item>
       <ion-label class="labelEditar">
         <h2>E-mail</h2>
-        <p>{{user.email}}</p>
-        <div class="buttonEditar" (click)="editar('e-mail', 'email', 'E-mail' )">Editar</div>
+        <p>{{ user.email }}</p>
+        <div class="buttonEditar" (click)="editar('e-mail', 'email', 'E-mail')">
+          Editar
+        </div>
       </ion-label>
     </ion-item>
     <ion-item>
       <ion-label>
         <h2>Data de nascimento</h2>
-        <p>{{formatarDataNascimento}}</p>
+        <p>{{ formatarDataNascimento }}</p>
       </ion-label>
     </ion-item>
   </ion-list>
 
   <ion-list lines="none" class="divisor">
-      <ion-list-header>
-        <ion-label>Dados</ion-label>
-      </ion-list-header>
+    <ion-list-header>
+      <ion-label>Dados</ion-label>
+    </ion-list-header>
     <ion-item>
       <ion-label>
         <h2>CPF</h2>
-        <p>{{user.cpf | mask:'000.000.000-00'}}</p>
+        <p>{{ user.cpf | mask: "000.000.000-00" }}</p>
       </ion-label>
     </ion-item>
     <ion-item>
       <ion-label class="labelEditar">
         <h2>Senha</h2>
         <p>************</p>
-        <div class="buttonEditar" (click)="editar('senha', 'senha', 'Senha' )">Editar</div>
+        <div class="buttonEditar" (click)="editar('senha', 'senha', 'Senha')">
+          Editar
+        </div>
       </ion-label>
     </ion-item>
   </ion-list>
 
   <ion-list lines="none" class="divisor">
-      <ion-list-header>
-        <ion-label>ENDEREÇO</ion-label>
-      </ion-list-header>
+    <ion-list-header>
+      <ion-label>ENDEREÇO</ion-label>
+    </ion-list-header>
     <ion-item>
       <ion-label>
         <h2>Logradouro</h2>
-        <p>{{user.logradouro}}, {{user.numero}}</p>
+        <p>{{ user.logradouro }}, {{ user.numero }}</p>
       </ion-label>
     </ion-item>
     <ion-item>
       <ion-label>
         <h2>Bairro</h2>
-        <p>{{user.bairro}}</p>
+        <p>{{ user.bairro }}</p>
       </ion-label>
     </ion-item>
     <ion-item>
       <ion-label>
         <h2>CEP</h2>
-        <p>{{user.cep | mask:'00000-000'}}</p>
+        <p>{{ user.cep | mask: "00000-000" }}</p>
       </ion-label>
     </ion-item>
     <ion-item>
       <ion-label>
         <h2>Cidade</h2>
-        <p>{{user.cidade}}</p>
+        <p>{{ user.cidade }}</p>
       </ion-label>
     </ion-item>
   </ion-list>
 
   <ion-list lines="none" class="divisor">
-      <ion-list-header>
-        <ion-label>Contato</ion-label>
-      </ion-list-header>
+    <ion-list-header>
+      <ion-label>Contato</ion-label>
+    </ion-list-header>
     <ion-item>
+      <ion-item>
+        <ion-label class="labelEditar">
+          <h2>Celular</h2>
+          <p>{{ user.celular | mask: "(00) 00000-0000" }}</p>
+          <div
+            class="buttonEditar"
+            (click)="editar('celular', 'celular', 'Celular')"
+          >
+            Editar
+          </div>
+        </ion-label>
+      </ion-item>
       <ion-label>
         <h2>Telefone</h2>
-        <p>{{user.telefone | mask:'(00) 0000-0000'}}</p>
-      </ion-label>
-    </ion-item>
-    <ion-item>
-      <ion-label class="labelEditar">
-        <h2>Celular</h2>
-        <p>{{user.celular | mask:'(00) 00000-0000'}}</p>
-        <div class="buttonEditar" (click)="editar('celular', 'celular', 'Celular' )">Editar</div>
+        <p>{{ user.telefone | mask: "(00) 0000-0000" }}</p>
       </ion-label>
     </ion-item>
   </ion-list>
