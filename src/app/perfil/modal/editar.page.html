@@ -12,15 +12,15 @@
     [icon]="action == 'email' ? 'at' : action == 'senha' ? 'lock' : 'phone-portrait'" urlBase="off" urlSecundaria="off">
   </ss-title-passos>
 
-  <form class="form" *ngIf="action == 'email'" [formGroup]="formEmail" (submit)="editar(formEmail.value)">
+  <form class="form" *ngIf="action == 'email'" [formGroup]="formEmail">
     <ss-input label="E-mail">
-      <input class="form-control" type="text" formControlName="email" />
+      <input class="form-control" type="email" formControlName="email" />
       <ss-validacao [validacao]="formEmail.valid"></ss-validacao>
     </ss-input>
-    <ion-button shape="round" [disabled]="!formEmail.valid" expand="full" type="submit">Próximo</ion-button>
+    <ion-button shape="round" [disabled]="!formEmail.valid" expand="full" (click)="editar(formEmail.value)">Próximo</ion-button>
   </form>
 
-  <form class="form" *ngIf="action == 'senha'" [formGroup]="formSenha" (submit)="editar(formSenha.value)">
+  <form class="form" *ngIf="action == 'senha'" [formGroup]="formSenha">
     <ss-input label="Senha">
       <input class="form-control" type="password" formControlName="senha" />
       <ss-validacao [validacao]="formSenha.valid"></ss-validacao>
@@ -29,14 +29,14 @@
       <input class="form-control" type="password" formControlName="confSenha" />
       <ss-validacao [validacao]="formSenha.valid"></ss-validacao>
     </ss-input>
-    <ion-button shape="round" [disabled]="!formSenha.valid" expand="full" type="submit">Próximo</ion-button>
+    <ion-button shape="round" [disabled]="!formSenha.valid" expand="full" (click)="editar(formSenha.value)">Próximo</ion-button>
   </form>
 
-  <form class="form" *ngIf="action == 'celular'" [formGroup]="formCelular" (submit)="editar(formCelular.value)">
+  <form class="form" *ngIf="action == 'celular'" [formGroup]="formCelular">
     <ss-input label="Celular">
       <input class="form-control" type="text" mask="(00) 00000-0000" formControlName="celular" />
       <ss-validacao [validacao]="formCelular.valid"></ss-validacao>
     </ss-input>
-    <ion-button shape="round" [disabled]="!formCelular.valid" expand="full" type="submit">Próximo</ion-button>
+    <ion-button shape="round" [disabled]="!formCelular.valid" expand="full" (click)="editar(formCelular.value)">Próximo</ion-button>
   </form>
 </ion-content>

@@ -77,6 +77,7 @@ export class EditarComponent implements OnInit {
         this.close();
         toastSucesso.present();
       } else {
+        await loading.dismiss();
         toastErro.present();
       }
   }
