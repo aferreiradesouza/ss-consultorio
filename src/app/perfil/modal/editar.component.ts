@@ -83,7 +83,7 @@ export class EditarComponent implements OnInit {
   }
 
   validateEmail(c: FormControl) {
-    const emailRagex = /^[a-z0-9.]+@[a-z0-9]+\.[a-z]+(\.[a-z]+)?$/;
+    const emailRagex = /^[A-Za-z0-9.]+@[A-Za-z0-9]+\.[A-Za-z]+(\.[A-Za-z]+)?$/;
     return emailRagex.test(c.value) ? null : {
       validateEmail: {
         valid: false
