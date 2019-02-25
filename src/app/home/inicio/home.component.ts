@@ -34,7 +34,7 @@ export class HomeComponent implements OnInit {
     this.menu = [
       {label: 'Agendar consulta', icon: 'create', url: 'agendar-consulta'},
       {label: 'Alterar perfil', icon: 'contact', url: 'perfil'},
-      {label: 'Consultórios', icon: 'call', url: 'contato'},
+      {label: 'Consultórios', icon: 'business', url: 'contato'},
     ];
 
     this.tabs = [
