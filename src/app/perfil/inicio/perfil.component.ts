@@ -28,7 +28,7 @@ export class PerfilComponent implements OnInit {
   }
 
   voltar() {
-    this.navController.pop();
+    this.navController.navigateBack('home');
   }
 
   get formatarDataNascimento() {

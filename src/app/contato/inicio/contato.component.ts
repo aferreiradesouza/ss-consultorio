@@ -31,7 +31,7 @@ export class ContatoComponent implements OnInit {
   }
 
   voltar() {
-    this.navController.pop();
+    this.navController.navigateBack('home');
   }
 
   async obterConsultorios() {

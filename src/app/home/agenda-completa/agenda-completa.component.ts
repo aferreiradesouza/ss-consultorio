@@ -49,7 +49,7 @@ export class AgendaCompletaComponent implements OnInit {
   }
 
   voltar() {
-    this.navController.pop();
+    this.navController.navigateBack('home');
   }
 
   async obterLista() {
