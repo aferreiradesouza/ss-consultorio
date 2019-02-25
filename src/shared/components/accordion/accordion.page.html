@@ -7,9 +7,25 @@
     <div class="conteudo" *ngIf="itemSelecionado == item.consultorio">
         <img [src]="itemSelecionado.urlFoto">
         <div class="content">
+            <div class="categoria">
+                <ion-icon name="pin"></ion-icon>
+                <span>Endereço</span>
+            </div>
             <div class="endereco">
-                <div class="bairro">{{itemSelecionado.bairro | uppercase}}</div>
-                <div class="logradouro">{{itemSelecionado.logradouro+', '+itemSelecionado.numero}}</div>
+                <div class="logradouro">
+                    {{itemSelecionado.logradouro+', '}}
+                    {{itemSelecionado.numero}}
+                    {{itemSelecionado.complemento ? ', '+itemSelecionado.complemento+' - ' : ' - '}}
+                    {{itemSelecionado.bairro+', '}}
+                    {{itemSelecionado.cidade+' - '}}
+                    {{itemSelecionado.estado+', '}}
+                    {{itemSelecionado.cep | mask:'00000-000'}}
+                </div>
+            </div>
+
+            <div class="categoria">
+                <ion-icon name="share"></ion-icon>
+                <span>Contato</span>
             </div>
             <ion-item lines="none" *ngIf="itemSelecionado.telefone1">
               <ion-icon name="call" slot="start"></ion-icon>
