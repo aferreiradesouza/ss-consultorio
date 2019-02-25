@@ -1,5 +1,5 @@
 <div class="form-group">
-    <label *ngIf="label">{{label}}</label>
+    <label *ngIf="label">{{label}}<span class="opcional" *ngIf="opcional">(OPCIONAL)</span></label>
 
     <div class="input-group" [ngClass]="{'sms' : mode != 'sms'}">
         <ng-content></ng-content>

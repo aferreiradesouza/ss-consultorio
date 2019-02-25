@@ -29,6 +29,26 @@ ion-content{
   margin-top: 10px;
 }
 
+.titulo{
+  position: relative;
+  display: block;
+
+  ion-icon{
+    font-size: 21px;
+    position: absolute;
+    top: 50%;
+    transform: translateY(-50%);
+    left: 0;
+  }
+
+  span{
+    position: absolute;
+    top: 50%;
+    transform: translateY(-50%);
+    left: 26px;
+  }
+}
+
 .list-ios{
   margin-bottom: 10px !important;
 }

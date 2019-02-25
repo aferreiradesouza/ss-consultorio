@@ -7,6 +7,7 @@ const routes: Routes = [
   { path: 'auth', loadChildren: './auth/auth.module#AuthModule' },
   { path: 'home', loadChildren: './home/home.module#HomeModule', canActivate: [GuardService] },
   { path: 'perfil', loadChildren: './perfil/perfil.module#PerfilModule' },
+  { path: 'contato', loadChildren: './contato/contato.module#ContatoModule' },
 ];
 @NgModule({
   imports: [

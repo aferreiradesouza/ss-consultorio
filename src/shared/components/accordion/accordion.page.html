@@ -1,0 +1,21 @@
+<div class="accordion" *ngFor="let item of itens">
+    <div class="header" (click)="selecionarItem(item.consultorio)">
+        {{item.consultorio.nome}}
+        <ion-icon [name]="itemSelecionado == item.consultorio ? 'arrow-up' : 'arrow-down'"></ion-icon>
+    </div>
+    <div class="conteudo" *ngIf="itemSelecionado == item.consultorio">
+        <img [src]="itemSelecionado.urlFoto">
+        <div class="content">
+            <div class="subTitulo">{{itemSelecionado.logradouro+', '+itemSelecionado.numero+' - '+itemSelecionado.bairro | uppercase}}</div>
+            <div class="titulo">{{itemSelecionado.nome}}</div>
+            <ion-item lines="none">
+              <ion-icon name="call" slot="start"></ion-icon>
+              <ion-label>{{itemSelecionado.telefone1 | mask:maskTelefone}}</ion-label>
+            </ion-item>
+            <ion-item lines="none" *ngIf="itemSelecionado.telefone2">
+              <ion-icon name="call" slot="start"></ion-icon>
+              <ion-label>{{itemSelecionado.telefone2 | mask:maskTelefone}}</ion-label>
+            </ion-item>
+        </div>
+    </div>
+</div>

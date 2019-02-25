@@ -3,7 +3,7 @@ import { Router } from '@angular/router';
 import { SessionStorageService } from 'src/shared/service/session-storage.service';
 import * as moment from 'moment';
 import { AuthService } from '../../service/auth.service';
-import { ToastController, LoadingController } from '@ionic/angular';
+import { ToastController, LoadingController, NavController } from '@ionic/angular';
 
 @Component({
   selector: 'confirmar-celular-page',
@@ -18,7 +18,8 @@ export class ConfirmarCelularComponent implements OnInit {
     public sessionStorage: SessionStorageService,
     public authService: AuthService,
     public toastController: ToastController,
-    public loadingController: LoadingController
+    public loadingController: LoadingController,
+    public navController: NavController
   ) {}
 
   ngOnInit() {}
@@ -71,11 +72,11 @@ export class ConfirmarCelularComponent implements OnInit {
   }
 
   public get preencherTelefone() {
-    return this.sessionStorage.getJson('registro/contato').celular;
+    return this.sessionStorage.getJson('registro/contato').celular || '';
   }
 
   voltar() {
-    this.router.navigate(['auth', 'registro', 'contato']);
+    this.navController.pop();
   }
 
   public get registro_conta() {

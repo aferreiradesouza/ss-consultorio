@@ -1,0 +1,23 @@
+.header {
+  --background: var(--azulPadrao);
+  --border-color: none;
+  --color: white;
+  --border-style: none;
+
+  .toolbar-background {
+    --border-color: none;
+  }
+
+  ion-buttons {
+    .backButton {
+      --color: white;
+    }
+  }
+}
+
+ion-card{
+
+  img{
+    max-height: 218.16px;
+  }
+}

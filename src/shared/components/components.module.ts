@@ -9,6 +9,8 @@ import { ItemAgendaComponent } from './item-agenda/item-agenda.component';
 import { TabsComponent } from './tabs/tabs.component';
 import { ButtonComponent } from './button/button.component';
 import { ItemComponent } from './item/item.component';
+import { AccordionComponent } from './accordion/accordion.component';
+import { NgxMaskModule } from 'ngx-mask';
 
 @NgModule({
   declarations: [
@@ -20,10 +22,12 @@ import { ItemComponent } from './item/item.component';
     TabsComponent,
     ButtonComponent,
     ItemComponent,
+    AccordionComponent
   ],
   imports: [
     CommonModule,
     FormsModule,
+    NgxMaskModule,
   ],
   exports: [
     InputComponent,
@@ -33,7 +37,8 @@ import { ItemComponent } from './item/item.component';
     ItemAgendaComponent,
     TabsComponent,
     ItemComponent,
-    ButtonComponent
+    ButtonComponent,
+    AccordionComponent
   ],
   providers: [
   ],

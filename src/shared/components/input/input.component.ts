@@ -15,6 +15,7 @@ export class InputComponent implements OnInit {
 
   @Input() label: string;
   @Input() mode: string;
+  @Input() opcional: boolean;
 
   constructor(public router: Router) {}
 

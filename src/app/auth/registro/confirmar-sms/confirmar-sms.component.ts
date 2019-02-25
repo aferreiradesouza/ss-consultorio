@@ -33,7 +33,7 @@ export class ConfirmarSMSComponent implements OnInit {
   ngOnInit() {
     this.data = this.route.snapshot.data['data'];
     this.formSms = new FormGroup({
-      sms: this.fb.control('', [Validators.required]),
+      sms: this.fb.control('', [Validators.required, Validators.minLength(6)]),
     });
   }
 

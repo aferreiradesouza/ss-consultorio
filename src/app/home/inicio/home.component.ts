@@ -68,8 +68,8 @@ export class HomeComponent implements OnInit {
   }
 
   deslogar() {
-    localStorage.removeItem('user');
     this.router.navigate(['auth']);
+    localStorage.removeItem('user');
   }
 
   atualizarLista(event) {
@@ -85,7 +85,7 @@ export class HomeComponent implements OnInit {
   }
 
   get formatarNome() {
-    return this.userService.user.nome.split(' ')[0];
+    return this.userService.user.nome.split(' ')[0] || '';
   }
 
   async modalDetalhes(detalhes) {
