@@ -9,6 +9,7 @@ import { Router } from '@angular/router';
 
 export class AccordionComponent implements OnInit {
   public maskTelefone = ['(00) 0000-0000'];
+  public maskCelular = ['(00) 00000-0000'];
 
   public itemSelecionado: any;
 

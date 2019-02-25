@@ -1,14 +1,12 @@
 .accordion{
   width: calc(100% - 20px);
-  border-bottom: 1px solid #ccc;
-  border-left: 1px solid #ccc;
-  border-right: 1px solid #ccc;
+  border-bottom: 1px solid var(--azulPadrao-active);
   margin: 0px auto;
   overflow: hidden;
     box-shadow: 0 4px 16px rgba(0,0,0,.12);
 
   &:first-child{
-    border-top: 1px solid #ccc;
+    border-top: none;
     border-top-right-radius: 5px;
     border-top-left-radius: 5px;
     margin: 10px auto 0px;
@@ -17,13 +15,39 @@
   &:last-child{
     border-bottom-right-radius: 5px;
     border-bottom-left-radius: 5px;
-  }
+    border-bottom: none;
+    margin-bottom: 10px;
+}
 
   .header{
     position: relative;
     padding: 15px 15px;
-    background-color: rgb(236, 236, 236);
+    background-color: var(--azulPadrao);
+    color: white;
     width: 100%;
+
+    .titulo{
+      font-weight: bold;
+      font-size: 20px;
+      white-space: nowrap; 
+      overflow: hidden;
+      text-overflow: ellipsis;
+      width: calc(100% - 25px);
+    }
+
+    .subTitulo{
+      font-size: 10px;
+      color: rgba(255, 255, 255, 0.671);
+      margin-bottom: 4px;
+      white-space: nowrap; 
+      overflow: hidden;
+      text-overflow: ellipsis;
+      width: calc(100% - 25px);
+    }
+
+    &:active{
+      background-color: var(--azulPadrao-active);
+    }
 
     ion-icon{
       position: absolute;
@@ -37,7 +61,8 @@
     width: 100%;
 
     img{
-      height: 218.16px;
+      max-height: 218.16px;
+      width: 100%;
     }
 
     .content{
@@ -45,16 +70,26 @@
       height: 100%;
       padding: 15px;
 
-      .titulo{
-        font-weight: bold;
-        font-size: 20px;
+      .endereco{
+        font-size: 14px;
         margin-bottom: 15px;
-      }
 
-      .subTitulo{
-        font-size: 10px;
-        color: #797979;
-        margin-bottom: 7px;
+        .logradouro{
+          width: 100%;
+          white-space: nowrap; 
+          overflow: hidden;
+          text-overflow: ellipsis;
+          font-weight: bold;
+          font-size: 15px;
+        }
+
+        .bairro{
+          width: 100%;
+          white-space: nowrap; 
+          overflow: hidden;
+          text-overflow: ellipsis;
+          font-size: 11px;
+        }
       }
     }
   }
