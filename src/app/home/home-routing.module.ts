@@ -5,9 +5,9 @@ import { GuardService } from 'src/shared/guard/auth.guard';
 import { AgendaCompletaComponent } from './agenda-completa/agenda-completa.component';
 
 const routes: Routes = [
-  { path: '', redirectTo: 'home', pathMatch: 'full'},
-  { path: 'home', component: HomeComponent, canActivate: [GuardService]},
-  { path: 'agenda-completa', component: AgendaCompletaComponent},
+  { path: '', redirectTo: 'home', pathMatch: 'full' },
+  { path: 'home', component: HomeComponent },
+  { path: 'agenda-completa', component: AgendaCompletaComponent }
 ];
 
 @NgModule({

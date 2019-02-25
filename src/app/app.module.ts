@@ -17,9 +17,10 @@ import { TokenService } from 'src/shared/service/token.service';
 import { GuardService } from 'src/shared/guard/auth.guard';
 import { CurrentUserService } from 'src/shared/service/currentUser.service';
 import { PerfilModule } from './perfil/perfil.module';
+import { SplashComponent } from './splashscreen/splash.component';
 
 @NgModule({
-  declarations: [AppComponent],
+  declarations: [AppComponent, SplashComponent],
   entryComponents: [],
   imports: [
     BrowserModule,

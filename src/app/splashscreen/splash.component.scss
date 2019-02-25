@@ -1,0 +1,19 @@
+.logo-wrapper {
+  background-color: white;
+  width: 100vw;
+  height: 100vh;
+
+  .logo-center {
+    position: absolute;
+    left: 50%;
+    top: 50%;
+    transform: translate(-50%, -50%);
+    width: 25%;
+    max-width: 100px;
+    text-align: center;
+
+    .logo-img {
+      width: 100%;
+    }
+  }
+}
