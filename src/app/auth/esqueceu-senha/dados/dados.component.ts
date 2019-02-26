@@ -53,16 +53,17 @@ export class DadosComponent implements OnInit {
       cpf: this.formDados.value.cpf,
       dataNascimento: moment(this.formDados.value.nascimento, 'DD-MM-YYYY').format('YYYY-MM-DD')
     };
-    const avisoErro = await this.toastController.create({
-      message: 'Não foi possível enviar o código. Tente novamente mais tarde!',
-      duration: 3000,
-      color: 'dark'
-    });
     const codigo = await this.authService.gerarCodigoSMS(data);
     loading.dismiss();
       if (codigo.sucesso) {
         this.gravar();
       } else {
+        const avisoErro = await this.toastController.create({
+          message: codigo.mensagens[0],
+          color: 'dark',
+          showCloseButton: true,
+          closeButtonText: 'Entendi'
+        });
         avisoErro.present();
       }
     }

@@ -18,13 +18,16 @@ import { GuardService } from 'src/shared/guard/auth.guard';
 import { CurrentUserService } from 'src/shared/service/currentUser.service';
 import { PerfilModule } from './perfil/perfil.module';
 import { SplashComponent } from './splashscreen/splash.component';
+import { AgendarConsultaModule } from './agendar-consulta/agendar-consulta.module';
 
 @NgModule({
   declarations: [AppComponent, SplashComponent],
   entryComponents: [],
   imports: [
     BrowserModule,
-    HomeModule, PerfilModule,
+    HomeModule,
+    PerfilModule,
+    AgendarConsultaModule,
     IonicModule.forRoot(),
     AppRoutingModule,
     AuthModule,

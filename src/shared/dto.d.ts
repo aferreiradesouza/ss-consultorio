@@ -135,3 +135,67 @@ export interface Consultas {
     tempoLevado: string,
     sucesso: boolean
 }
+
+export interface Consultorios {
+    mensagens: string[],
+    objeto: Array<{
+            id: number,
+            idUsuario: number,
+            idEspecialidade: number,
+            idConsultorio: number,
+            diaSemana: number,
+            horaInicio: string,
+            horaFim: string,
+            duracaoMinutos: number,
+            dataCadastro: string,
+            dataDesativacao: string,
+            ativo: boolean,
+            consultorio: {
+                id: number,
+                nome: string,
+                urlFoto: string,
+                cep: string,
+                logradouro: string,
+                numero: string,
+                complemento: string,
+                bairro: string,
+                cidade: string,
+                estado: string,
+                telefone1: string,
+                telefone2: string,
+                celular1: string,
+                celular2: string,
+                dataCadastro: string,
+                dataDesativacao: string,
+                ativo: boolean
+            },
+            especialidade: {
+                id: number,
+                nome: string,
+                descricao: string
+            },
+            usuario: {
+                id: number,
+                nome: string,
+                cpf: string,
+                ehMedico: true,
+                crm: string,
+                celular: string,
+                telefone: string,
+                email: string,
+                urlFoto: string,
+                ehAdministrador: true,
+                dataNascimento: string,
+                dataCadastro: string,
+                dataDesativacao: string,
+                token: string,
+                codigoSms: string,
+                nuncaConfirmouSms: boolean,
+                ativo: boolean
+            }
+        }>;
+    autorizado: boolean,
+    codigo: string,
+    tempoLevado: string,
+    sucesso: boolean
+}
