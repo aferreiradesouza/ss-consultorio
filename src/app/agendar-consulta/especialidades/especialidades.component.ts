@@ -36,19 +36,44 @@ export class EspecialidadeComponent implements OnInit {
   }
 
   async obterDadosConsultas() {
-    const loading = await this.loadingController.create({
-      message: 'Carregando...'
-    });
-    await loading.present();
-    const consultas = await this.agendarConsultaService.obterConsultorios();
-    this.sessionStorage.setJson('consultorios', consultas);
+    if (this.sessionStorage.getJson('consultorios')) {
 
-    this.especialidades = await this.utilService.obterEspecialidades(consultas);
-    console.log(this.especialidades);
-    await loading.dismiss();
+      this.preencherPasso();
+      const consultas = this.sessionStorage.getJson('consultorios');
+      this.especialidades = await this.utilService.obterEspecialidades(consultas);
+
+    } else {
+
+      const loading = await this.loadingController.create({
+        message: 'Carregando...'
+      });
+      await loading.present();
+      const consultas = await this.agendarConsultaService.obterConsultorios();
+      this.sessionStorage.setJson('consultorios', consultas);
+
+      this.especialidades = await this.utilService.obterEspecialidades(consultas);
+
+      await loading.dismiss();
+    }
   }
 
   voltar() {
     this.navController.navigateBack('home');
+  }
+
+  proximoPasso() {
+    this.gravar();
+    this.router.navigate(['agendar-consulta', 'medico']);
+  }
+
+  gravar() {
+    this.sessionStorage.setJson('agendar-consulta/especialidade', this.formEspecialidades.value);
+  }
+
+  preencherPasso() {
+    const i = this.sessionStorage.getJson('agendar-consulta/especialidade');
+    this.formEspecialidades.patchValue({
+      especialidade: i.especialidade
+    });
   }
 }

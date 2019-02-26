@@ -9,10 +9,12 @@ import { AgendarConsultaRoutingModule } from './agendar-consulta-routing.module'
 import { EspecialidadeComponent } from './especialidades/especialidades.component';
 import { AgendarConsultaService } from './services/agendar-consulta.service';
 import { UtilAgendarConsulta } from './services/util.service';
+import { MedicoComponent } from './medico/medico.component';
 
 @NgModule({
   declarations: [
-    EspecialidadeComponent
+    EspecialidadeComponent,
+    MedicoComponent
   ],
   imports: [
     CommonModule,

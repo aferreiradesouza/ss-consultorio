@@ -23,7 +23,8 @@ export class TitlePassosComponent implements OnInit {
   ngOnInit() {}
 
   voltarPasso() {
-    this.navController.pop();
+  // tslint:disable-next-line: max-line-length
+    this.navController.navigateBack(`${this.pagina === 'Registro' || this.pagina === 'Esqueceu senha' ? 'auth/' : ''}${this.urlBase}/${this.urlSecundaria}`);
   }
 
 }

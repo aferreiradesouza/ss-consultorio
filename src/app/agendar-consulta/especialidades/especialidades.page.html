@@ -7,7 +7,7 @@
   </ion-toolbar>
 </ion-header>
 <ion-content>
-  <ss-title-passos *ngIf="especialidades" pagina="Agendar consulta" title="Especialidade" icon="medical" urlBase="off" urlSecundaria="off">
+  <ss-title-passos *ngIf="especialidades" pagina="Agendar consulta" title="Escolha a especialidade" icon="filing" urlBase="off" urlSecundaria="off">
   </ss-title-passos>
   <form [formGroup]="formEspecialidades" class="form" *ngIf="especialidades">
 
@@ -15,6 +15,6 @@
       <input [id]="'radio'+i" name="especialidade" type="radio" [value]="item.especialidade.id" formControlName="especialidade" />
       <label [for]="'radio'+i">{{item.especialidade.nome}}</label>
     </div>
-    <ion-button shape="round" [disabled]="!formEspecialidades.valid" expand="full">Próximo</ion-button>
+    <ion-button shape="round" [disabled]="!formEspecialidades.valid" expand="full" (click)="proximoPasso()">Próximo</ion-button>
   </form>
 </ion-content>

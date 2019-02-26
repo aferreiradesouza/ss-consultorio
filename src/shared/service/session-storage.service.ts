@@ -7,7 +7,8 @@ type StorageKey =   'registro/conta'
                     | 'esqueceu-senha/dados'
                     | 'esqueceu-senha/codigo-sms'
                     | 'esqueceu-senha/senha-nova'
-                    | 'consultorios';
+                    | 'consultorios'
+                    | 'agendar-consulta/especialidade';
 
 @Injectable({
     providedIn: 'root'
