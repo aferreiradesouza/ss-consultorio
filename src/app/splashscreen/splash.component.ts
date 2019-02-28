@@ -1,10 +1,18 @@
-import { Component, OnInit } from '@angular/core';
+import {
+  Component,
+  OnInit,
+  AfterViewInit,
+  OnDestroy,
+  AfterViewChecked,
+  DoCheck
+} from '@angular/core';
 import { Router, ActivatedRoute } from '@angular/router';
 import { CurrentUserService } from 'src/shared/service/currentUser.service';
 import * as moment from 'moment';
 import { ModalController, NavController } from '@ionic/angular';
 import { LocalStorageService } from 'src/shared/service/local-storage.service';
 import { AutenticacaoService } from 'src/shared/service/autenticacao.service';
+import { PlatformLocation } from '@angular/common';
 
 @Component({
   selector: 'splash-page',
@@ -13,6 +21,7 @@ import { AutenticacaoService } from 'src/shared/service/autenticacao.service';
 })
 export class SplashComponent implements OnInit {
   public user: any;
+  private exibiu = false;
 
   constructor(
     public router: Router,
@@ -21,9 +30,21 @@ export class SplashComponent implements OnInit {
     public modalController: ModalController,
     public storageService: LocalStorageService,
     public navController: NavController,
-    public autenticacaoService: AutenticacaoService
+    public autenticacaoService: AutenticacaoService,
+    location: PlatformLocation
   ) {
-    //
+    location.onPopState(() => {
+      this.exibiu = false;
+    });
+  }
+
+  verificar() {
+    if (!this.exibiu) {
+      this.exibiu = true;
+      this.ngOnInit();
+    }
+
+    return false;
   }
 
   ngOnInit() {

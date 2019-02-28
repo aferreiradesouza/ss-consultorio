@@ -11,6 +11,7 @@ const routes: Routes = [
   { path: 'perfil', loadChildren: './perfil/perfil.module#PerfilModule' },
   { path: 'contato', loadChildren: './contato/contato.module#ContatoModule' },
   { path: 'agendar-consulta', loadChildren: './agendar-consulta/agendar-consulta.module#AgendarConsultaModule' },
+  { path: '**', redirectTo: 'home', pathMatch: 'full' }
 ];
 @NgModule({
   imports: [
