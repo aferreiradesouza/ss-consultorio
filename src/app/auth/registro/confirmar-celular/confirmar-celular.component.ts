@@ -46,9 +46,6 @@ export class ConfirmarCelularComponent implements OnInit {
     const login = await this.authService.registro(data);
     loading.dismiss();
     if (login.sucesso) {
-      this.sessionStorage.remove('registro/contato');
-      this.sessionStorage.remove('registro/conta');
-      this.sessionStorage.remove('registro/perfil');
       this.router.navigate(['auth', 'registro', 'confirmar-sms']);
     } else {
       if (login.mensagens) {

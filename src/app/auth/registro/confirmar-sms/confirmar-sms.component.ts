@@ -1,6 +1,10 @@
 import { Component, OnInit } from '@angular/core';
 import { Router, ActivatedRoute } from '@angular/router';
-import { ToastController, LoadingController, NavController } from '@ionic/angular';
+import {
+  ToastController,
+  LoadingController,
+  NavController
+} from '@ionic/angular';
 import { FormGroup, FormBuilder, Validators } from '@angular/forms';
 import { SessionStorageService } from 'src/shared/service/session-storage.service';
 import { AuthService } from '../../service/auth.service';
@@ -13,13 +17,12 @@ import { IConfirmarSms } from 'src/shared/dto';
   templateUrl: './confirmar-sms.page.html',
   styleUrls: ['./confirmar-sms.component.scss']
 })
-
 export class ConfirmarSMSComponent implements OnInit {
-
   public data: IConfirmarSms;
   public formSms: FormGroup;
 
-  constructor(public router: Router,
+  constructor(
+    public router: Router,
     private fb: FormBuilder,
     public sessionStorage: SessionStorageService,
     public toastController: ToastController,
@@ -27,13 +30,13 @@ export class ConfirmarSMSComponent implements OnInit {
     public storageService: LocalStorageService,
     public route: ActivatedRoute,
     public loadingController: LoadingController,
-    public navController: NavController) {
-  }
+    public navController: NavController
+  ) {}
 
   ngOnInit() {
     this.data = this.route.snapshot.data['data'];
     this.formSms = new FormGroup({
-      sms: this.fb.control('', [Validators.required, Validators.minLength(6)]),
+      sms: this.fb.control('', [Validators.required, Validators.minLength(6)])
     });
   }
 
@@ -44,7 +47,7 @@ export class ConfirmarSMSComponent implements OnInit {
   async enviar() {
     if (this.data.action) {
       const loading = await this.loadingController.create({
-        message: 'Enviando',
+        message: 'Enviando'
       });
       await loading.present();
       const data = {
@@ -81,7 +84,7 @@ export class ConfirmarSMSComponent implements OnInit {
       }
     } else {
       const loading = await this.loadingController.create({
-        message: 'Enviando',
+        message: 'Enviando'
       });
       await loading.present();
       const data = {
@@ -94,8 +97,15 @@ export class ConfirmarSMSComponent implements OnInit {
       loading.dismiss();
 
       if (login.sucesso) {
+        this.sessionStorage.remove('registro/contato');
+        this.sessionStorage.remove('registro/conta');
+        this.sessionStorage.remove('registro/perfil');
         this.storageService.setJson('user', login.objeto);
-        const queryParams = { mensagem: 'Registrando', titulo: 'Registro', action: 'registro' };
+        const queryParams = {
+          mensagem: 'Registrando',
+          titulo: 'Registro',
+          action: 'registro'
+        };
         this.router.navigate(['auth', 'confirmacao'], { queryParams });
       } else {
         if (login.mensagens) {
@@ -120,18 +130,22 @@ export class ConfirmarSMSComponent implements OnInit {
   }
 
   proximo() {
-    const queryParams = { mensagem: 'Registrando', titulo: 'Registro', action: 'registro' };
+    const queryParams = {
+      mensagem: 'Registrando',
+      titulo: 'Registro',
+      action: 'registro'
+    };
     this.router.navigate(['auth', 'confirmacao'], { queryParams });
   }
 
   async reenviar() {
     const loading = await this.loadingController.create({
-      message: 'Enviando',
+      message: 'Enviando'
     });
     if (this.data.action) {
       const data = {
         cpf: this.data.usuario,
-        dataNascimento: this.data.nascimento,
+        dataNascimento: this.data.nascimento
       };
       const avisoSucesso = await this.toastController.create({
         message: 'Código enviado novamente.',
@@ -153,12 +167,12 @@ export class ConfirmarSMSComponent implements OnInit {
       } else {
         avisoErro.present();
       }
-
     } else {
-
       const data = {
         cpf: this.pegarCpf,
-        dataNascimento: moment(this.pegarNascimento, 'DD-MM-YYYY').format('YYYY-MM-DD'),
+        dataNascimento: moment(this.pegarNascimento, 'DD-MM-YYYY').format(
+          'YYYY-MM-DD'
+        )
       };
       const avisoSucesso = await this.toastController.create({
         message: 'Código enviado novamente.',

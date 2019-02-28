@@ -1,108 +1,111 @@
 .item {
-    background-color: white;
-    width: calc(100% - 20px);
-    margin: 10px auto 0;
-    border-radius: 10px;
-    box-shadow: 0 4px 16px rgba(0,0,0,.12);
-    overflow: hidden;
-    position: relative;
+  background-color: white;
+  width: calc(100% - 20px);
+  margin: 10px auto 0;
+  border-radius: 10px;
+  box-shadow: 0 4px 16px rgba(0, 0, 0, 0.12);
+  overflow: hidden;
+  position: relative;
 
-    .dia-horario{
-        text-align: center;
-        width: 80px;
-        color: white;
-        display: inline-block;
+  &:last-child {
+    margin-bottom: 55px;
+  }
 
-        .dia{
-            font-size: 36px;
-            padding-top: 5px;
-            background-color: var(--azulPadrao);
-        }
-        .mes{
-            font-size: 11px;
-            padding-bottom: 3px;
-            padding-left: 5px;
-            padding-right: 5px;
-            background-color: var(--azulPadrao);
-        }
-        .horario{
-            font-size: 14px;
-            border-top: 1px solid #fff;
-            padding-top: 4px;
-            padding-bottom: 5px;
-            background-color: var(--azulPadrao);
-        }
+  .dia-horario {
+    text-align: center;
+    width: 80px;
+    color: white;
+    display: inline-block;
+
+    .dia {
+      font-size: 36px;
+      padding-top: 5px;
+      background-color: var(--azulPadrao);
+    }
+    .mes {
+      font-size: 11px;
+      padding-bottom: 3px;
+      padding-left: 5px;
+      padding-right: 5px;
+      background-color: var(--azulPadrao);
+    }
+    .horario {
+      font-size: 14px;
+      border-top: 1px solid #fff;
+      padding-top: 4px;
+      padding-bottom: 5px;
+      background-color: var(--azulPadrao);
+    }
+  }
+
+  .informacoes {
+    height: 100%;
+    width: calc(100% - 80px);
+    padding: 5px;
+    border-left: 1px solid #fff;
+    display: inline-block;
+    position: absolute;
+    top: 0px;
+
+    .status {
+      position: absolute;
+      top: 8px;
+      right: 16px;
+      font-size: 18px;
     }
 
-    .informacoes{
-        height: 100%;
-        width: calc(100% - 80px);
-        padding: 5px;
-        border-left: 1px solid #fff;
-        display: inline-block;
+    .orange {
+      color: var(--ion-color-warning);
+    }
+
+    .red {
+      color: var(--ion-color-danger-shade);
+    }
+
+    .green {
+      color: var(--ion-color-success-shade);
+    }
+
+    .header {
+      height: 38px;
+      width: 100%;
+      position: absolute;
+      top: 6px;
+
+      .informacoes-medico {
         position: absolute;
-        top: 0px;
+        top: 50%;
+        left: 3px;
+        transform: translateY(-50%);
 
-        .status{
-            position: absolute;
-            top: 8px;
-            right: 16px;
-            font-size: 18px;
+        .medico {
+          font-size: 20px;
+          font-weight: bold;
         }
 
-        .orange{
-            color: var(--ion-color-warning);
+        .especialidade {
+          font-size: 11px;
         }
-
-        .red{
-            color: var(--ion-color-danger-shade);
-        }
-
-        .green{
-            color: var(--ion-color-success-shade);
-        }
-
-        .header {
-            height: 38px;
-            width: 100%;
-            position: absolute;
-            top: 6px;
-
-            .informacoes-medico{
-                position: absolute;
-                top: 50%;
-                left: 3px;
-                transform: translateY(-50%);
-
-                .medico{
-                    font-size: 20px;
-                    font-weight: bold;
-                }
-
-                .especialidade{
-                    font-size: 11px;
-                }
-            }
-        }
-
-
-        ion-chip{
-            position: absolute;
-            bottom: 5px;
-            left: 5px;
-            font-size: 12px;
-            padding: 3px 10px;
-        
-            ion-icon{
-                font-size: 16px;
-            }
-        }
-
-        ion-button{
-            position: absolute;
-            bottom: 5px;
-            right: 0px;
-            font-size: 12px;
-        }
+      }
     }
+
+    ion-chip {
+      position: absolute;
+      bottom: 5px;
+      left: 5px;
+      font-size: 12px;
+      padding: 3px 10px;
+
+      ion-icon {
+        font-size: 16px;
+      }
+    }
+
+    ion-button {
+      position: absolute;
+      bottom: 5px;
+      right: 0px;
+      font-size: 12px;
+    }
+  }
 }

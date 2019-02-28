@@ -15,25 +15,25 @@
   }
 }
 
-ion-content{
+ion-content {
   --background: #d2d9e0;
 }
 
-.content-perfil{
+.content-perfil {
   height: 100%;
   width: 100%;
   padding: 10px;
 }
 
-.divisor{
+.divisor {
   margin-top: 10px;
 }
 
-.titulo{
+.titulo {
   position: relative;
   display: block;
 
-  ion-icon{
+  ion-icon {
     font-size: 21px;
     position: absolute;
     top: 50%;
@@ -41,7 +41,7 @@ ion-content{
     left: 0;
   }
 
-  span{
+  span {
     position: absolute;
     top: 50%;
     transform: translateY(-50%);
@@ -49,14 +49,17 @@ ion-content{
   }
 }
 
-.list-ios{
+.list-ios {
   margin-bottom: 10px !important;
 }
 
-.labelEditar{
+.labelEditar {
   position: relative;
 
-  .buttonEditar{
+  .buttonEditar {
+    cursor: pointer;
+    height: 30px;
+    line-height: 28px;
     position: absolute;
     right: 0px;
     top: 50%;
@@ -68,13 +71,14 @@ ion-content{
     color: white;
     box-shadow: 0 3px 1px -2px rgba(0, 0, 0, 0.2);
 
-    &:active{
+    &:active {
       background-color: var(--azulPadrao-active);
     }
   }
 }
 
-ion-list{
+ion-list {
+  margin: auto;
+  max-width: 800px;
   box-shadow: 0 3px 1px -2px rgba(0, 0, 0, 0.2);
-
 }
