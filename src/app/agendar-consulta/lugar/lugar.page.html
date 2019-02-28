@@ -1,0 +1,19 @@
+<ion-header>
+  <ion-toolbar class="header">
+    <ion-title><strong>Passo 3</strong> / 6</ion-title>
+  </ion-toolbar>
+</ion-header>
+<ion-content>
+  <ss-title-passos pagina="Agendar consulta" title="Selecione os Consultórios" icon="pin" urlBase="agendar-consulta"
+    urlSecundaria="medico">
+  </ss-title-passos>
+  <form class="form" *ngIf="lugares">
+    <div class="inputGroup" *ngFor="let item of lugares; let i=index">
+      <input [id]="'checkboxLugares'+i+1" type="checkbox" [checked]="preencherPasso(item.consultorio.id)" (change)="selectModel(item.consultorio.id)" />
+      <label [for]="'checkboxLugares'+i+1">
+        <div>{{item.consultorio.nome}}</div>
+      </label>
+    </div>
+    <ion-button shape="round" [disabled]="lugaresSelect.length == 0" expand="full" (click)="proximoPasso()">Próximo</ion-button>
+  </form>
+</ion-content>

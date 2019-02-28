@@ -10,11 +10,13 @@ import { EspecialidadeComponent } from './especialidades/especialidades.componen
 import { AgendarConsultaService } from './services/agendar-consulta.service';
 import { UtilAgendarConsulta } from './services/util.service';
 import { MedicoComponent } from './medico/medico.component';
+import { LugarComponent } from './lugar/lugar.component';
 
 @NgModule({
   declarations: [
     EspecialidadeComponent,
-    MedicoComponent
+    MedicoComponent,
+    LugarComponent
   ],
   imports: [
     CommonModule,
