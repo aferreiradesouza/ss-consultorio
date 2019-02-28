@@ -37,7 +37,6 @@ export class MedicoComponent implements OnInit {
   ngOnInit() {
 
     // verificarSession
-
     if ( this.sessionStorage.has('agendar-consulta/medicos')) {
       this.medicosSelect = this.sessionStorage.getJson('agendar-consulta/medicos').medicos;
     } else {
@@ -45,6 +44,17 @@ export class MedicoComponent implements OnInit {
     }
 
     this.obterMedicos();
+  }
+
+  selecionarTodos() {
+    if (this.medicosSelect.length < this.medicos.length) {
+      this.medicosSelect = [];
+      this.medicos.forEach(f => {
+        this.medicosSelect.push(f.usuario.id);
+      });
+    } else {
+      this.medicosSelect = [];
+    }
   }
 
   async obterMedicos() {

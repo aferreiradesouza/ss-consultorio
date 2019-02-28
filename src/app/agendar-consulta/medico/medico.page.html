@@ -8,11 +8,14 @@
     urlSecundaria="especialidade">
   </ss-title-passos>
 
+  <div class="buttonSelecionarTodos" [ngClass]="{'buttonSelecionarTodos-active' : medicosSelect.length == medicos.length}" (click)="selecionarTodos()">Selecionar todos</div>
+
   <form class="form" *ngIf="medicos">
 
     <div class="inputGroup" *ngFor="let item of medicos; let i=index">
       <input [id]="'checkbox'+i" type="checkbox" [checked]="preencherPasso(item.usuario.id)" (change)="alterarModel(item.usuario.id)" />
       <label [for]="'checkbox'+i">
+        
         <div>{{item.usuario.nome}}</div>
         <div class="crm">CRM: {{item.usuario.crm}}</div>
       </label>

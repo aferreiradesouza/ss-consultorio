@@ -12,6 +12,7 @@
       <input [id]="'checkboxLugares'+i+1" type="checkbox" [checked]="preencherPasso(item.consultorio.id)" (change)="selectModel(item.consultorio.id)" />
       <label [for]="'checkboxLugares'+i+1">
         <div>{{item.consultorio.nome}}</div>
+        <div class="lugar">{{item.consultorio.bairro}}</div>
       </label>
     </div>
     <ion-button shape="round" [disabled]="lugaresSelect.length == 0" expand="full" (click)="proximoPasso()">Próximo</ion-button>
