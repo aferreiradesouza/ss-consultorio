@@ -8,7 +8,7 @@
     urlSecundaria="especialidade">
   </ss-title-passos>
 
-  <div class="buttonSelecionarTodos" [ngClass]="{'buttonSelecionarTodos-active' : medicosSelect.length == medicos.length}" (click)="selecionarTodos()">Selecionar todos</div>
+  <div *ngIf="medicos" class="buttonSelecionarTodos" (click)="selecionarTodos()">Selecionar todos</div>
 
   <form class="form" *ngIf="medicos">
 

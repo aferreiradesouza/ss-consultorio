@@ -21,18 +21,17 @@
 
 .buttonSelecionarTodos{
   width: calc(100% - 30px);
-  background-color: #f3f3f3;
   margin: 20px auto 0px;
   text-align: center;
   padding: 7px;
-  color: #757575;
   border-radius: 3px;
-}
-
-.buttonSelecionarTodos-active{
   background-color: var(--azulPadrao);
   color: white;
   box-shadow: 0 3px 1px -2px rgba(0, 0, 0, 0.2);
+
+  &:active{
+    background-color: var(--azulPadrao-active);
+  }
 }
 
 .inputGroup {
@@ -113,4 +112,8 @@
     transform: translateY(-50%);
     visibility: hidden;
   }
+}
+
+ion-button{
+  margin-top: 10px;
 }

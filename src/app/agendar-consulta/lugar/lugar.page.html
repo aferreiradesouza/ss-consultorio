@@ -7,6 +7,9 @@
   <ss-title-passos pagina="Agendar consulta" title="Selecione os Consultórios" icon="pin" urlBase="agendar-consulta"
     urlSecundaria="medico">
   </ss-title-passos>
+
+  <div *ngIf="lugares" class="buttonSelecionarTodos" (click)="selecionarTodos()">Selecionar todos</div>
+
   <form class="form" *ngIf="lugares">
     <div class="inputGroup" *ngFor="let item of lugares; let i=index">
       <input [id]="'checkboxLugares'+i+1" type="checkbox" [checked]="preencherPasso(item.consultorio.id)" (change)="selectModel(item.consultorio.id)" />

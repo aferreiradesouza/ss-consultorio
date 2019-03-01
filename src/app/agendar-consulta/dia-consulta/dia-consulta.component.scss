@@ -1,0 +1,20 @@
+.header {
+  --background: var(--azulPadrao);
+  --border-color: none;
+  --color: white;
+
+  ion-buttons {
+    .backButton {
+      --color: white;
+    }
+  }
+
+  ion-title {
+    font-weight: normal;
+    font-size: 12px;
+
+    strong {
+      font-size: 17px;
+    }
+  }
+}

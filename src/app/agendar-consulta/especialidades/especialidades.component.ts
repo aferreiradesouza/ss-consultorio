@@ -67,6 +67,7 @@ export class EspecialidadeComponent implements OnInit {
   }
 
   gravar() {
+    this.sessionStorage.remove('agendar-consulta/especialidade');
     this.sessionStorage.setJson('agendar-consulta/especialidade', this.formEspecialidades.value);
   }
 

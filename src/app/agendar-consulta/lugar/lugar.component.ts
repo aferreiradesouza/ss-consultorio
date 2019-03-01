@@ -34,9 +34,11 @@ export class LugarComponent implements OnInit {
 
     }
 
-  ngOnInit() {
+  async ngOnInit() {
 
     // verificarSession
+
+    await this.obterLugares();
 
     if (this.sessionStorage.has('agendar-consulta/lugares')) {
       this.lugaresSelect = this.sessionStorage.getJson('agendar-consulta/lugares').lugares;
@@ -44,13 +46,24 @@ export class LugarComponent implements OnInit {
       this.lugaresSelect = [];
     }
 
-    this.obterLugares();
   }
 
   async obterLugares() {
     const especialidade = this.sessionStorage.getJson('agendar-consulta/especialidade').especialidade;
     const medicos = this.sessionStorage.getJson('agendar-consulta/medicos').medicos;
     this.lugares = await this.utilService.obterLugares(this.data, especialidade, medicos);
+    console.log(this.lugares);
+  }
+
+  selecionarTodos() {
+    if (this.lugaresSelect.length < this.lugares.length) {
+      this.lugaresSelect = [];
+      this.lugares.forEach(f => {
+        this.lugaresSelect.push(f.consultorio.id);
+      });
+    } else {
+      this.lugaresSelect = [];
+    }
   }
 
   public selectModel(model) {
@@ -72,9 +85,11 @@ export class LugarComponent implements OnInit {
 
   public proximoPasso() {
     this.sessionStorage.setJson('agendar-consulta/lugares', { lugares: this.lugaresSelect });
+    this.router.navigate(['agendar-consulta', 'dia-consulta']);
   }
 
   public preencherPasso(id) {
+    this.verificarOptions();
     let permitir;
     this.lugaresSelect.forEach(f => {
       if (f === id) {
@@ -82,5 +97,20 @@ export class LugarComponent implements OnInit {
       }
     });
     return permitir;
+  }
+
+  verificarOptions() {
+    this.lugaresSelect.forEach((e, index) => {
+      let count = 0;
+      this.lugares.forEach(f => {
+        if (f.idConsultorio === e) {
+          count += 1;
+        }
+      });
+      if (count === 0) {
+        this.lugaresSelect.splice(index, 1);
+      }
+    });
+    this.sessionStorage.setJson('agendar-consulta/lugares', { lugares: this.lugaresSelect });
   }
 }

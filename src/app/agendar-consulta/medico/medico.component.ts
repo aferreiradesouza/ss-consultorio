@@ -85,6 +85,7 @@ export class MedicoComponent implements OnInit {
   }
 
   public preencherPasso(id) {
+    this.verificarOptions();
     let permitir;
     this.medicosSelect.forEach(f => {
       if (f === id) {
@@ -92,5 +93,20 @@ export class MedicoComponent implements OnInit {
       }
     });
     return permitir;
+  }
+
+  verificarOptions() {
+    this.medicosSelect.forEach((e, index) => {
+      let count = 0;
+      this.medicos.forEach(f => {
+        if (f.idUsuario === e) {
+          count += 1;
+        }
+      });
+      if (count === 0) {
+        this.medicosSelect.splice(index, 1);
+      }
+    });
+    this.sessionStorage.setJson('agendar-consulta/medicos', { medicos: this.medicosSelect });
   }
 }
