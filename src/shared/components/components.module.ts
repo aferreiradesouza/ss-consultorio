@@ -11,6 +11,7 @@ import { ButtonComponent } from './button/button.component';
 import { ItemComponent } from './item/item.component';
 import { AccordionComponent } from './accordion/accordion.component';
 import { NgxMaskModule } from 'ngx-mask';
+import { CalendarComponent } from './calendar/calendario.component';
 
 @NgModule({
   declarations: [
@@ -22,7 +23,8 @@ import { NgxMaskModule } from 'ngx-mask';
     TabsComponent,
     ButtonComponent,
     ItemComponent,
-    AccordionComponent
+    AccordionComponent,
+    CalendarComponent
   ],
   imports: [
     CommonModule,
@@ -38,7 +40,8 @@ import { NgxMaskModule } from 'ngx-mask';
     TabsComponent,
     ItemComponent,
     ButtonComponent,
-    AccordionComponent
+    AccordionComponent,
+    CalendarComponent
   ],
   providers: [
   ],

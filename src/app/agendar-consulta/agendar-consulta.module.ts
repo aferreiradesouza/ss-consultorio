@@ -26,7 +26,7 @@ import { DiaConsultaComponent } from './dia-consulta/dia-consulta.component';
     ComponentsModule,
     NgxMaskModule,
     ReactiveFormsModule,
-    AgendarConsultaRoutingModule
+    AgendarConsultaRoutingModule,
   ],
   providers: [
     SessionStorageService,

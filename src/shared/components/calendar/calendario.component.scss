@@ -1,0 +1,76 @@
+.wrapper{
+  width: 100%;
+
+  .banner{
+    width: 100%;
+    background-color: var(--azulPadrao);
+    padding: 15px;
+    height: 66px;
+
+    .diaEscolhido{
+      font-size: 17px;
+      color: white;
+
+      .ano{
+        font-size: 12px;
+        margin-bottom: 5px;
+      }
+
+      .selecionado {
+        font-size: 15px;
+      }
+    }
+  }
+
+  .meses{
+    margin-bottom: 10px;
+    margin-top: 10px;
+    width: 100%;
+    text-align: center;
+    padding: 10px;
+
+    .arrow-left{
+      float: left;
+      font-size: 21px;
+      color: var(--azulPadrao);
+
+      &:active{
+        color: var(--azulPadrao-active);
+      }
+    }
+
+    .arrow-right{
+      float: right;
+      font-size: 21px;
+      color: var(--azulPadrao);
+
+      &:active{
+        color: var(--azulPadrao-active);
+      }
+    }
+  }
+
+  .diasSemana{
+
+    .date{
+      opacity: .6;
+      text-align: center;
+      font-size: 11px;
+    }
+  }
+
+  .dias{
+
+    .date{
+      text-align: center;
+      padding-top: 9px;
+      padding-bottom: 9px;
+    }
+
+    .dataSelecionada{
+      background-color: var(--azulPadrao);
+      color: white;
+      border-radius: 30px;
+    }
+  }
+}

@@ -1,0 +1,58 @@
+<div class="wrapper">
+    <div class="banner">
+        <div class="diaEscolhido">
+            <div *ngIf="!dataSelecionada">Selecione uma data</div>
+            <div *ngIf="dataSelecionada">
+                <div class="ano">{{anoAtual}}</div>
+                <div class="selecionado">{{formatterData(dataSelecionada.codDiaSemana)}}, {{dataSelecionada.dia}} de {{formatterMes(dataSelecionada.codMes).nome}}</div>
+            </div>
+        </div>
+    </div>
+    <div class="meses">
+        <div class="arrow-left" (click)="alterarMes('prev')">
+            <ion-icon name="arrow-back"></ion-icon>
+        </div>
+        {{mesAtual}}
+        <div class="arrow-right" (click)="alterarMes('next')">
+            <ion-icon name="arrow-forward"></ion-icon>
+        </div>
+    </div>
+    <div class="diasSemana">
+        <ion-grid>
+            <ion-row>
+                <ion-col class="date">
+                    DOM
+                </ion-col>
+                <ion-col class="date">
+                    SEG
+                </ion-col>
+                <ion-col class="date">
+                    TER
+                </ion-col>
+                <ion-col class="date">
+                    QUA
+                </ion-col>
+                <ion-col class="date">
+                    QUI
+                </ion-col>
+                <ion-col class="date">
+                    SEX
+                </ion-col>
+                <ion-col class="date">
+                    SAB
+                </ion-col>
+            </ion-row>
+        </ion-grid>
+    </div>
+    <div class="dias">
+        <ion-grid>
+            <ion-row>
+                <ion-col class="date" size="1.71" *ngFor="let diasMesPassado of diasMesPassado"></ion-col>
+                <ion-col class="date" size="1.71" *ngFor="let item of diasNoMes" (click)="selecionarData(item)"
+                    [ngClass]="{'dataSelecionada' : dataSelecionada == item}">
+                    {{item.dia}}
+                </ion-col>
+            </ion-row>
+        </ion-grid>
+    </div>
+</div>
