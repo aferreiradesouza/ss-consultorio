@@ -12,13 +12,15 @@ import { UtilAgendarConsulta } from './services/util.service';
 import { MedicoComponent } from './medico/medico.component';
 import { LugarComponent } from './lugar/lugar.component';
 import { DiaConsultaComponent } from './dia-consulta/dia-consulta.component';
+import { ConsultorioComponent } from './consultorio/consultorio.component';
 
 @NgModule({
   declarations: [
     EspecialidadeComponent,
     MedicoComponent,
     LugarComponent,
-    DiaConsultaComponent
+    DiaConsultaComponent,
+    ConsultorioComponent
   ],
   imports: [
     CommonModule,

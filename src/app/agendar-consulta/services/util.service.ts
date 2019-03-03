@@ -285,4 +285,41 @@ export class UtilAgendarConsulta {
     obterDiasSemana() {
         return ['DOM', 'SEG', 'TER', 'QUA', 'QUI', 'SEX', 'SAB'];
     }
+
+    formaterLugares(medicos, dataEscolhida) {
+        dataEscolhida = moment(dataEscolhida).utc().format('YYYY-MM-DD');
+
+        medicos.forEach(f => {
+            const newData = [];
+            f.dataHorarios = f.dataHorarios.filter(e => moment(e.data).utc().format('YYYY-MM-DD') === dataEscolhida);
+            if (f.dataHorarios.length > 0) {
+                f.dataHorarios.forEach(e => {
+                    if (newData.length === 0) {
+                        const obj = { local: e.local, idLocal: e.idLocal, horarios: [{horario: e.horario}] };
+                        newData.push(obj);
+                    } else {
+                        let count = 0;
+                        newData.forEach(d => {
+                            if (e.idLocal === d.idLocal) {
+                                count += 1;
+                            }
+                        });
+                        if (count > 0) {
+                            newData.forEach(d => {
+                                if (e.idLocal === d.idLocal) {
+                                    d.horarios.push({horario: e.horario});
+                                }
+                            });
+                        } else {
+                            const obj = { local: e.local, idLocal: e.idLocal, horarios: [{horario: e.horario}] };
+                            newData.push(obj);
+                        }
+                    }
+                });
+            }
+            f.locais = newData;
+        });
+
+        return medicos;
+    }
 }

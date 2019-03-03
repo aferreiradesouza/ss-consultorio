@@ -170,6 +170,10 @@ export class DiaConsultaComponent implements OnInit {
   }
 
   proximoPasso() {
+    this.dataSelecionada.medicos = this.listaMedicos;
+
     this.sessionStorage.setJson('agendar-consulta/data-consulta', this.dataSelecionada);
+    this.sessionStorage.setJson('agendar-consulta/data-consulta', this.dataSelecionada);
+    this.router.navigate(['agendar-consulta', 'consultorio']);
   }
 }

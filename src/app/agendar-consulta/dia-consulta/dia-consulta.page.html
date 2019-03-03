@@ -9,7 +9,7 @@
   </ss-title-passos>
   <!-- <ss-calendario *ngIf="diasDisponiveis" [dia]="dia" (selectMes)="mudarMes($event)" [diasDisponiveis]="diasDisponiveis"></ss-calendario> -->
   <div class="wrapper" *ngIf="diasDisponiveis">
-    <!-- <div class="banner">
+    <div class="banner">
           <div class="diaEscolhido">
               <div *ngIf="!dataSelecionada">Selecione uma data</div>
               <div *ngIf="dataSelecionada">
@@ -17,12 +17,12 @@
                   <div class="selecionado">{{utilService.formatterData(dataSelecionada.codDiaSemana)}}, {{dataSelecionada.dia}} de {{utilService.formatterMes(dataSelecionada.codMes).nome}}</div>
               </div>
           </div>
-      </div> -->
+      </div>
     <div class="meses">
       <div class="arrow-left" (click)="alterarMes('prev')" *ngIf="permitirMesAnterior">
         <ion-icon name="arrow-back"></ion-icon>
       </div>
-      <div class="mesNome">{{mesAtual+'/'+anoAtual.toString().substring(2, 4)}}</div>
+      <div class="mesNome">{{mesAtual}}</div>
       <div class="arrow-right" (click)="alterarMes('next')">
         <ion-icon name="arrow-forward"></ion-icon>
       </div>

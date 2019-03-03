@@ -9,9 +9,9 @@ import { ItemAgendaComponent } from './item-agenda/item-agenda.component';
 import { TabsComponent } from './tabs/tabs.component';
 import { ButtonComponent } from './button/button.component';
 import { ItemComponent } from './item/item.component';
-import { AccordionComponent } from './accordion/accordion.component';
+import { AccordionComponent } from './accordion/consultorios/accordion.component';
 import { NgxMaskModule } from 'ngx-mask';
-import { CalendarComponent } from './calendar/calendario.component';
+import { AccordionAgendarComponent } from './accordion/agendar-consulta/accordion-agendar.component';
 
 @NgModule({
   declarations: [
@@ -24,7 +24,7 @@ import { CalendarComponent } from './calendar/calendario.component';
     ButtonComponent,
     ItemComponent,
     AccordionComponent,
-    CalendarComponent
+    AccordionAgendarComponent
   ],
   imports: [
     CommonModule,
@@ -41,7 +41,7 @@ import { CalendarComponent } from './calendar/calendario.component';
     ItemComponent,
     ButtonComponent,
     AccordionComponent,
-    CalendarComponent
+    AccordionAgendarComponent
   ],
   providers: [
   ],

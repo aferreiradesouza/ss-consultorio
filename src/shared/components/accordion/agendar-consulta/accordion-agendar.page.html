@@ -1,0 +1,21 @@
+<div class="accordion" *ngFor="let item of itens">
+  <div class="header" (click)="selecionarItem(item)">
+    <div class="subTitulo">MÉDICO</div>
+    <div class="titulo">{{item.medico}}</div>
+    <ion-icon [name]="medicoSelecionado == item ? 'arrow-up' : 'arrow-down'"></ion-icon>
+  </div>
+  <div class="conteudo" *ngIf="medicoSelecionado == item">
+    <div *ngFor="let lugar of item.locais">
+      <div class="lugares" (click)="selecionarLugar(lugar)">
+        {{lugar.local}}
+        <ion-icon [name]="lugarSelecionado == lugar ? 'arrow-up' : 'arrow-down'"></ion-icon>
+      </div>
+      <div *ngIf="lugarSelecionado == lugar">
+        <div class="inputGroup" *ngFor="let horario of lugar.horarios; let i=index">
+          <input [id]="'radioH'+i" name="especialidade" type="radio" [value]="horario.horario"/>
+          <label [for]="'radioH'+i">{{horario.horario}}</label>
+        </div>
+      </div>
+    </div>
+  </div>
+</div>
