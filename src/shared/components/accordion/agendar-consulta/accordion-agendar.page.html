@@ -1,19 +1,43 @@
 <div class="accordion" *ngFor="let item of itens">
   <div class="header" (click)="selecionarItem(item)">
     <div class="subTitulo">MÉDICO</div>
-    <div class="titulo">{{item.medico}}</div>
-    <ion-icon [name]="medicoSelecionado == item ? 'arrow-up' : 'arrow-down'"></ion-icon>
+    <div class="titulo">
+      <img class="imgUsuario" [src]="item.url" />
+      <div
+        style="display: inline-block; margin-left: 10px; transform: translateY(35%); overflow: hidden; text-overflow: ellipsis; white-space: nowrap; width: calc(100% - 50px);"
+      >
+        {{ item.medico }}
+      </div>
+    </div>
+    <ion-icon
+      [name]="medicoSelecionado == item ? 'arrow-up' : 'arrow-down'"
+    ></ion-icon>
   </div>
   <div class="conteudo" *ngIf="medicoSelecionado == item">
-    <div *ngFor="let lugar of item.locais">
-      <div class="lugares" (click)="selecionarLugar(lugar)">
-        {{lugar.local}}
-        <ion-icon [name]="lugarSelecionado == lugar ? 'arrow-up' : 'arrow-down'"></ion-icon>
+    <div *ngFor="let lugar of item.locais" class="lugares">
+      <div class="lugares-titulo" (click)="selecionarLugar(lugar)">
+        <img class="imgConsultorio" [src]="lugar.urlFoto" />
+        <div
+          style="display: inline-block; margin-left: 10px; transform: translateY(35%); overflow: hidden; text-overflow: ellipsis; white-space: nowrap; width: calc(100% - 75px);"
+        >
+          {{ lugar.local }}
+        </div>
+        <ion-icon
+          [name]="lugarSelecionado == lugar ? 'arrow-up' : 'arrow-down'"
+        ></ion-icon>
       </div>
       <div *ngIf="lugarSelecionado == lugar">
-        <div class="inputGroup" *ngFor="let horario of lugar.horarios; let i=index">
-          <input [id]="'radioH'+i" name="especialidade" type="radio" [value]="horario.horario"/>
-          <label [for]="'radioH'+i">{{horario.horario}}</label>
+        <div
+          class="inputGroup"
+          *ngFor="let horario of lugar.horarios; let i = index"
+        >
+          <input
+            [id]="'radioH' + i"
+            name="especialidade"
+            type="radio"
+            [value]="horario.horario"
+          />
+          <label [for]="'radioH' + i">{{ horario.horario }}</label>
         </div>
       </div>
     </div>

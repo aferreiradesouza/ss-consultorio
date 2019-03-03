@@ -28,6 +28,14 @@
     color: white;
     width: 100%;
 
+    .imgUsuario {
+      height: 40px;
+      border-radius: 25px;
+      width: 40px;
+      object-fit: cover;
+      vertical-align: middle;
+    }   
+
     .titulo {
       font-weight: bold;
       font-size: 20px;
@@ -67,24 +75,37 @@
       width: 100%;
     }
 
-    .lugares{
+    .lugares {
       width: 100%;
-      padding: 15px;
       background-color: #f5f5f5;
       position: relative;
+      border-bottom: 1px solid lightgrey;
 
-      ion-icon{
+      .lugares-titulo {
+        padding: 15px;
+        position: relative;
+
+        .imgConsultorio {
+          height: 40px;
+          border-radius: 25px;
+          width: 40px;
+          object-fit: cover;
+          vertical-align: middle;
+        }
+      }
+
+      ion-icon {
         position: absolute;
         top: 50%;
         transform: translateY(-50%);
         right: 15px;
       }
 
-      &:last-child{
+      &:last-child {
         border-bottom: none;
       }
 
-      &:active{
+      &:active {
         background-color: #dbdbdb;
       }
     }
@@ -97,12 +118,12 @@
   position: relative;
   border-bottom: 1px solid #ccc;
 
-  &:first-child{
+  &:first-child {
     border-top: 1px solid rgb(223, 223, 223);
   }
 
-  &:last-child{
-    border-bottom:none;
+  &:last-child {
+    border-bottom: none;
   }
 
   label {
@@ -117,7 +138,7 @@
     &:before {
       width: 100%;
       height: 100%;
-      content: '';
+      content: "";
       background-color: #f2efff;
       position: absolute;
       left: 0;
@@ -125,12 +146,12 @@
       opacity: 0;
       z-index: -1;
     }
-    
+
     &:after {
       width: 20px;
       height: 20px;
-      content: '';
-      border: 2px solid #D1D7DC;
+      content: "";
+      border: 2px solid #d1d7dc;
       background-color: #fff;
       background-image: url("data:image/svg+xml,%3Csvg width='20' height='20' viewBox='0 0 32 32' xmlns='http://www.w3.org/2000/svg'%3E%3Cpath d='M5.414 11L4 12.414l5.414 5.414L20.828 6.414 19.414 5l-10 10z' fill='%23fff' fill-rule='nonzero'/%3E%3C/svg%3E ");
       background-repeat: no-repeat;

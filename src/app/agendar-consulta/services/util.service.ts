@@ -295,7 +295,7 @@ export class UtilAgendarConsulta {
             if (f.dataHorarios.length > 0) {
                 f.dataHorarios.forEach(e => {
                     if (newData.length === 0) {
-                        const obj = { local: e.local, idLocal: e.idLocal, horarios: [{horario: e.horario}] };
+                        const obj = { local: e.local, idLocal: e.idLocal, urlFoto: e.urlFoto, horarios: [{horario: e.horario}] };
                         newData.push(obj);
                     } else {
                         let count = 0;
@@ -311,7 +311,7 @@ export class UtilAgendarConsulta {
                                 }
                             });
                         } else {
-                            const obj = { local: e.local, idLocal: e.idLocal, horarios: [{horario: e.horario}] };
+                            const obj = { local: e.local, idLocal: e.idLocal, urlFoto: e.urlFoto, horarios: [{horario: e.horario}] };
                             newData.push(obj);
                         }
                     }
