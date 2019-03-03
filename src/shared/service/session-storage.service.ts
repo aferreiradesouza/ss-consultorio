@@ -10,7 +10,8 @@ type StorageKey =   'registro/conta'
                     | 'consultorios'
                     | 'agendar-consulta/especialidade'
                     | 'agendar-consulta/medicos'
-                    | 'agendar-consulta/lugares';
+                    | 'agendar-consulta/lugares'
+                    | 'agendar-consulta/data-consulta';
 
 @Injectable({
     providedIn: 'root'

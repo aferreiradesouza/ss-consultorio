@@ -1,4 +1,4 @@
-import { Component, OnInit, Input, Output, EventEmitter } from '@angular/core';
+import { Component, OnInit, Input, Output, EventEmitter, ChangeDetectorRef } from '@angular/core';
 import { Router } from '@angular/router';
 
 @Component({
@@ -16,18 +16,23 @@ export class CalendarComponent implements OnInit {
   public anoAtual: number;
   public dataSelecionada: any;
 
+  @Input() diasDisponiveis: any;
+  @Input() dia: any;
+
+  @Output() selectMes = new EventEmitter();
+
   constructor(public router: Router) {}
 
   ngOnInit() {
-    const dataAtual = new Date();
-    this.codMesAtual = new Date().getMonth();
-    this.mesAtual = this.formatterMes(this.codMesAtual).nome;
-    this.anoAtual = new Date().getFullYear();
-    this.criarCalendario(dataAtual);
+    this.criarCalendario(this.dia);
   }
 
 
   criarCalendario(data) {
+    this.mesAtual = this.formatterMes(data.getMonth()).nome;
+    this.anoAtual = data.getFullYear();
+    this.codMesAtual = data.getMonth();
+
     this.diasMesPassado = [];
     this.diasNoMes = [];
     const primeiraDataMes = this.obterDataMes(data);
@@ -47,6 +52,8 @@ export class CalendarComponent implements OnInit {
       this.diasNoMes.push(objtCalendario);
     }
 
+    this.verificarDiasDisponiveis(this.diasNoMes);
+
     console.log(this.diasNoMes);
   }
 
@@ -63,6 +70,9 @@ export class CalendarComponent implements OnInit {
   }
 
   selecionarData(data) {
+    if (!data.disponivel) {
+      return;
+    }
     this.dataSelecionada = data;
   }
 
@@ -152,7 +162,7 @@ export class CalendarComponent implements OnInit {
     return mesFormatado;
   }
 
-  alterarMes(tipo) {
+  async alterarMes(tipo) {
     if (tipo === 'next') {
       if (this.codMesAtual === 11) {
         this.codMesAtual = 0;
@@ -169,6 +179,7 @@ export class CalendarComponent implements OnInit {
       }
     }
     this.updateMes(this.codMesAtual);
+    this.selectMes.emit(new Date(this.anoAtual, this.codMesAtual, 1));
     this.criarCalendario(new Date(this.anoAtual, this.codMesAtual, 1));
   }
 
@@ -200,5 +211,16 @@ export class CalendarComponent implements OnInit {
     return dataFormatada;
   }
 
-
+  verificarDiasDisponiveis(dias) {
+    console.log(dias);
+    dias.forEach(f => {
+      let count = 0;
+      this.diasDisponiveis.forEach(e => {
+        if (f.dia === parseInt(e.dia, 10)) {
+          count += 1;
+        }
+      });
+      f.disponivel = count > 0 ? true : false;
+    });
+  }
 }

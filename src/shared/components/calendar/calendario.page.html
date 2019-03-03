@@ -49,7 +49,7 @@
             <ion-row>
                 <ion-col class="date" size="1.71" *ngFor="let diasMesPassado of diasMesPassado"></ion-col>
                 <ion-col class="date" size="1.71" *ngFor="let item of diasNoMes" (click)="selecionarData(item)"
-                    [ngClass]="{'dataSelecionada' : dataSelecionada == item}">
+                    [ngClass]="{'dataSelecionada' : dataSelecionada == item, 'disabled' : !item.disponivel}">
                     {{item.dia}}
                 </ion-col>
             </ion-row>
