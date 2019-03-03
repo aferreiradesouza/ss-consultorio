@@ -143,15 +143,13 @@
   }
 
   .infoMedico {
-    height: 35px;
+    height: 37px;
     margin-top: 1px;
-    width: 60px;
-    white-space: normal;
-    display: -webkit-box;
-    -webkit-line-clamp: 2;
-    -webkit-box-orient: vertical;
     overflow: hidden;
     text-overflow: ellipsis;
+    width: 60px;
+    white-space: normal;
+    display: block;
   }
 
   .imagemMedico {
