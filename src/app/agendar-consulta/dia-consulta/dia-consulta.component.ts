@@ -14,9 +14,7 @@ import * as moment from 'moment';
   templateUrl: './dia-consulta.page.html',
   styleUrls: ['./dia-consulta.component.scss']
 })
-
 export class DiaConsultaComponent implements OnInit {
-
   public data: Consultorios;
   public diasDisponiveis: any;
   public dia: any;
@@ -39,11 +37,11 @@ export class DiaConsultaComponent implements OnInit {
     public loadingController: LoadingController,
     public utilService: UtilAgendarConsulta,
     public agendarConsultaService: AgendarConsultaService,
-    public fb: FormBuilder) {
-
-      this.data = this.sessionStorage.getJson('consultorios');
-      this.diasSemana = this.utilService.obterDiasSemana();
-    }
+    public fb: FormBuilder
+  ) {
+    this.data = this.sessionStorage.getJson('consultorios');
+    this.diasSemana = this.utilService.obterDiasSemana();
+  }
 
   ngOnInit() {
     this.obterDatasConsulta(new Date());
@@ -55,9 +53,13 @@ export class DiaConsultaComponent implements OnInit {
       message: 'Carregando...'
     });
     loading.present();
-    const especialidade = this.sessionStorage.getJson('agendar-consulta/especialidade').especialidade;
-    const lugares = this.sessionStorage.getJson('agendar-consulta/lugares').lugares;
-    const medico = this.sessionStorage.getJson('agendar-consulta/medicos').medicos;
+    const especialidade = this.sessionStorage.getJson(
+      'agendar-consulta/especialidade'
+    ).especialidade;
+    const lugares = this.sessionStorage.getJson('agendar-consulta/lugares')
+      .lugares;
+    const medico = this.sessionStorage.getJson('agendar-consulta/medicos')
+      .medicos;
 
     const response = {
       medicos: medico,
@@ -67,7 +69,9 @@ export class DiaConsultaComponent implements OnInit {
     };
 
     this.agenda = await this.agendarConsultaService.obterDiasConsulta(response);
-    this.diasDisponiveis = await this.utilService.obterDiasDisponiveis(this.agenda);
+    this.diasDisponiveis = await this.utilService.obterDiasDisponiveis(
+      this.agenda
+    );
     this.criarCalendario(data);
     loading.dismiss();
   }
@@ -86,7 +90,11 @@ export class DiaConsultaComponent implements OnInit {
     const primeiraDataMes = this.obterDataMes(data);
     const totalDiasMesPassado = this.obterDiasMesPassado(data);
 
-    for (let o = totalDiasMesPassado - (primeiraDataMes - 1); o <= totalDiasMesPassado; o++) {
+    for (
+      let o = totalDiasMesPassado - (primeiraDataMes - 1);
+      o <= totalDiasMesPassado;
+      o++
+    ) {
       this.diasMesPassado.push(o);
     }
 
@@ -95,19 +103,22 @@ export class DiaConsultaComponent implements OnInit {
         dia: i,
         codDiaSemana: new Date(this.anoAtual, this.codMesAtual, i).getDay(),
         codMes: new Date(this.anoAtual, this.codMesAtual, i).getMonth(),
-        dataCompleta: new Date(this.anoAtual, this.codMesAtual, i),
+        dataCompleta: new Date(this.anoAtual, this.codMesAtual, i)
       };
       this.diasNoMes.push(objtCalendario);
     }
 
     this.verificarDiasDisponiveis(this.diasNoMes);
     this.verificarMesAtual();
-
   }
 
   verificarMesAtual() {
-    const diaAtual = moment(new Date(new Date().getFullYear(), new Date().getMonth(), 1)).format('DD/MM/YYYY');
-    const dia = moment(new Date(this.anoAtual, this.codMesAtual - 1, 1)).format('DD/MM/YYYY');
+    const diaAtual = moment(
+      new Date(new Date().getFullYear(), new Date().getMonth(), 1)
+    ).format('DD/MM/YYYY');
+    const dia = moment(new Date(this.anoAtual, this.codMesAtual - 1, 1)).format(
+      'DD/MM/YYYY'
+    );
 
     if (dia < diaAtual) {
       this.permitirMesAnterior = false;
@@ -117,7 +128,9 @@ export class DiaConsultaComponent implements OnInit {
   }
 
   obterDiasMesPassado(data) {
-    return this.utilService.pegarMesDatas(data.getMonth() === 0 ? 11 : data.getMonth() - 1);
+    return this.utilService.pegarMesDatas(
+      data.getMonth() === 0 ? 11 : data.getMonth() - 1
+    );
   }
 
   obterDataMes(data) {
@@ -160,8 +173,22 @@ export class DiaConsultaComponent implements OnInit {
     if (!data.disponivel) {
       return;
     }
+
+    setTimeout(() => {
+      window.document
+        .getElementsByClassName('wrapper')[0]
+        .scrollIntoView({
+          behavior: 'smooth',
+          block: 'start',
+          inline: 'nearest'
+        });
+    }, 200);
+
     this.dataSelecionada = data;
-    this.listaMedicos = await this.utilService.obterMedicosDaDataSelecionada(this.agenda, this.dataSelecionada);
+    this.listaMedicos = await this.utilService.obterMedicosDaDataSelecionada(
+      this.agenda,
+      this.dataSelecionada
+    );
     console.log(this.listaMedicos);
   }
 
@@ -172,8 +199,14 @@ export class DiaConsultaComponent implements OnInit {
   proximoPasso() {
     this.dataSelecionada.medicos = this.listaMedicos;
 
-    this.sessionStorage.setJson('agendar-consulta/data-consulta', this.dataSelecionada);
-    this.sessionStorage.setJson('agendar-consulta/data-consulta', this.dataSelecionada);
+    this.sessionStorage.setJson(
+      'agendar-consulta/data-consulta',
+      this.dataSelecionada
+    );
+    this.sessionStorage.setJson(
+      'agendar-consulta/data-consulta',
+      this.dataSelecionada
+    );
     this.router.navigate(['agendar-consulta', 'consultorio']);
   }
 }
