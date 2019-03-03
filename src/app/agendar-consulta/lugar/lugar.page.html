@@ -4,20 +4,47 @@
   </ion-toolbar>
 </ion-header>
 <ion-content>
-  <ss-title-passos pagina="Agendar consulta" title="Selecione os Consultórios" icon="pin" urlBase="agendar-consulta"
-    urlSecundaria="medico">
+  <ss-title-passos
+    pagina="Agendar consulta"
+    title="Selecione os Consultórios"
+    icon="pin"
+    urlBase="agendar-consulta"
+    urlSecundaria="medico"
+  >
   </ss-title-passos>
 
-  <div *ngIf="lugares" class="buttonSelecionarTodos" (click)="selecionarTodos()">Selecionar todos</div>
+  <div
+    *ngIf="lugares"
+    class="buttonSelecionarTodos"
+    (click)="selecionarTodos()"
+  >
+    Selecionar todos
+  </div>
 
   <form class="form" *ngIf="lugares">
-    <div class="inputGroup" *ngFor="let item of lugares; let i=index">
-      <input [id]="'checkboxLugares'+i+1" type="checkbox" [checked]="preencherPasso(item.consultorio.id)" (change)="selectModel(item.consultorio.id)" />
-      <label [for]="'checkboxLugares'+i+1">
-        <div>{{item.consultorio.nome}}</div>
-        <div class="lugar">{{item.consultorio.bairro}}</div>
+    <div class="inputGroup" *ngFor="let item of lugares; let i = index">
+      <input
+        [id]="'checkboxLugares' + i + 1"
+        type="checkbox"
+        [checked]="preencherPasso(item.consultorio.id)"
+        (change)="selectModel(item.consultorio.id)"
+      />
+      <label [for]="'checkboxLugares' + i + 1">
+        <div style="display: inline-block; vertical-align: sub; margin-right: 10px; height: 40px;">
+          <img class="imgConsultorio" [src]="item.consultorio.urlFoto" />
+        </div>
+        <div style="display: inline-block; white-space: nowrap; width: calc(100% - 50px);">
+          <div style="text-overflow: ellipsis; overflow: hidden;">{{ item.consultorio.nome }} hudashu ahusduhas duhas</div>
+          <div class="lugar">{{ item.consultorio.bairro }}</div>
+        </div>
       </label>
     </div>
-    <ion-button shape="round" [disabled]="lugaresSelect.length == 0" expand="full" (click)="proximoPasso()">Próximo</ion-button>
+    <ion-button
+      shape="round"
+      [disabled]="lugaresSelect.length == 0"
+      expand="full"
+      (click)="proximoPasso()"
+      >Próximo</ion-button
+    >
   </form>
 </ion-content>

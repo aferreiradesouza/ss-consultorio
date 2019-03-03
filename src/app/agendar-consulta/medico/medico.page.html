@@ -4,22 +4,49 @@
   </ion-toolbar>
 </ion-header>
 <ion-content>
-  <ss-title-passos pagina="Agendar consulta" title="Escolha o médico" icon="medical" urlBase="agendar-consulta"
-    urlSecundaria="especialidade">
+  <ss-title-passos
+    pagina="Agendar consulta"
+    title="Escolha o médico"
+    icon="medical"
+    urlBase="agendar-consulta"
+    urlSecundaria="especialidade"
+  >
   </ss-title-passos>
 
-  <div *ngIf="medicos" class="buttonSelecionarTodos" (click)="selecionarTodos()">Selecionar todos</div>
+  <div
+    *ngIf="medicos"
+    class="buttonSelecionarTodos"
+    (click)="selecionarTodos()"
+  >
+    Selecionar todos
+  </div>
 
   <form class="form" *ngIf="medicos">
-
-    <div class="inputGroup" *ngFor="let item of medicos; let i=index">
-      <input [id]="'checkbox'+i" type="checkbox" [checked]="preencherPasso(item.usuario.id)" (change)="alterarModel(item.usuario.id)" />
-      <label [for]="'checkbox'+i">
-        
-        <div>{{item.usuario.nome}}</div>
-        <div class="crm">CRM: {{item.usuario.crm}}</div>
+    <div class="inputGroup" *ngFor="let item of medicos; let i = index">
+      <input
+        [id]="'checkbox' + i"
+        type="checkbox"
+        [checked]="preencherPasso(item.usuario.id)"
+        (change)="alterarModel(item.usuario.id)"
+      />
+      <label [for]="'checkbox' + i">
+        <div
+          style="display: inline-block; vertical-align: sub; margin-right: 10px; height: 40px;"
+        >
+          <img class="imgUsuario" [src]="item.usuario.urlFoto" />
+        </div>
+        <div style="display: inline-block; white-space: nowrap; width: calc(100% - 50px);">
+          <div style="text-overflow: ellipsis; overflow: hidden;">{{ item.usuario.nome }}</div>
+          <div class="crm">CRM: {{ item.usuario.crm }}</div>
+        </div>
       </label>
     </div>
-    <ion-button shape="round" [disabled]="medicosSelect.length == 0" expand="full" (click)="proximoPasso()">Próximo</ion-button>
+    <ion-button
+      shape="round"
+      [disabled]="medicosSelect.length == 0"
+      expand="full"
+      (click)="proximoPasso()"
+      >Próximo</ion-button
+    >
   </form>
 </ion-content>
