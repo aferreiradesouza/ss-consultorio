@@ -4,7 +4,7 @@
     <div class="titulo">
       <img class="imgUsuario" [src]="item.url" />
       <div
-        style="display: inline-block; margin-left: 10px; overflow: hidden; text-overflow: ellipsis; white-space: nowrap; width: calc(100% - 50px);"
+        style="display: inline-block; margin-left: 10px; overflow: hidden; text-overflow: ellipsis; white-space: nowrap; width: calc(100% - 50px); vertical-align: middle;"
       >
         {{ item.medico }}
       </div>
@@ -18,7 +18,7 @@
       <div class="lugares-titulo" (click)="selecionarLugar(lugar)">
         <img class="imgConsultorio" [src]="lugar.urlFoto" />
         <div
-          style="display: inline-block; margin-left: 10px; overflow: hidden; text-overflow: ellipsis; white-space: nowrap; width: calc(100% - 75px);"
+          style="display: inline-block; margin-left: 10px; overflow: hidden; text-overflow: ellipsis; white-space: nowrap; width: calc(100% - 75px); vertical-align: middle;"
         >
           {{ lugar.local }}
         </div>
