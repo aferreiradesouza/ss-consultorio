@@ -17,4 +17,9 @@ export class AgendarConsultaService {
         const url = `${environment.apiBase}agenda/obterHorariosDisponiveis`;
         return this.ajaxService.post<DiaConsulta>(url, data);
     }
+
+    criarConsulta(data) {
+        const url = `${environment.apiBase}agenda/criarConsulta`;
+        return this.ajaxService.post<any>(url, data);
+    }
 }

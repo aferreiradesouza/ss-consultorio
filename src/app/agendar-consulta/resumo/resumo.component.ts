@@ -1,7 +1,7 @@
 import { Component, OnInit } from '@angular/core';
 import { Router } from '@angular/router';
 import { CurrentUserService } from 'src/shared/service/currentUser.service';
-import { NavController, LoadingController } from '@ionic/angular';
+import { NavController, LoadingController, ToastController } from '@ionic/angular';
 import { UtilAgendarConsulta } from '../services/util.service';
 import { AgendarConsultaService } from '../services/agendar-consulta.service';
 import { SessionStorageService } from 'src/shared/service/session-storage.service';
@@ -25,7 +25,8 @@ export class ResumoComponent implements OnInit {
     public navController: NavController,
     public loadingController: LoadingController,
     public utilService: UtilAgendarConsulta,
-    public agendarConsultaService: AgendarConsultaService) {
+    public agendarConsultaService: AgendarConsultaService,
+    public toastController: ToastController) {
       this.data = this.sessionStorage.getJson('agendar-consulta/horario');
     }
 
@@ -46,5 +47,55 @@ export class ResumoComponent implements OnInit {
     const lugares = await this.utilService.obterLugares(dados, especialidade.especialidade, medicos.medicos);
 
     return lugares.filter(e => e.idConsultorio === this.data.idLocal)[0];
+  }
+
+  async criarConsulta() {
+    const especialidade = this.sessionStorage.getJson('agendar-consulta/especialidadeObj');
+
+    // FIX me: idTipoConsulta, observacao, ehEncaixe
+    const response = {
+      idMedico: this.data.idMedico,
+      idLocal: this.data.idLocal,
+      idEspecialidade: especialidade.id,
+      idTipoConsulta: 0,
+      data: this.data.dia,
+      hora: this.data.horario,
+      observacao: '',
+      ehEncaixe: true
+    };
+
+    const loading = await this.loadingController.create({
+      message: 'Carregando...'
+    });
+    loading.present();
+
+    try {
+      const consulta = await this.agendarConsultaService.criarConsulta(response);
+      loading.dismiss();
+      if (consulta.sucesso) {
+        const toast = await this.toastController.create({
+          message: 'Consulta criada com sucesso',
+          duration: 3000,
+          color: 'dark'
+        });
+        toast.present();
+        sessionStorage.clear();
+        this.router.navigate(['home']);
+      } else {
+        const toast = await this.toastController.create({
+          message: 'Aconteceu algo de errado',
+          duration: 3000,
+          color: 'dark'
+        });
+        toast.present();
+      }
+    } catch (err) {
+      const toast = await this.toastController.create({
+        message: 'Algo de errado aconteceu, tente novamente mais tarde',
+        duration: 3000,
+        color: 'dark'
+      });
+      toast.present();
+    }
   }
 }
