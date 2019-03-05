@@ -1,11 +1,11 @@
 <ion-header>
   <ion-toolbar class="header">
     <ion-title>
-      Bem vindo, <strong>{{formatarNome}}</strong>
+      Bem vindo, <strong>{{formatarNome || ''}}</strong>
     </ion-title>
-      <ion-button slot="end" fill="clear" color="light" (click)="deslogar()">
-        <ion-icon slot="icon-only" name="log-out"></ion-icon>
-      </ion-button>
+    <ion-button slot="end" fill="clear" color="light" (click)="deslogar()">
+      <ion-icon slot="icon-only" name="log-out"></ion-icon>
+    </ion-button>
   </ion-toolbar>
 </ion-header>
 <ion-content>
@@ -14,15 +14,26 @@
     <ss-tabs [itens]="tabs" (tabClick)="obterTabAtual($event)"></ss-tabs>
     <ion-content>
       <ion-refresher slot="fixed" (ionRefresh)="atualizarLista($event)">
-        <ion-refresher-content
-        pullingIcon="arrow-dropdown"
-        pullingText="Pull to refresh"
-        refreshingText="Refreshing..."></ion-refresher-content>
+        <ion-refresher-content pullingIcon="arrow-dropdown" pullingText="Pull to refresh"
+          refreshingText="Refreshing..."></ion-refresher-content>
       </ion-refresher>
-      <ss-item-agenda [itens]="agenda" (detalhes)='modalDetalhes($event)'></ss-item-agenda>
+      <ss-erro-tentar-novamente (tentarNovamente)="tentarNovamenteAction()" *ngIf="tentarNovamente">
+      </ss-erro-tentar-novamente>
+      <ss-item-agenda [itens]="agenda" (detalhes)='modalDetalhes($event)' *ngIf="!tentarNovamente"></ss-item-agenda>
+      <div class="erro" *ngIf="nenhumaConsulta">
+        <div class="titulo">
+          {{idAtual == '1' ? 'Nenhuma consulta marcada :(' : 'Você não tem nenhuma consulta'}}
+        </div>
+        <div class="subTitulo">
+          <ion-chip color="primary" outline="true" (click)="agendarConsulta()">
+            <ion-icon name="create"></ion-icon>
+            <ion-label>Agendar consulta</ion-label>
+          </ion-chip>
+        </div>
+      </div>
     </ion-content>
   </div>
 </ion-content>
 <ion-footer>
-    <ss-button label="Agenda Completa" type="button-lista" (clickAgenda)="verAgendaCompleta()"></ss-button>
+  <ss-button label="Agenda Completa" type="button-lista" (clickAgenda)="verAgendaCompleta()"></ss-button>
 </ion-footer>

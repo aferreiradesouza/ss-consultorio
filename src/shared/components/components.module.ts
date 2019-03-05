@@ -12,6 +12,7 @@ import { ItemComponent } from './item/item.component';
 import { AccordionComponent } from './accordion/consultorios/accordion.component';
 import { NgxMaskModule } from 'ngx-mask';
 import { AccordionAgendarComponent } from './accordion/agendar-consulta/accordion-agendar.component';
+import { TentarNovamenteComponent } from './tentar-novamente/tentar-novamente.component';
 
 @NgModule({
   declarations: [
@@ -24,7 +25,8 @@ import { AccordionAgendarComponent } from './accordion/agendar-consulta/accordio
     ButtonComponent,
     ItemComponent,
     AccordionComponent,
-    AccordionAgendarComponent
+    AccordionAgendarComponent,
+    TentarNovamenteComponent
   ],
   imports: [
     CommonModule,
@@ -41,7 +43,8 @@ import { AccordionAgendarComponent } from './accordion/agendar-consulta/accordio
     ItemComponent,
     ButtonComponent,
     AccordionComponent,
-    AccordionAgendarComponent
+    AccordionAgendarComponent,
+    TentarNovamenteComponent
   ],
   providers: [
   ],

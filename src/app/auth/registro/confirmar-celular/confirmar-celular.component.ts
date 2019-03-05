@@ -20,16 +20,14 @@ export class ConfirmarCelularComponent implements OnInit {
     public toastController: ToastController,
     public loadingController: LoadingController,
     public navController: NavController
-  ) {}
+  ) { }
 
-  ngOnInit() {}
+  ngOnInit() { }
 
   async ir() {
     const loading = await this.loadingController.create({
       message: 'Enviando'
     });
-    await loading.present();
-
     const data = {
       cpf: this.registro_conta.cpf,
       email: this.registro_perfil.email,
@@ -42,29 +40,31 @@ export class ConfirmarCelularComponent implements OnInit {
       telefone: this.registro_contato.telefone,
       senha: this.registro_conta.senha
     };
+    await loading.present();
 
-    const login = await this.authService.registro(data);
-    loading.dismiss();
-    if (login.sucesso) {
-      this.router.navigate(['auth', 'registro', 'confirmar-sms']);
-    } else {
-      if (login.mensagens) {
-        const erro = await this.toastController.create({
-          message: login.mensagens[0],
-          color: 'dark',
-          showCloseButton: true,
-          closeButtonText: 'Entendi'
-        });
-        erro.present();
+    try {
+      const login = await this.authService.registro(data);
+      if (login.sucesso) {
+        this.router.navigate(['auth', 'registro', 'confirmar-sms']);
       } else {
         const erro = await this.toastController.create({
-          message: 'Algo de errado aconteceu',
+          message: login.mensagens[0] || 'Algo de errado aconteceu',
           color: 'dark',
           showCloseButton: true,
           closeButtonText: 'Entendi'
         });
         erro.present();
       }
+    } catch (err) {
+      const erro = await this.toastController.create({
+        message: 'Algo de errado aconteceu',
+        color: 'dark',
+        showCloseButton: true,
+        closeButtonText: 'Entendi'
+      });
+      erro.present();
+    } finally {
+      loading.dismiss();
     }
   }
 

@@ -31,7 +31,7 @@ export class ConfirmarSMSComponent implements OnInit {
     public route: ActivatedRoute,
     public loadingController: LoadingController,
     public navController: NavController
-  ) {}
+  ) { }
 
   ngOnInit() {
     this.data = this.route.snapshot.data['data'];
@@ -56,31 +56,30 @@ export class ConfirmarSMSComponent implements OnInit {
         codigoSMS: this.formSms.value.sms
       };
 
-      const login = await this.authService.efetuarLogin(data);
-
-      loading.dismiss();
-
-      if (login.sucesso) {
-        this.storageService.setJson('user', login.objeto);
-        this.router.navigate(['home']);
-      } else {
-        if (login.mensagens) {
-          const erro = await this.toastController.create({
-            message: login.mensagens[0],
-            color: 'dark',
-            showCloseButton: true,
-            closeButtonText: 'Entendi'
-          });
-          erro.present();
+      try {
+        const login = await this.authService.efetuarLogin(data);
+        if (login.sucesso) {
+          this.storageService.setJson('user', login.objeto);
+          this.router.navigate(['home']);
         } else {
           const erro = await this.toastController.create({
-            message: 'Algo de errado aconteceu',
+            message: login.mensagens[0] || 'Algo de errado aconteceu',
             color: 'dark',
             showCloseButton: true,
             closeButtonText: 'Entendi'
           });
           erro.present();
         }
+      } catch (err) {
+        const erro = await this.toastController.create({
+          message: 'Algo de errado aconteceu',
+          color: 'dark',
+          showCloseButton: true,
+          closeButtonText: 'Entendi'
+        });
+        erro.present();
+      } finally {
+        loading.dismiss();
       }
     } else {
       const loading = await this.loadingController.create({
@@ -93,38 +92,39 @@ export class ConfirmarSMSComponent implements OnInit {
         codigoSMS: this.formSms.value.sms
       };
 
-      const login = await this.authService.efetuarLogin(data);
-      loading.dismiss();
+      try {
+        const login = await this.authService.efetuarLogin(data);
 
-      if (login.sucesso) {
-        this.sessionStorage.remove('registro/contato');
-        this.sessionStorage.remove('registro/conta');
-        this.sessionStorage.remove('registro/perfil');
-        this.storageService.setJson('user', login.objeto);
-        const queryParams = {
-          mensagem: 'Registrando',
-          titulo: 'Registro',
-          action: 'registro'
-        };
-        this.router.navigate(['auth', 'confirmacao'], { queryParams });
-      } else {
-        if (login.mensagens) {
-          const erro = await this.toastController.create({
-            message: login.mensagens[0],
-            color: 'dark',
-            showCloseButton: true,
-            closeButtonText: 'Entendi'
-          });
-          erro.present();
+        if (login.sucesso) {
+          this.sessionStorage.remove('registro/contato');
+          this.sessionStorage.remove('registro/conta');
+          this.sessionStorage.remove('registro/perfil');
+          this.storageService.setJson('user', login.objeto);
+          const queryParams = {
+            mensagem: 'Registrando',
+            titulo: 'Registro',
+            action: 'registro'
+          };
+          this.router.navigate(['auth', 'confirmacao'], { queryParams });
         } else {
           const erro = await this.toastController.create({
-            message: 'Algo de errado aconteceu',
+            message: login.mensagens[0] || 'Algo de errado aconteceu',
             color: 'dark',
             showCloseButton: true,
             closeButtonText: 'Entendi'
           });
           erro.present();
         }
+      } catch (err) {
+        const erro = await this.toastController.create({
+          message: 'Algo de errado aconteceu',
+          color: 'dark',
+          showCloseButton: true,
+          closeButtonText: 'Entendi'
+        });
+        erro.present();
+      } finally {
+        loading.dismiss();
       }
     }
   }
@@ -142,6 +142,7 @@ export class ConfirmarSMSComponent implements OnInit {
     const loading = await this.loadingController.create({
       message: 'Enviando'
     });
+    loading.present();
     if (this.data.action) {
       const data = {
         cpf: this.data.usuario,
@@ -158,14 +159,17 @@ export class ConfirmarSMSComponent implements OnInit {
         showCloseButton: true,
         closeButtonText: 'Entendi'
       });
-      const sms = await this.authService.reenviarCodigo(data);
-
-      loading.dismiss();
-
-      if (sms.sucesso) {
-        avisoSucesso.present();
-      } else {
+      try {
+        const sms = await this.authService.reenviarCodigo(data);
+        if (sms.sucesso) {
+          avisoSucesso.present();
+        } else {
+          avisoErro.present();
+        }
+      } catch (err) {
         avisoErro.present();
+      } finally {
+        loading.dismiss();
       }
     } else {
       const data = {
@@ -185,14 +189,17 @@ export class ConfirmarSMSComponent implements OnInit {
         showCloseButton: true,
         closeButtonText: 'Entendi'
       });
-      const sms = await this.authService.reenviarCodigo(data);
-
-      loading.dismiss();
-
-      if (sms.sucesso) {
-        avisoSucesso.present();
-      } else {
+      try {
+        const sms = await this.authService.reenviarCodigo(data);
+        if (sms.sucesso) {
+          avisoSucesso.present();
+        } else {
+          avisoErro.present();
+        }
+      } catch (err) {
         avisoErro.present();
+      } finally {
+        loading.dismiss();
       }
     }
   }

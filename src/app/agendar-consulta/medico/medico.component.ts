@@ -111,6 +111,7 @@ export class MedicoComponent implements OnInit {
   }
 
   fechar() {
+    sessionStorage.clear();
     this.router.navigate(['home']);
   }
 }

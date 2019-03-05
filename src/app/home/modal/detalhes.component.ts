@@ -59,29 +59,40 @@ export class DetalhesComponent implements OnInit {
           text: 'Confirmar',
           handler: async () => {
             await loading.present();
-            const cancelamento = await this.homeService.cancelarConsulta(this.value.id);
-            loading.dismiss();
+            try {
+              const cancelamento = await this.homeService.cancelarConsulta(this.value.id);
 
-            if (cancelamento.sucesso) {
+              if (cancelamento.sucesso) {
 
-              const toast = await this.toastController.create({
-                message: 'Consulta cancelada com sucesso',
-                duration: 3000,
-                color: 'dark'
+                const toast = await this.toastController.create({
+                  message: 'Consulta cancelada com sucesso',
+                  duration: 3000,
+                  color: 'dark'
+                });
+                toast.present();
+                this.modalController.dismiss({
+                  'result': 'cancelar'
+                });
+
+              } else {
+
+                const toast = await this.toastController.create({
+                  message: cancelamento.mensagens[0],
+                  duration: 3000,
+                  color: 'dark'
+                });
+                toast.present();
+              }
+            } catch (err) {
+              const erro = await this.toastController.create({
+                message: 'Algo de errado aconteceu, tente novamente mais tarde',
+                color: 'dark',
+                showCloseButton: true,
+                closeButtonText: 'Entendi'
               });
-              toast.present();
-              this.modalController.dismiss({
-                'result': 'cancelar'
-              });
-
-            } else {
-
-              const toast = await this.toastController.create({
-                message: cancelamento.mensagens[0],
-                duration: 3000,
-                color: 'dark'
-              });
-              toast.present();
+              erro.present();
+            } finally {
+              loading.dismiss();
             }
           }
         }

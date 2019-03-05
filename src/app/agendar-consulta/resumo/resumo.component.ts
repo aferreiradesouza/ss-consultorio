@@ -1,7 +1,7 @@
 import { Component, OnInit } from '@angular/core';
 import { Router } from '@angular/router';
 import { CurrentUserService } from 'src/shared/service/currentUser.service';
-import { NavController, LoadingController, ToastController } from '@ionic/angular';
+import { NavController, LoadingController, ToastController, AlertController } from '@ionic/angular';
 import { UtilAgendarConsulta } from '../services/util.service';
 import { AgendarConsultaService } from '../services/agendar-consulta.service';
 import { SessionStorageService } from 'src/shared/service/session-storage.service';
@@ -26,7 +26,8 @@ export class ResumoComponent implements OnInit {
     public loadingController: LoadingController,
     public utilService: UtilAgendarConsulta,
     public agendarConsultaService: AgendarConsultaService,
-    public toastController: ToastController) {
+    public toastController: ToastController,
+    public alertController: AlertController) {
       this.data = this.sessionStorage.getJson('agendar-consulta/horario');
     }
 
@@ -58,13 +59,14 @@ export class ResumoComponent implements OnInit {
   }
 
   fechar() {
+    sessionStorage.clear();
     this.router.navigate(['home']);
   }
 
   async criarConsulta() {
     const especialidade = this.sessionStorage.getJson('agendar-consulta/especialidadeObj');
 
-    // FIX me: idTipoConsulta, observacao, ehEncaixe
+    // FIX ME: idTipoConsulta, observacao, ehEncaixe
     const response = {
       idMedico: this.data.idMedico,
       idLocal: this.data.idLocal,
@@ -79,35 +81,52 @@ export class ResumoComponent implements OnInit {
     const loading = await this.loadingController.create({
       message: 'Carregando...'
     });
-    loading.present();
 
-    try {
-      const consulta = await this.agendarConsultaService.criarConsulta(response);
-      loading.dismiss();
-      if (consulta.sucesso) {
-        const toast = await this.toastController.create({
-          message: 'Consulta criada com sucesso',
-          duration: 3000,
-          color: 'dark'
-        });
-        toast.present();
-        sessionStorage.clear();
-        this.router.navigate(['home']);
-      } else {
-        const toast = await this.toastController.create({
-          message: 'Aconteceu algo de errado',
-          duration: 3000,
-          color: 'dark'
-        });
-        toast.present();
-      }
-    } catch (err) {
-      const toast = await this.toastController.create({
-        message: 'Algo de errado aconteceu, tente novamente mais tarde',
-        duration: 3000,
-        color: 'dark'
-      });
-      toast.present();
-    }
+    const alert = await this.alertController.create({
+      header: 'Confirmar agendamento',
+      message: 'Iremos entrar em contato para confirmar o agendamento',
+      buttons: [
+        {
+          text: 'Cancelar',
+          role: 'cancel',
+          cssClass: 'secondary'
+        }, {
+          text: 'Confirmar',
+          handler: async () => {
+            await loading.present();
+            try {
+              const consulta = await this.agendarConsultaService.criarConsulta(response);
+              if (consulta.sucesso) {
+                const toast = await this.toastController.create({
+                  message: 'Consulta criada com sucesso',
+                  duration: 3000,
+                  color: 'dark'
+                });
+                toast.present();
+                sessionStorage.clear();
+                this.router.navigate(['home']);
+              } else {
+                const toast = await this.toastController.create({
+                  message: consulta.mensagens[0] || 'Aconteceu algo de errado',
+                  duration: 3000,
+                  color: 'dark'
+                });
+                toast.present();
+              }
+            } catch (err) {
+              const toast = await this.toastController.create({
+                message: 'Algo de errado aconteceu, tente novamente mais tarde',
+                duration: 3000,
+                color: 'dark'
+              });
+              toast.present();
+            } finally {
+              loading.dismiss();
+            }
+          }
+        }
+      ]
+    });
+    await alert.present();
   }
 }

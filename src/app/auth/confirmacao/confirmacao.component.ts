@@ -38,8 +38,6 @@ export class ConfirmacaoComponent implements OnInit {
       setTimeout(() => {
         if (this.storageService.getJson('user')) {
           this.router.navigate(['home']);
-        } else {
-          console.log('deu merda');
         }
       }, 3000 );
     }, 3000 );

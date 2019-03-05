@@ -82,4 +82,18 @@ ion-content {
       }
     }
   }
+
+  .erro {
+    text-align: center;
+    padding: 15px;
+
+    .titulo{
+      font-size: 20px;
+      font-weight: bold;
+      color: #888888
+    }
+    .subTitulo{
+      margin-top: 10px;
+    }
+  }
 }

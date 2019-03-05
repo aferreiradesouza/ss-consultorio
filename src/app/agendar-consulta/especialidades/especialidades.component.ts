@@ -1,7 +1,7 @@
 import { Component, OnInit } from '@angular/core';
 import { Router } from '@angular/router';
 import { CurrentUserService } from 'src/shared/service/currentUser.service';
-import { NavController, LoadingController } from '@ionic/angular';
+import { NavController, LoadingController, ToastController } from '@ionic/angular';
 import { UtilAgendarConsulta } from '../services/util.service';
 import { AgendarConsultaService } from '../services/agendar-consulta.service';
 import { SessionStorageService } from 'src/shared/service/session-storage.service';
@@ -32,7 +32,8 @@ export class EspecialidadeComponent implements OnInit {
     public loadingController: LoadingController,
     public utilService: UtilAgendarConsulta,
     public agendarConsultaService: AgendarConsultaService,
-    public fb: FormBuilder
+    public fb: FormBuilder,
+    public toastController: ToastController
   ) {}
 
   ngOnInit() {
@@ -54,14 +55,25 @@ export class EspecialidadeComponent implements OnInit {
         message: 'Carregando...'
       });
       await loading.present();
-      const consultas = await this.agendarConsultaService.obterConsultorios();
-      this.sessionStorage.setJson('consultorios', consultas);
+      try {
+        const consultas = await this.agendarConsultaService.obterConsultorios();
+        this.sessionStorage.setJson('consultorios', consultas);
 
-      this.especialidades = await this.utilService.obterEspecialidades(
-        consultas
-      );
-
-      await loading.dismiss();
+        this.especialidades = await this.utilService.obterEspecialidades(
+          consultas
+        );
+      } catch (err) {
+        const toastErro = await this.toastController.create({
+          message: 'Algo de errado aconteceu, tente novamente mais tarde.',
+          duration: 3000,
+          color: 'dark',
+          showCloseButton: true,
+          closeButtonText: 'Entendi'
+        });
+        toastErro.present();
+      } finally {
+        await loading.dismiss();
+      }
     }
   }
 

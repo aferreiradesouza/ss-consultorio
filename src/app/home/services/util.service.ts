@@ -26,7 +26,19 @@ export class UtilHomeService {
             }
         });
 
-        console.log(proximas);
+        if (tipo === 'proximas') {
+            proximas.sort(function (a, b) {
+                const dataA: any = new Date(new Date(a.data).getFullYear(), new Date(a.data).getMonth(), new Date(a.data).getDate());
+                const dataB: any = new Date(new Date(b.data).getFullYear(), new Date(b.data).getMonth(), new Date(b.data).getDate());
+                return dataA - dataB;
+            });
+        } else {
+            finalizadas.sort(function (a, b) {
+                const dataA: any = new Date(new Date(a.data).getFullYear(), new Date(a.data).getMonth(), new Date(a.data).getDate());
+                const dataB: any = new Date(new Date(b.data).getFullYear(), new Date(b.data).getMonth(), new Date(b.data).getDate());
+                return dataA - dataB;
+            });
+        }
 
         return tipo === 'proximas' ? proximas : finalizadas;
     }

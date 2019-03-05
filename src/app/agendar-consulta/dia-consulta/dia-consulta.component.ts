@@ -1,7 +1,7 @@
 import { Component, OnInit } from '@angular/core';
 import { Router } from '@angular/router';
 import { CurrentUserService } from 'src/shared/service/currentUser.service';
-import { NavController, LoadingController } from '@ionic/angular';
+import { NavController, LoadingController, ToastController } from '@ionic/angular';
 import { UtilAgendarConsulta } from '../services/util.service';
 import { AgendarConsultaService } from '../services/agendar-consulta.service';
 import { SessionStorageService } from 'src/shared/service/session-storage.service';
@@ -37,7 +37,8 @@ export class DiaConsultaComponent implements OnInit {
     public loadingController: LoadingController,
     public utilService: UtilAgendarConsulta,
     public agendarConsultaService: AgendarConsultaService,
-    public fb: FormBuilder
+    public fb: FormBuilder,
+    public toastController: ToastController
   ) {
     this.data = this.sessionStorage.getJson('consultorios');
     this.diasSemana = this.utilService.obterDiasSemana();
@@ -68,12 +69,24 @@ export class DiaConsultaComponent implements OnInit {
       data: data
     };
 
-    this.agenda = await this.agendarConsultaService.obterDiasConsulta(response);
-    this.diasDisponiveis = await this.utilService.obterDiasDisponiveis(
-      this.agenda
-    );
-    this.criarCalendario(data);
-    loading.dismiss();
+    try {
+      this.agenda = await this.agendarConsultaService.obterDiasConsulta(response);
+      this.diasDisponiveis = await this.utilService.obterDiasDisponiveis(
+        this.agenda
+      );
+      this.criarCalendario(data);
+    } catch (err) {
+      const toastErro = await this.toastController.create({
+        message: 'Algo de errado aconteceu, tente novamente mais tarde',
+        duration: 3000,
+        color: 'dark',
+        showCloseButton: true,
+        closeButtonText: 'Entendi'
+      });
+      toastErro.present();
+    } finally {
+      loading.dismiss();
+    }
   }
 
   mudarMes(data) {
@@ -158,6 +171,7 @@ export class DiaConsultaComponent implements OnInit {
   }
 
   verificarDiasDisponiveis(dias) {
+    const diaHoje = new Date(2019, 4, 1);
     dias.forEach(f => {
       let count = 0;
       this.diasDisponiveis.forEach(e => {
@@ -211,6 +225,7 @@ export class DiaConsultaComponent implements OnInit {
   }
 
   fechar() {
+    sessionStorage.clear();
     this.router.navigate(['home']);
   }
 }

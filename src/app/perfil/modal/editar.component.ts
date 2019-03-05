@@ -68,18 +68,22 @@ export class EditarComponent implements OnInit {
     });
 
     await loading.present();
+    try {
       const formulario = this.action === 'senha' ? { senha: form.senha } : form;
       const perfilAlterado = await this.perfilService.editarPerfil(formulario);
       if (perfilAlterado.sucesso) {
         const usuario = await this.perfilService.verificarToken();
         this.storageService.setJson('user', usuario.objeto);
-        await loading.dismiss();
         this.close();
         toastSucesso.present();
       } else {
-        await loading.dismiss();
         toastErro.present();
       }
+    } catch (err) {
+      toastErro.present();
+    } finally {
+      await loading.dismiss();
+    }
   }
 
   validateEmail(c: FormControl) {

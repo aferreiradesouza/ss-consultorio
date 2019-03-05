@@ -2,7 +2,7 @@ import { Component, OnInit } from '@angular/core';
 import { Router, ActivatedRoute } from '@angular/router';
 import { LocalStorageService } from 'src/shared/service/local-storage.service';
 import { IHome } from 'src/shared/dto';
-import { ModalController, LoadingController } from '@ionic/angular';
+import { ModalController, LoadingController, ToastController } from '@ionic/angular';
 import { DetalhesComponent } from '../modal/detalhes.component';
 import { HomeService } from '../services/home.service';
 import { UtilHomeService } from '../services/util.service';
@@ -22,6 +22,8 @@ export class HomeComponent implements OnInit {
   public agenda = [];
   public user: any;
   public idAtual: string;
+  public tentarNovamente = false;
+  public nenhumaConsulta = false;
 
   constructor(public router: Router,
               public storageService: LocalStorageService,
@@ -30,7 +32,8 @@ export class HomeComponent implements OnInit {
               public homeService: HomeService,
               public loadingController: LoadingController,
               public utilService: UtilHomeService,
-              public userService: CurrentUserService) {
+              public userService: CurrentUserService,
+              public toastController: ToastController) {
     this.menu = [
       {label: 'Agendar consulta', icon: 'create', url: 'agendar-consulta'},
       {label: 'Alterar perfil', icon: 'contact', url: 'perfil'},
@@ -52,9 +55,22 @@ export class HomeComponent implements OnInit {
       message: 'Buscando sua agenda',
     });
     await loading.present();
-    this.dados = await this.homeService.obterConsultas();
-    await loading.dismiss();
-    this.obterTabAtual('1');
+    try {
+      this.dados = await this.homeService.obterConsultas();
+      this.tentarNovamente = false;
+      this.obterTabAtual('1');
+    } catch (err) {
+      this.tentarNovamente = true;
+      const erro = await this.toastController.create({
+        message: 'Algo de errado aconteceu, tente novamente mais tarde',
+        color: 'dark',
+        showCloseButton: true,
+        closeButtonText: 'Entendi'
+      });
+      erro.present();
+    } finally {
+      await loading.dismiss();
+    }
   }
 
   async obterTabAtual(id) {
@@ -65,19 +81,41 @@ export class HomeComponent implements OnInit {
       this.idAtual = '2';
       this.agenda = await this.utilService.formatarConsultas(this.dados.objeto, 'anteriores');
     }
+    if (this.agenda.length === 0) {
+      this.nenhumaConsulta = true;
+    } else {
+      this.nenhumaConsulta = false;
+    }
+  }
+
+  agendarConsulta() {
+    this.router.navigate(['agendar-consulta']);
   }
 
   deslogar() {
     this.router.navigate(['auth']);
     sessionStorage.clear();
-    localStorage.removeItem('user');
+    localStorage.clear();
   }
 
   atualizarLista(event) {
       setTimeout(async () => {
-        this.dados = await this.homeService.obterConsultas();
-        this.obterTabAtual(this.idAtual);
-        event.target.complete();
+        try {
+          this.tentarNovamente = false;
+          this.dados = await this.homeService.obterConsultas();
+          this.obterTabAtual(this.idAtual);
+          event.target.complete();
+        } catch (err) {
+          this.tentarNovamente = true;
+          const erro = await this.toastController.create({
+            message: 'Não foi possível atualizar sua lista no momento, tente novamente mais tarde',
+            color: 'dark',
+            showCloseButton: true,
+            closeButtonText: 'Entendi'
+          });
+          erro.present();
+          event.target.complete();
+        }
       }, 2000);
   }
 
@@ -87,6 +125,10 @@ export class HomeComponent implements OnInit {
 
   get formatarNome() {
     return this.userService.user.nome.split(' ')[0] || '';
+  }
+
+  tentarNovamenteAction() {
+    this.obterConsultas();
   }
 
   async modalDetalhes(detalhes) {
@@ -102,9 +144,22 @@ export class HomeComponent implements OnInit {
           message: 'Atualizando',
         });
         await loading.present();
-        this.dados = await this.homeService.obterConsultas();
-        this.obterTabAtual(this.idAtual);
-        await loading.dismiss();
+        try {
+          this.dados = await this.homeService.obterConsultas();
+          this.tentarNovamente = false;
+          this.obterTabAtual(this.idAtual);
+        } catch (err) {
+          this.tentarNovamente = true;
+          const erro = await this.toastController.create({
+            message: 'Não foi possível atualizar sua lista no momento, tente novamente mais tarde',
+            color: 'dark',
+            showCloseButton: true,
+            closeButtonText: 'Entendi'
+          });
+          erro.present();
+        } finally {
+          await loading.dismiss();
+        }
       }
       console.log( data );
   }

@@ -1,7 +1,7 @@
 import { Component, OnInit } from '@angular/core';
 import { Router } from '@angular/router';
 import { CurrentUserService } from 'src/shared/service/currentUser.service';
-import { ModalController, NavController, LoadingController } from '@ionic/angular';
+import { ModalController, NavController, LoadingController, ToastController } from '@ionic/angular';
 import { LocalStorageService } from 'src/shared/service/local-storage.service';
 import { ContatoService } from '../services/contato.service';
 import { UtilContatoService } from '../services/util.service';
@@ -24,7 +24,8 @@ export class ContatoComponent implements OnInit {
     public navController: NavController,
     public loadingController: LoadingController,
     public contatoService: ContatoService,
-    public utilService: UtilContatoService) {}
+    public utilService: UtilContatoService,
+    public toastController: ToastController) {}
 
   ngOnInit() {
     this.obterConsultorios();
@@ -39,10 +40,19 @@ export class ContatoComponent implements OnInit {
       message: 'Carregando...'
     });
     await loading.present();
-    const consultas = await this.contatoService.obterConsultorios();
-
-    this.consultorios = this.utilService.formatar(consultas.objeto);
-    console.log(this.consultorios);
-    await loading.dismiss();
+    try {
+      const consultas = await this.contatoService.obterConsultorios();
+      this.consultorios = this.utilService.formatar(consultas.objeto);
+    } catch (err) {
+      const erro = await this.toastController.create({
+        message: 'Algo de errado aconteceu, tente novamente mais tarde',
+        color: 'dark',
+        showCloseButton: true,
+        closeButtonText: 'Entendi'
+      });
+      erro.present();
+    } finally {
+      await loading.dismiss();
+    }
   }
 }
