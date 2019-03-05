@@ -47,7 +47,7 @@ export class ConsultorioComponent implements OnInit {
   proximoPasso() {
     this.router.navigate(['agendar-consulta', 'resumo']);
   }
-  
+
   fechar() {
     this.router.navigate(['home']);
   }

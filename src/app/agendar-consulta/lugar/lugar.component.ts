@@ -111,7 +111,7 @@ export class LugarComponent implements OnInit {
     });
     this.sessionStorage.setJson('agendar-consulta/lugares', { lugares: this.lugaresSelect });
   }
-  
+
   fechar() {
     this.router.navigate(['home']);
   }

@@ -109,7 +109,7 @@ export class MedicoComponent implements OnInit {
     });
     this.sessionStorage.setJson('agendar-consulta/medicos', { medicos: this.medicosSelect });
   }
-  
+
   fechar() {
     this.router.navigate(['home']);
   }
