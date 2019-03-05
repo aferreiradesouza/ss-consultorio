@@ -85,6 +85,9 @@
         padding: 15px;
         position: relative;
 
+        &:active {
+          background-color: #dbdbdb;
+        }
         .imgConsultorio {
           height: 40px;
           border-radius: 25px;
@@ -103,10 +106,6 @@
 
       &:last-child {
         border-bottom: none;
-      }
-
-      &:active {
-        background-color: #dbdbdb;
       }
     }
   }

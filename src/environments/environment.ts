@@ -4,7 +4,7 @@
 
 export const environment = {
   production: false,
-  apiBase: 'http://app.authoriun.com:2001/api/'
+  apiBase: 'http://rafaelsilveiradesouza.com.br:2001/api/'
 };
 
 /*

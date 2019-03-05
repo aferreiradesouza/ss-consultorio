@@ -17,6 +17,7 @@ export class ConsultorioComponent implements OnInit {
 
   public data: any;
   public itens: any;
+  public horarioSelecionado = null;
 
   constructor(
     public router: Router,
@@ -32,7 +33,19 @@ export class ConsultorioComponent implements OnInit {
 
   async ngOnInit() {
     this.itens = await this.utilService.formaterLugares(this.data.medicos, this.data.dataCompleta);
-    console.log(this.itens);
+  }
+
+  salvarSelect(horario) {
+    if (horario) {
+      this.horarioSelecionado = horario;
+      this.sessionStorage.setJson('agendar-consulta/horario', horario);
+    } else {
+      this.horarioSelecionado = horario;
+    }
+  }
+
+  proximoPasso() {
+    this.router.navigate(['agendar-consulta', 'resumo']);
   }
 
 }

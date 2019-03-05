@@ -7,5 +7,9 @@
   <ss-title-passos pagina="Agendar consulta" title="Escolha o seu horário" icon="time" urlBase="agendar-consulta"
     urlSecundaria="dia-consulta">
   </ss-title-passos>
-  <ss-accordion-agendar [itens]="itens"></ss-accordion-agendar>
+  <ss-accordion-agendar [itens]="itens" (select)="salvarSelect($event)"></ss-accordion-agendar>
 </ion-content>
+<ion-footer>
+  <button [disabled]="!horarioSelecionado" (click)="proximoPasso()">Próximo</button>
+  <!-- <ion-button [disabled]="!horarioSelecionado" expand="block">Próximo</ion-button> -->
+</ion-footer>

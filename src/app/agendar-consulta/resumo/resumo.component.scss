@@ -1,0 +1,138 @@
+.header {
+  --background: var(--azulPadrao);
+  --border-color: none;
+  --color: white;
+
+  ion-buttons {
+    .backButton {
+      --color: white;
+    }
+  }
+
+  ion-title {
+    font-weight: normal;
+    font-size: 12px;
+
+    strong {
+      font-size: 17px;
+    }
+  }
+}
+
+.titulo{
+  font-weight: bold;
+  font-size: 14px;
+  padding: 15px;
+}
+
+.medicoInfo{
+  height: 50px;
+  width: 100%;
+  padding: 0px 15px;
+  white-space: nowrap;
+
+  .imagem{
+    float: left;
+    height: 100%;
+    border-radius: 35px;
+    overflow: hidden;
+
+    img{
+      object-fit: cover;
+      height: 100%;
+      vertical-align: middle;
+    }
+  }
+
+  .info{
+    float: left;
+    position: relative;
+    padding: 5px;
+    min-width: calc(100% - 60px);
+    height: 100%;
+    margin-left: 10px;
+
+    .section{
+      font-size: 12px;
+      font-weight: bold;
+      opacity: .7;
+    }
+
+    .nomeMedico{
+      position: absolute;
+      bottom: 0;
+      left: 5px;
+      white-space: nowrap;
+      overflow: hidden;
+      text-overflow: ellipsis;
+    }
+  }
+}
+
+.especialidade{
+  margin-top: 10px;
+  width: calc(100% - 30px);
+  margin: 10px auto 0px;
+  background-color: #ececec;
+  position: relative;
+  height: 70px;
+  padding: 10px;
+  border-radius: 10px;
+
+  span{
+    font-size: 12px;
+    opacity: .7;
+    font-weight: bold;
+  }
+
+  div{
+    position: absolute;
+    bottom: 10px;
+    left: 10px;
+  }
+}
+
+.infoConsulta{
+  text-align: center;
+
+  .section{
+    font-size: 12px;
+    margin-bottom: 10px;
+    font-weight: bold;
+    opacity: .8;
+  }
+}
+
+.imagemLocal{
+  padding: 0px 15px;
+  margin-bottom: 15px;
+
+  .card{
+    border-radius: 10px;
+    border: 1px solid #cecece;
+    overflow: hidden;
+
+    img{
+      object-fit: cover;
+      height: 100%;
+      vertical-align: middle;
+      width: 100%;
+    }
+
+    .conteudo{
+      padding: 15px;
+
+      .lugarTitulo{
+        font-size: 18px;
+        font-weight: bold;
+        margin-bottom: 15px;
+      }
+
+      .section{
+        margin-bottom: 10px;
+        font-weight: bold;
+        font-size: 14px;
+      }
+    }
+  }
+}

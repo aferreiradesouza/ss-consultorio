@@ -9,9 +9,11 @@ type StorageKey =   'registro/conta'
                     | 'esqueceu-senha/senha-nova'
                     | 'consultorios'
                     | 'agendar-consulta/especialidade'
+                    | 'agendar-consulta/especialidadeObj'
                     | 'agendar-consulta/medicos'
                     | 'agendar-consulta/lugares'
-                    | 'agendar-consulta/data-consulta';
+                    | 'agendar-consulta/data-consulta'
+                    | 'agendar-consulta/horario';
 
 @Injectable({
     providedIn: 'root'

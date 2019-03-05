@@ -15,6 +15,8 @@
       <input [id]="'radio'+i" name="especialidade" type="radio" [value]="item.especialidade.id" formControlName="especialidade" />
       <label [for]="'radio'+i">{{item.especialidade.nome}}</label>
     </div>
-    <ion-button shape="round" [disabled]="!formEspecialidades.valid" expand="full" (click)="proximoPasso()">Próximo</ion-button>
   </form>
 </ion-content>
+<ion-footer>
+  <ss-button [disabled]="!formEspecialidades.valid" type="button-passos" (click)="proximoPasso()">Próximo</ss-button>
+</ion-footer>

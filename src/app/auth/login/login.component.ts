@@ -22,7 +22,7 @@ export class LoginComponent implements OnInit {
     public authService: AuthService,
     public storageService: LocalStorageService,
     public loadingController: LoadingController,
-    public navController: NavController) {}
+    public navController: NavController) { }
 
   ngOnInit() {
     this.formEntrar = this.fb.group({
@@ -43,24 +43,36 @@ export class LoginComponent implements OnInit {
     };
 
 
-    const login = await this.authService.efetuarLogin(data);
-    loading.dismiss();
-    if (login.sucesso) {
-      this.storageService.setJson('user', login.objeto);
-      this.router.navigate(['home']);
-    } else {
-      if (login.codigo === 'smsnaoconfirmado') {
-        const queryParams = {usuario: data.usuario, senha: data.senha, action: 'smsNaoConfirmado', nascimento: login.mensagens[2]} ;
-        this.router.navigate(['auth', 'registro', 'confirmar-sms'], { queryParams });
+    try {
+      const login = await this.authService.efetuarLogin(data);
+      loading.dismiss();
+      if (login.sucesso) {
+        this.storageService.setJson('user', login.objeto);
+        this.router.navigate(['home']);
       } else {
-        const erro = await this.toastController.create({
-          message: login.mensagens[0],
-          color: 'dark',
-          showCloseButton: true,
-          closeButtonText: 'Entendi'
-        });
-        erro.present();
+        if (login.codigo === 'smsnaoconfirmado') {
+          const queryParams = { usuario: data.usuario, senha: data.senha, action: 'smsNaoConfirmado', nascimento: login.mensagens[2] };
+          this.router.navigate(['auth', 'registro', 'confirmar-sms'], { queryParams });
+        } else {
+          const erro = await this.toastController.create({
+            message: login.mensagens[0],
+            color: 'dark',
+            showCloseButton: true,
+            closeButtonText: 'Entendi'
+          });
+          erro.present();
+        }
       }
+    } catch (err) {
+      console.log(err);
+      loading.dismiss();
+      const erro = await this.toastController.create({
+        message: 'Algo de errado aconteceu',
+        color: 'dark',
+        showCloseButton: true,
+        closeButtonText: 'Entendi'
+      });
+      erro.present();
     }
   }
 

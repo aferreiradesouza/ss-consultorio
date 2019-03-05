@@ -13,6 +13,7 @@ import { MedicoComponent } from './medico/medico.component';
 import { LugarComponent } from './lugar/lugar.component';
 import { DiaConsultaComponent } from './dia-consulta/dia-consulta.component';
 import { ConsultorioComponent } from './consultorio/consultorio.component';
+import { ResumoComponent } from './resumo/resumo.component';
 
 @NgModule({
   declarations: [
@@ -20,7 +21,8 @@ import { ConsultorioComponent } from './consultorio/consultorio.component';
     MedicoComponent,
     LugarComponent,
     DiaConsultaComponent,
-    ConsultorioComponent
+    ConsultorioComponent,
+    ResumoComponent
   ],
   imports: [
     CommonModule,

@@ -36,6 +36,7 @@
             name="especialidade"
             type="radio"
             [value]="horario.horario"
+            (click)="selecionarHorario(horario.horario)"
           />
           <label [for]="'radioH' + i">{{ horario.horario }}</label>
         </div>

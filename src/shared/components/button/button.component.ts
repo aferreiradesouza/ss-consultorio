@@ -11,6 +11,7 @@ export class ButtonComponent implements OnInit {
 
   @Input() label: string;
   @Input() type: string;
+  @Input() disabled: boolean;
 
   @Output() clickAgenda = new EventEmitter();
 

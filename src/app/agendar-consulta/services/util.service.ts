@@ -103,7 +103,6 @@ export class UtilAgendarConsulta {
             });
         });
 
-        console.log(newData);
         return newData;
     }
 

@@ -41,12 +41,8 @@
         </div>
       </label>
     </div>
-    <ion-button
-      shape="round"
-      [disabled]="medicosSelect.length == 0"
-      expand="full"
-      (click)="proximoPasso()"
-      >Próximo</ion-button
-    >
   </form>
 </ion-content>
+<ion-footer>
+  <ss-button [disabled]="medicosSelect.length == 0" type="button-passos" (click)="proximoPasso()">Próximo</ss-button>
+</ion-footer>

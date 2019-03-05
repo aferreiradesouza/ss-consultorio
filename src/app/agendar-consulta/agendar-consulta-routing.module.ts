@@ -5,6 +5,7 @@ import { MedicoComponent } from './medico/medico.component';
 import { LugarComponent } from './lugar/lugar.component';
 import { DiaConsultaComponent } from './dia-consulta/dia-consulta.component';
 import { ConsultorioComponent } from './consultorio/consultorio.component';
+import { ResumoComponent } from './resumo/resumo.component';
 
 const routes: Routes = [
   { path: '', redirectTo: 'especialidade', pathMatch: 'full'},
@@ -13,6 +14,7 @@ const routes: Routes = [
   { path: 'lugar', component: LugarComponent},
   { path: 'dia-consulta', component: DiaConsultaComponent},
   { path: 'consultorio', component: ConsultorioComponent},
+  { path: 'resumo', component: ResumoComponent}
 ];
 
 @NgModule({

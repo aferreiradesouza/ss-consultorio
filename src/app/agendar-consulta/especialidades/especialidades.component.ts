@@ -68,7 +68,10 @@ export class EspecialidadeComponent implements OnInit {
 
   gravar() {
     this.sessionStorage.remove('agendar-consulta/especialidade');
+    this.sessionStorage.remove('agendar-consulta/especialidadeObj');
     this.sessionStorage.setJson('agendar-consulta/especialidade', this.formEspecialidades.value);
+    const obj = this.especialidades.filter(e => e.idEspecialidade === this.formEspecialidades.value.especialidade)[0].especialidade;
+    this.sessionStorage.setJson('agendar-consulta/especialidadeObj', obj);
   }
 
   preencherPasso() {
