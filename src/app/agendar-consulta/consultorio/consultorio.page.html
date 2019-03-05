@@ -10,6 +10,5 @@
   <ss-accordion-agendar [itens]="itens" (select)="salvarSelect($event)"></ss-accordion-agendar>
 </ion-content>
 <ion-footer>
-  <button [disabled]="!horarioSelecionado" (click)="proximoPasso()">Próximo</button>
-  <!-- <ion-button [disabled]="!horarioSelecionado" expand="block">Próximo</ion-button> -->
+  <ss-button [disabled]="!horarioSelecionado" type="button-passos" (click)="proximoPasso()">Confirmar</ss-button>
 </ion-footer>

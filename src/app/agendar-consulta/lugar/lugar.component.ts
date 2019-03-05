@@ -32,6 +32,12 @@ export class LugarComponent implements OnInit {
 
       this.data = this.sessionStorage.getJson('consultorios');
 
+      if (this.sessionStorage.has('agendar-consulta/lugares')) {
+        this.lugaresSelect = this.sessionStorage.getJson('agendar-consulta/lugares').lugares;
+      } else {
+        this.lugaresSelect = [];
+      }
+
     }
 
   async ngOnInit() {
@@ -39,20 +45,12 @@ export class LugarComponent implements OnInit {
     // verificarSession
 
     await this.obterLugares();
-
-    if (this.sessionStorage.has('agendar-consulta/lugares')) {
-      this.lugaresSelect = this.sessionStorage.getJson('agendar-consulta/lugares').lugares;
-    } else {
-      this.lugaresSelect = [];
-    }
-
   }
 
   async obterLugares() {
     const especialidade = this.sessionStorage.getJson('agendar-consulta/especialidade').especialidade;
     const medicos = this.sessionStorage.getJson('agendar-consulta/medicos').medicos;
     this.lugares = await this.utilService.obterLugares(this.data, especialidade, medicos);
-    console.log(this.lugares);
   }
 
   selecionarTodos() {
