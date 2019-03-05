@@ -89,8 +89,11 @@ export class EspecialidadeComponent implements OnInit {
 
   preencherPasso() {
     const i = this.sessionStorage.getJson('agendar-consulta/especialidade');
-    this.formEspecialidades.patchValue({
-      especialidade: i.especialidade
-    });
+
+    if (i) {
+      this.formEspecialidades.patchValue({
+        especialidade: i.especialidade
+      });
+    }
   }
 }
