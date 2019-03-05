@@ -12,9 +12,9 @@ import * as moment from 'moment';
   templateUrl: './resumo.page.html',
   styleUrls: ['./resumo.component.scss']
 })
-
 export class ResumoComponent implements OnInit {
-
+  public maskTelefone = ['(00) 0000-0000'];
+  public maskCelular = ['(00) 00000-0000'];
   public data: any;
   public lugar: any;
 
@@ -25,9 +25,10 @@ export class ResumoComponent implements OnInit {
     public navController: NavController,
     public loadingController: LoadingController,
     public utilService: UtilAgendarConsulta,
-    public agendarConsultaService: AgendarConsultaService) {
-      this.data = this.sessionStorage.getJson('agendar-consulta/horario');
-    }
+    public agendarConsultaService: AgendarConsultaService
+  ) {
+    this.data = this.sessionStorage.getJson('agendar-consulta/horario');
+  }
 
   async ngOnInit() {
     this.lugar = await this.obterLugares();
@@ -35,16 +36,28 @@ export class ResumoComponent implements OnInit {
   }
 
   get pegarData() {
-    return moment(this.data.dia).utc().format('DD/MM/YYYY');
+    return moment(this.data.dia)
+      .utc()
+      .format('DD/MM/YYYY');
   }
 
   async obterLugares() {
     const dados = this.sessionStorage.getJson('consultorios');
-    const especialidade = this.sessionStorage.getJson('agendar-consulta/especialidade');
+    const especialidade = this.sessionStorage.getJson(
+      'agendar-consulta/especialidade'
+    );
     const medicos = this.sessionStorage.getJson('agendar-consulta/medicos');
 
-    const lugares = await this.utilService.obterLugares(dados, especialidade.especialidade, medicos.medicos);
+    const lugares = await this.utilService.obterLugares(
+      dados,
+      especialidade.especialidade,
+      medicos.medicos
+    );
 
     return lugares.filter(e => e.idConsultorio === this.data.idLocal)[0];
+  }
+
+  fechar() {
+    this.router.navigate(['home']);
   }
 }

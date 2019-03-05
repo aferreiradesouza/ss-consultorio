@@ -1,5 +1,8 @@
 <ion-header>
   <ion-toolbar class="header">
+    <ion-buttons slot="end" (click)="fechar()">
+      <ion-icon slot="icon-only" name="close"></ion-icon>
+    </ion-buttons>
     <ion-title><strong>Passo 2</strong> / 6</ion-title>
   </ion-toolbar>
 </ion-header>
@@ -35,8 +38,12 @@
         >
           <img class="imgUsuario" [src]="item.usuario.urlFoto" />
         </div>
-        <div style="display: inline-block; white-space: nowrap; width: calc(100% - 50px);">
-          <div style="text-overflow: ellipsis; overflow: hidden;">{{ item.usuario.nome }}</div>
+        <div
+          style="display: inline-block; white-space: nowrap; width: calc(100% - 50px);"
+        >
+          <div style="text-overflow: ellipsis; overflow: hidden;">
+            {{ item.usuario.nome }}
+          </div>
           <div class="crm">CRM: {{ item.usuario.crm }}</div>
         </div>
       </label>
@@ -44,5 +51,10 @@
   </form>
 </ion-content>
 <ion-footer>
-  <ss-button [disabled]="medicosSelect.length == 0" type="button-passos" (click)="proximoPasso()">Próximo</ss-button>
+  <ss-button
+    [disabled]="medicosSelect.length == 0"
+    type="button-passos"
+    (click)="proximoPasso()"
+    >Próximo</ss-button
+  >
 </ion-footer>

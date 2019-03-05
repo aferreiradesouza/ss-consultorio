@@ -25,6 +25,29 @@
   padding: 15px;
 }
 
+.categoria {
+  position: relative;
+  margin-top: 15px;
+  height: 23px;
+
+  ion-icon {
+    font-size: 21px;
+    position: absolute;
+    top: 50%;
+    left: 0;
+    transform: translateY(-50%);
+  }
+
+  span {
+    font-weight: bold;
+    position: absolute;
+    font-size: 15px;
+    top: 50%;
+    left: 25px;
+    transform: translateY(-50%);
+  }
+}
+
 .medicoInfo{
   height: 50px;
   width: 100%;

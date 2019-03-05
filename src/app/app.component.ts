@@ -10,6 +10,7 @@ import { Router } from '@angular/router';
   templateUrl: 'app.component.html'
 })
 export class AppComponent {
+
   constructor(
     public router: Router,
     private platform: Platform,

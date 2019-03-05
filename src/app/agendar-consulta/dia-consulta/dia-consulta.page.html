@@ -1,28 +1,44 @@
 <ion-header>
   <ion-toolbar class="header">
+    <ion-buttons slot="end" (click)="fechar()">
+      <ion-icon slot="icon-only" name="close"></ion-icon>
+    </ion-buttons>
     <ion-title><strong>Passo 4</strong> / 6</ion-title>
   </ion-toolbar>
 </ion-header>
 <ion-content>
-  <ss-title-passos pagina="Agendar consulta" title="Data da consulta" icon="calendar" urlBase="agendar-consulta"
-    urlSecundaria="lugar">
+  <ss-title-passos
+    pagina="Agendar consulta"
+    title="Data da consulta"
+    icon="calendar"
+    urlBase="agendar-consulta"
+    urlSecundaria="lugar"
+  >
   </ss-title-passos>
   <!-- <ss-calendario *ngIf="diasDisponiveis" [dia]="dia" (selectMes)="mudarMes($event)" [diasDisponiveis]="diasDisponiveis"></ss-calendario> -->
   <div class="wrapper" *ngIf="diasDisponiveis">
     <div class="banner">
-          <div class="diaEscolhido">
-              <div *ngIf="!dataSelecionada">Selecione uma data</div>
-              <div *ngIf="dataSelecionada">
-                  <div class="ano">{{anoAtual}}</div>
-                  <div class="selecionado">{{utilService.formatterData(dataSelecionada.codDiaSemana)}}, {{dataSelecionada.dia}} de {{utilService.formatterMes(dataSelecionada.codMes).nome}}</div>
-              </div>
+      <div class="diaEscolhido">
+        <div *ngIf="!dataSelecionada">Selecione uma data</div>
+        <div *ngIf="dataSelecionada">
+          <div class="ano">{{ anoAtual }}</div>
+          <div class="selecionado">
+            {{ utilService.formatterData(dataSelecionada.codDiaSemana) }},
+            {{ dataSelecionada.dia }} de
+            {{ utilService.formatterMes(dataSelecionada.codMes).nome }}
           </div>
+        </div>
       </div>
+    </div>
     <div class="meses">
-      <div class="arrow-left" (click)="alterarMes('prev')" *ngIf="permitirMesAnterior">
+      <div
+        class="arrow-left"
+        (click)="alterarMes('prev')"
+        *ngIf="permitirMesAnterior"
+      >
         <ion-icon name="arrow-back"></ion-icon>
       </div>
-      <div class="mesNome">{{mesAtual}}</div>
+      <div class="mesNome">{{ mesAtual }}</div>
       <div class="arrow-right" (click)="alterarMes('next')">
         <ion-icon name="arrow-forward"></ion-icon>
       </div>
@@ -31,7 +47,7 @@
       <ion-grid>
         <ion-row>
           <ion-col class="date" *ngFor="let item of diasSemana">
-            {{item}}
+            {{ item }}
           </ion-col>
         </ion-row>
       </ion-grid>
@@ -39,10 +55,22 @@
     <div class="dias">
       <ion-grid>
         <ion-row>
-          <ion-col class="date" size="1.71" *ngFor="let diasMesPassado of diasMesPassado"></ion-col>
-          <ion-col class="date" size="1.71" *ngFor="let item of diasNoMes" (click)="selecionarData(item)"
-            [ngClass]="{'dataSelecionada' : dataSelecionada == item, 'disabled' : !item.disponivel}">
-            {{item.dia}}
+          <ion-col
+            class="date"
+            size="1.71"
+            *ngFor="let diasMesPassado of diasMesPassado"
+          ></ion-col>
+          <ion-col
+            class="date"
+            size="1.71"
+            *ngFor="let item of diasNoMes"
+            (click)="selecionarData(item)"
+            [ngClass]="{
+              dataSelecionada: dataSelecionada == item,
+              disabled: !item.disponivel
+            }"
+          >
+            {{ item.dia }}
           </ion-col>
         </ion-row>
       </ion-grid>
@@ -51,12 +79,14 @@
   <div class="medicos" *ngIf="listaMedicos">
     <div class="titulo">
       Medico(s)
-      <ion-button size="small" shape="round" (click)="proximoPasso()">Próximo</ion-button>
+      <ion-button size="small" shape="round" (click)="proximoPasso()"
+        >Próximo</ion-button
+      >
     </div>
     <div class="card" *ngFor="let item of listaMedicos">
-      <div class="imagemMedico"><img [src]="item.url"></div>
+      <div class="imagemMedico"><img [src]="item.url" /></div>
       <div class="infoMedico">
-        {{item.medico}}
+        {{ item.medico }}
       </div>
     </div>
   </div>

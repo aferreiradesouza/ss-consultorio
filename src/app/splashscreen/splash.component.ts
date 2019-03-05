@@ -31,10 +31,11 @@ export class SplashComponent implements OnInit {
     public storageService: LocalStorageService,
     public navController: NavController,
     public autenticacaoService: AutenticacaoService,
-    location: PlatformLocation
+    private location: PlatformLocation
   ) {
     location.onPopState(() => {
       this.exibiu = false;
+      this.location.pushState(null, null, location.pathname);
     });
   }
 
@@ -54,8 +55,10 @@ export class SplashComponent implements OnInit {
         .then(response => {
           if (response) {
             this.router.navigate([params.get('url')]);
+            this.location.pushState(null, null, params.get('url'));
           } else {
             this.router.navigate(['auth']);
+            this.location.pushState(null, null, 'auth');
           }
         })
         .catch(() => {

@@ -209,4 +209,8 @@ export class DiaConsultaComponent implements OnInit {
     );
     this.router.navigate(['agendar-consulta', 'consultorio']);
   }
+  
+  fechar() {
+    this.router.navigate(['home']);
+  }
 }

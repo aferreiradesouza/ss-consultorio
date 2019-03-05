@@ -29,19 +29,19 @@
             </div>
             <ion-item lines="none" *ngIf="itemSelecionado.telefone1">
               <ion-icon name="call" slot="start"></ion-icon>
-              <ion-label>{{itemSelecionado.telefone1 | mask:maskTelefone}}</ion-label>
+              <ion-label><a [href]="'tel:+55'+itemSelecionado.telefone1">{{itemSelecionado.telefone1 | mask:maskTelefone}}</a></ion-label>
             </ion-item>
             <ion-item lines="none" *ngIf="itemSelecionado.telefone2">
               <ion-icon name="call" slot="start"></ion-icon>
-              <ion-label>{{itemSelecionado.telefone2 | mask:maskTelefone}}</ion-label>
+              <ion-label><a [href]="'tel:+55'+itemSelecionado.telefone2">{{itemSelecionado.telefone2 | mask:maskTelefone}}</a></ion-label>
             </ion-item>
             <ion-item lines="none" *ngIf="itemSelecionado.celular1">
               <ion-icon name="phone-portrait" slot="start"></ion-icon>
-              <ion-label>{{itemSelecionado.celular1 | mask:maskCelular}}</ion-label>
+              <ion-label><a [href]="'tel:+55'+itemSelecionado.celular1">{{itemSelecionado.celular1 | mask:maskCelular}}</a></ion-label>
             </ion-item>
             <ion-item lines="none" *ngIf="itemSelecionado.celular2">
               <ion-icon name="phone-portrait" slot="start"></ion-icon>
-              <ion-label>{{itemSelecionado.celular2 | mask:maskCelular}}</ion-label>
+              <ion-label><a [href]="'tel:+55'+itemSelecionado.celular2">{{itemSelecionado.celular2 | mask:maskCelular}}</a></ion-label>
             </ion-item>
         </div>
     </div>

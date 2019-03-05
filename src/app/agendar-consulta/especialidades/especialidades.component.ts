@@ -5,18 +5,21 @@ import { NavController, LoadingController } from '@ionic/angular';
 import { UtilAgendarConsulta } from '../services/util.service';
 import { AgendarConsultaService } from '../services/agendar-consulta.service';
 import { SessionStorageService } from 'src/shared/service/session-storage.service';
-import { FormGroup, FormControl, FormBuilder, Validators } from '@angular/forms';
+import {
+  FormGroup,
+  FormControl,
+  FormBuilder,
+  Validators
+} from '@angular/forms';
 
 @Component({
   selector: 'especialidades-page',
   templateUrl: './especialidades.page.html',
   styleUrls: ['./especialidades.component.scss']
 })
-
 export class EspecialidadeComponent implements OnInit {
-
   public formEspecialidades = new FormGroup({
-    especialidade: new FormControl('', [Validators.required]),
+    especialidade: new FormControl('', [Validators.required])
   });
   public user: any;
   public especialidades: any;
@@ -29,7 +32,8 @@ export class EspecialidadeComponent implements OnInit {
     public loadingController: LoadingController,
     public utilService: UtilAgendarConsulta,
     public agendarConsultaService: AgendarConsultaService,
-    public fb: FormBuilder) {}
+    public fb: FormBuilder
+  ) {}
 
   ngOnInit() {
     this.obterDadosConsultas();
@@ -37,13 +41,12 @@ export class EspecialidadeComponent implements OnInit {
 
   async obterDadosConsultas() {
     if (this.sessionStorage.getJson('consultorios')) {
-
-      this.preencherPasso();
       const consultas = this.sessionStorage.getJson('consultorios');
-      this.especialidades = await this.utilService.obterEspecialidades(consultas);
-
+      this.especialidades = await this.utilService.obterEspecialidades(
+        consultas
+      );
+      this.preencherPasso();
     } else {
-
       const loading = await this.loadingController.create({
         message: 'Carregando...'
       });
@@ -51,7 +54,9 @@ export class EspecialidadeComponent implements OnInit {
       const consultas = await this.agendarConsultaService.obterConsultorios();
       this.sessionStorage.setJson('consultorios', consultas);
 
-      this.especialidades = await this.utilService.obterEspecialidades(consultas);
+      this.especialidades = await this.utilService.obterEspecialidades(
+        consultas
+      );
 
       await loading.dismiss();
     }
@@ -69,8 +74,13 @@ export class EspecialidadeComponent implements OnInit {
   gravar() {
     this.sessionStorage.remove('agendar-consulta/especialidade');
     this.sessionStorage.remove('agendar-consulta/especialidadeObj');
-    this.sessionStorage.setJson('agendar-consulta/especialidade', this.formEspecialidades.value);
-    const obj = this.especialidades.filter(e => e.idEspecialidade === this.formEspecialidades.value.especialidade)[0].especialidade;
+    this.sessionStorage.setJson(
+      'agendar-consulta/especialidade',
+      this.formEspecialidades.value
+    );
+    const obj = this.especialidades.filter(
+      e => e.idEspecialidade === this.formEspecialidades.value.especialidade
+    )[0].especialidade;
     this.sessionStorage.setJson('agendar-consulta/especialidadeObj', obj);
   }
 

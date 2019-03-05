@@ -1,5 +1,8 @@
 <ion-header>
   <ion-toolbar class="header">
+    <ion-buttons slot="end" (click)="fechar()">
+      <ion-icon slot="icon-only" name="close"></ion-icon>
+    </ion-buttons>
     <ion-title><strong>Passo 3</strong> / 6</ion-title>
   </ion-toolbar>
 </ion-header>
@@ -30,11 +33,17 @@
         (change)="selectModel(item.consultorio.id)"
       />
       <label [for]="'checkboxLugares' + i + 1">
-        <div style="display: inline-block; vertical-align: sub; margin-right: 10px; height: 40px;">
+        <div
+          style="display: inline-block; vertical-align: sub; margin-right: 10px; height: 40px;"
+        >
           <img class="imgConsultorio" [src]="item.consultorio.urlFoto" />
         </div>
-        <div style="display: inline-block; white-space: nowrap; width: calc(100% - 50px);">
-          <div style="text-overflow: ellipsis; overflow: hidden;">{{ item.consultorio.nome }}</div>
+        <div
+          style="display: inline-block; white-space: nowrap; width: calc(100% - 50px);"
+        >
+          <div style="text-overflow: ellipsis; overflow: hidden;">
+            {{ item.consultorio.nome }}
+          </div>
           <div class="lugar">{{ item.consultorio.bairro }}</div>
         </div>
       </label>
@@ -42,5 +51,10 @@
   </form>
 </ion-content>
 <ion-footer>
-  <ss-button [disabled]="lugaresSelect.length == 0" type="button-passos" (click)="proximoPasso()">Próximo</ss-button>
+  <ss-button
+    [disabled]="lugaresSelect.length == 0"
+    type="button-passos"
+    (click)="proximoPasso()"
+    >Próximo</ss-button
+  >
 </ion-footer>

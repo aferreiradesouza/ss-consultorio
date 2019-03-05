@@ -1,14 +1,30 @@
 <ion-header>
   <ion-toolbar class="header">
+    <ion-buttons slot="end" (click)="fechar()">
+      <ion-icon slot="icon-only" name="close"></ion-icon>
+    </ion-buttons>
     <ion-title><strong>Passo 5</strong> / 6</ion-title>
   </ion-toolbar>
 </ion-header>
 <ion-content>
-  <ss-title-passos pagina="Agendar consulta" title="Escolha o seu horário" icon="time" urlBase="agendar-consulta"
-    urlSecundaria="dia-consulta">
+  <ss-title-passos
+    pagina="Agendar consulta"
+    title="Escolha o seu horário"
+    icon="time"
+    urlBase="agendar-consulta"
+    urlSecundaria="dia-consulta"
+  >
   </ss-title-passos>
-  <ss-accordion-agendar [itens]="itens" (select)="salvarSelect($event)"></ss-accordion-agendar>
+  <ss-accordion-agendar
+    [itens]="itens"
+    (select)="salvarSelect($event)"
+  ></ss-accordion-agendar>
 </ion-content>
 <ion-footer>
-  <ss-button [disabled]="!horarioSelecionado" type="button-passos" (click)="proximoPasso()">Confirmar</ss-button>
+  <ss-button
+    [disabled]="!horarioSelecionado"
+    type="button-passos"
+    (click)="proximoPasso()"
+    >Confirmar</ss-button
+  >
 </ion-footer>
