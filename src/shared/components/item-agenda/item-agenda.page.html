@@ -8,7 +8,7 @@
         <div class="header">
             <div class="informacoes-medico">
                 <div class="especialidade">{{item.especialidade.nome}}</div>
-                <div class="medico">{{formaterName(item.usuario.nome)}}</div>
+                <div class="medico">{{item.usuario.nome}}</div>
             </div>
         </div>
         <div class="status" [ngClass]="{'red' : item.statusConsulta.codigo == 'cancelado', 'orange' : item.statusConsulta.codigo == 'pre_agendamento', 'green' : item.statusConsulta.codigo == 'confirmado'}">

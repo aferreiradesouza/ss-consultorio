@@ -69,6 +69,7 @@ export class HomeComponent implements OnInit {
 
   deslogar() {
     this.router.navigate(['auth']);
+    sessionStorage.clear();
     localStorage.removeItem('user');
   }
 

@@ -68,19 +68,15 @@
 
     .header {
       height: 38px;
-      width: 100%;
-      position: absolute;
-      top: 6px;
+      width: calc(100% - 38px);
 
       .informacoes-medico {
-        position: absolute;
-        top: 50%;
-        left: 3px;
-        transform: translateY(-50%);
-
         .medico {
           font-size: 20px;
           font-weight: bold;
+          overflow: hidden;
+          text-overflow: ellipsis;
+          white-space: nowrap;
         }
 
         .especialidade {
