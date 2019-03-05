@@ -34,8 +34,8 @@ export class ItemAgendaComponent implements OnInit {
   }
 
   public formaterName(name) {
-    const regex = /^([a-zA-Z]{2,}\s[a-zA-z]{1,}'?-?[a-zA-Z]{2,}?)/;
-    return name.match(regex)[0];
+    const nome = name.split(' ');
+    return nome[0] + ' ' + nome[1];
   }
 
   public formaterData(data) {
