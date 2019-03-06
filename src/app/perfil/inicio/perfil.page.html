@@ -69,25 +69,25 @@
     <ion-item>
       <ion-label>
         <h2>Logradouro</h2>
-        <p>{{user.logradouro}}, {{user.numero}}</p>
+        <p>{{user.logradouro ? user.logradouro + ', ' + user.numero : 'Sem registro'}}</p>
       </ion-label>
     </ion-item>
     <ion-item>
       <ion-label>
         <h2>Bairro</h2>
-        <p>{{user.bairro}}</p>
+        <p>{{user.bairro || 'Sem registro'}}</p>
       </ion-label>
     </ion-item>
     <ion-item>
       <ion-label>
         <h2>CEP</h2>
-        <p>{{user.cep | mask:'00000-000'}}</p>
+        <p>{{!user.cep ? 'Sem registro' : user.cep | mask:'00000-000'}}</p>
       </ion-label>
     </ion-item>
     <ion-item>
       <ion-label>
         <h2>Cidade</h2>
-        <p>{{user.cidade}}</p>
+        <p>{{user.cidade || 'Sem registro'}}</p>
       </ion-label>
     </ion-item>
   </ion-list>
