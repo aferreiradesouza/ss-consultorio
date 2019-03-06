@@ -37,7 +37,7 @@ export class ConfirmacaoComponent implements OnInit {
       this.utilService.removerSessionStorage(this.data.action);
       setTimeout(() => {
         if (this.storageService.getJson('user')) {
-          this.router.navigate(['home']);
+          this.router.navigate(['home/reload']);
         }
       }, 3000 );
     }, 3000 );

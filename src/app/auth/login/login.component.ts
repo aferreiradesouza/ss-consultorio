@@ -48,7 +48,7 @@ export class LoginComponent implements OnInit {
       loading.dismiss();
       if (login.sucesso) {
         this.storageService.setJson('user', login.objeto);
-        this.router.navigate(['home']);
+        this.router.navigate(['home/reload']);
       } else {
         if (login.codigo === 'smsnaoconfirmado') {
           const queryParams = { usuario: data.usuario, senha: data.senha, action: 'smsNaoConfirmado', nascimento: login.mensagens[2] };

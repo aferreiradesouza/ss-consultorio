@@ -54,6 +54,7 @@ export class SplashComponent implements OnInit {
         .verificarToken()
         .then(response => {
           if (response) {
+            console.log(params.get('url'));
             this.router.navigate([params.get('url')]);
             this.location.pushState(null, null, params.get('url'));
           } else {

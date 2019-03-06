@@ -1,8 +1,11 @@
 import { Component, OnInit } from '@angular/core';
-import { Router, ActivatedRoute } from '@angular/router';
+import { Router, ActivatedRoute, Event, NavigationEnd } from '@angular/router';
 import { LocalStorageService } from 'src/shared/service/local-storage.service';
-import { IHome } from 'src/shared/dto';
-import { ModalController, LoadingController, ToastController } from '@ionic/angular';
+import {
+  ModalController,
+  LoadingController,
+  ToastController
+} from '@ionic/angular';
 import { DetalhesComponent } from '../modal/detalhes.component';
 import { HomeService } from '../services/home.service';
 import { UtilHomeService } from '../services/util.service';
@@ -13,9 +16,7 @@ import { CurrentUserService } from 'src/shared/service/currentUser.service';
   templateUrl: './home.page.html',
   styleUrls: ['./home.component.scss']
 })
-
 export class HomeComponent implements OnInit {
-
   public dados: any;
   public menu: any[];
   public tabs: any[];
@@ -25,34 +26,44 @@ export class HomeComponent implements OnInit {
   public tentarNovamente = false;
   public nenhumaConsulta = false;
 
-  constructor(public router: Router,
-              public storageService: LocalStorageService,
-              public route: ActivatedRoute,
-              public modalController: ModalController,
-              public homeService: HomeService,
-              public loadingController: LoadingController,
-              public utilService: UtilHomeService,
-              public userService: CurrentUserService,
-              public toastController: ToastController) {
+  constructor(
+    public router: Router,
+    public storageService: LocalStorageService,
+    public route: ActivatedRoute,
+    public modalController: ModalController,
+    public homeService: HomeService,
+    public loadingController: LoadingController,
+    public utilService: UtilHomeService,
+    public userService: CurrentUserService,
+    public toastController: ToastController
+  ) {
     this.menu = [
-      {label: 'Agendar consulta', icon: 'create', url: 'agendar-consulta'},
-      {label: 'Alterar perfil', icon: 'contact', url: 'perfil'},
-      {label: 'Consultórios', icon: 'business', url: 'contato'},
+      { label: 'Agendar consulta', icon: 'create', url: 'agendar-consulta' },
+      { label: 'Alterar perfil', icon: 'contact', url: 'perfil' },
+      { label: 'Consultórios', icon: 'business', url: 'contato' }
     ];
 
     this.tabs = [
-      {label: 'Próximas consultas', id: '1'},
-      {label: 'Consultas finalizadas', id: '2'}
+      { label: 'Próximas consultas', id: '1' },
+      { label: 'Consultas finalizadas', id: '2' }
     ];
+
+    route.paramMap.subscribe(params => {
+      if (params.get('reload') === 'reload') {
+        this.obterConsultas();
+      }
+    });
   }
 
   ngOnInit() {
-    this.obterConsultas();
+    if (this.router.url !== '/home/reload') {
+      this.obterConsultas();
+    }
   }
 
   async obterConsultas() {
     const loading = await this.loadingController.create({
-      message: 'Buscando sua agenda',
+      message: 'Buscando sua agenda'
     });
     await loading.present();
     try {
@@ -76,10 +87,16 @@ export class HomeComponent implements OnInit {
   async obterTabAtual(id) {
     if (id === '1') {
       this.idAtual = '1';
-      this.agenda = await this.utilService.formatarConsultas(this.dados.objeto, 'proximas');
+      this.agenda = await this.utilService.formatarConsultas(
+        this.dados.objeto,
+        'proximas'
+      );
     } else {
       this.idAtual = '2';
-      this.agenda = await this.utilService.formatarConsultas(this.dados.objeto, 'anteriores');
+      this.agenda = await this.utilService.formatarConsultas(
+        this.dados.objeto,
+        'anteriores'
+      );
     }
     if (this.agenda.length === 0) {
       this.nenhumaConsulta = true;
@@ -99,24 +116,25 @@ export class HomeComponent implements OnInit {
   }
 
   atualizarLista(event) {
-      setTimeout(async () => {
-        try {
-          this.tentarNovamente = false;
-          this.dados = await this.homeService.obterConsultas();
-          this.obterTabAtual(this.idAtual);
-          event.target.complete();
-        } catch (err) {
-          this.tentarNovamente = true;
-          const erro = await this.toastController.create({
-            message: 'Não foi possível atualizar sua lista no momento, tente novamente mais tarde',
-            color: 'dark',
-            showCloseButton: true,
-            closeButtonText: 'Entendi'
-          });
-          erro.present();
-          event.target.complete();
-        }
-      }, 2000);
+    setTimeout(async () => {
+      try {
+        this.tentarNovamente = false;
+        this.dados = await this.homeService.obterConsultas();
+        this.obterTabAtual(this.idAtual);
+        event.target.complete();
+      } catch (err) {
+        this.tentarNovamente = true;
+        const erro = await this.toastController.create({
+          message:
+            'Não foi possível atualizar sua lista no momento, tente novamente mais tarde',
+          color: 'dark',
+          showCloseButton: true,
+          closeButtonText: 'Entendi'
+        });
+        erro.present();
+        event.target.complete();
+      }
+    }, 2000);
   }
 
   verAgendaCompleta() {
@@ -132,35 +150,36 @@ export class HomeComponent implements OnInit {
   }
 
   async modalDetalhes(detalhes) {
-      const modal = await this.modalController.create({
-        component: DetalhesComponent,
-        componentProps: { value: detalhes }
+    const modal = await this.modalController.create({
+      component: DetalhesComponent,
+      componentProps: { value: detalhes }
+    });
+    await modal.present();
+    const { data } = await modal.onDidDismiss();
+    if (data.result === 'cancelar') {
+      this.dados = [];
+      const loading = await this.loadingController.create({
+        message: 'Atualizando'
       });
-      await modal.present();
-      const {data} = await modal.onDidDismiss();
-      if (data.result === 'cancelar') {
-        this.dados = [];
-        const loading = await this.loadingController.create({
-          message: 'Atualizando',
+      await loading.present();
+      try {
+        this.dados = await this.homeService.obterConsultas();
+        this.tentarNovamente = false;
+        this.obterTabAtual(this.idAtual);
+      } catch (err) {
+        this.tentarNovamente = true;
+        const erro = await this.toastController.create({
+          message:
+            'Não foi possível atualizar sua lista no momento, tente novamente mais tarde',
+          color: 'dark',
+          showCloseButton: true,
+          closeButtonText: 'Entendi'
         });
-        await loading.present();
-        try {
-          this.dados = await this.homeService.obterConsultas();
-          this.tentarNovamente = false;
-          this.obterTabAtual(this.idAtual);
-        } catch (err) {
-          this.tentarNovamente = true;
-          const erro = await this.toastController.create({
-            message: 'Não foi possível atualizar sua lista no momento, tente novamente mais tarde',
-            color: 'dark',
-            showCloseButton: true,
-            closeButtonText: 'Entendi'
-          });
-          erro.present();
-        } finally {
-          await loading.dismiss();
-        }
+        erro.present();
+      } finally {
+        await loading.dismiss();
       }
-      console.log( data );
+    }
+    console.log(data);
   }
 }

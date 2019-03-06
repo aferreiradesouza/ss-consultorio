@@ -21,7 +21,7 @@ export class AppComponent {
   }
 
   initializeApp() {
-    const url = window.location.pathname.substring(1);
+    const url = window.location.pathname.substring(1) + window.location.search;
     this.router.navigate(['splash', url]);
 
     this.splashScreen.show();
