@@ -1,5 +1,7 @@
 {
   "name": "ss-consultorio",
-  "integrations": {},
+  "integrations": {
+    "cordova": {}
+  },
   "type": "angular"
 }
