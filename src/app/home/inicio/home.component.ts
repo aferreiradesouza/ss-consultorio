@@ -10,7 +10,8 @@ import { LocalStorageService } from 'src/shared/service/local-storage.service';
 import {
   ModalController,
   LoadingController,
-  ToastController
+  ToastController,
+  NavController
 } from '@ionic/angular';
 import { DetalhesComponent } from '../modal/detalhes.component';
 import { HomeService } from '../services/home.service';
@@ -42,6 +43,7 @@ export class HomeComponent implements OnInit {
     public homeService: HomeService,
     public loadingController: LoadingController,
     public utilService: UtilHomeService,
+    public navController: NavController,
     public userService: CurrentUserService,
     public toastController: ToastController
   ) {
@@ -57,33 +59,8 @@ export class HomeComponent implements OnInit {
     ];
   }
 
-  verificar() {
-    const options = {
-      root: null,
-      rootMargin: '0px',
-      threshold: 1.0
-    };
-
-    const observer = new IntersectionObserver(entries => {
-      entries.forEach(entry => {
-        if (entry.intersectionRatio > 0) {
-          if (this.router.url === '/home/reload') {
-            console.log('reload');
-            this.obterConsultas();
-          }
-        }
-      });
-    }, options);
-
-    observer.observe(this.homeElement.nativeElement);
-  }
-
   ngOnInit() {
-    if (this.router.url !== '/home/reload') {
-      this.obterConsultas();
-    }
-
-    this.verificar();
+    this.obterConsultas();
   }
 
   async obterConsultas() {
@@ -134,11 +111,13 @@ export class HomeComponent implements OnInit {
   }
 
   agendarConsulta() {
-    this.router.navigate(['agendar-consulta']);
+    this.navController.navigateBack('agendar-consulta', {
+      animationDirection: 'forward'
+    });
   }
 
   deslogar() {
-    this.router.navigate(['auth']);
+    this.navController.navigateBack('auth');
     sessionStorage.clear();
     localStorage.clear();
   }
@@ -166,7 +145,9 @@ export class HomeComponent implements OnInit {
   }
 
   verAgendaCompleta() {
-    this.router.navigate(['agenda-completa']);
+    this.navController.navigateBack('agenda-completa', {
+      animationDirection: 'forward'
+    });
   }
 
   get formatarNome() {

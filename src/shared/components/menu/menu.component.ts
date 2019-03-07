@@ -1,5 +1,6 @@
 import { Component, OnInit, Input, Output, EventEmitter } from '@angular/core';
 import { Router } from '@angular/router';
+import { NavController } from '@ionic/angular';
 
 type TypeInput = 'text' | 'password';
 
@@ -8,17 +9,16 @@ type TypeInput = 'text' | 'password';
   templateUrl: './menu.page.html',
   styleUrls: ['./menu.component.scss']
 })
-
 export class MenuComponent implements OnInit {
-
   @Input() itens: any[];
 
-  constructor(public router: Router) {}
+  constructor(public router: Router, public navController: NavController) {}
 
-  ngOnInit() {
-  }
+  ngOnInit() {}
 
   ir(url) {
-    this.router.navigate([url]);
+    this.navController.navigateBack(url, {
+      animationDirection: 'forward'
+    });
   }
 }

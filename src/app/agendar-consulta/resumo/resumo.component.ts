@@ -104,7 +104,7 @@ export class ResumoComponent implements OnInit {
                 });
                 toast.present();
                 sessionStorage.clear();
-                this.navController.navigateBack('home/reload');
+                this.navController.navigateBack('home');
               } else {
                 const toast = await this.toastController.create({
                   message: consulta.mensagens[0] || 'Aconteceu algo de errado',
