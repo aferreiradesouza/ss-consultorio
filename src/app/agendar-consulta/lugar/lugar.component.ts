@@ -114,6 +114,6 @@ export class LugarComponent implements OnInit {
 
   fechar() {
     sessionStorage.clear();
-    this.router.navigate(['home']);
+    this.navController.navigateBack('home');
   }
 }

@@ -1,28 +1,68 @@
 <ion-header>
-    <ion-toolbar class="header">
-        <ion-buttons mode="ios" color="light" slot="start">
-            <ion-back-button class="backButton" [text]="'Voltar'" color="light" (click)="voltar()"></ion-back-button>
-        </ion-buttons>
-        <ion-title><strong>Passo 1</strong> / 5</ion-title>
-    </ion-toolbar>
+  <ion-toolbar class="header">
+    <ion-buttons mode="ios" color="light" slot="start">
+      <ion-back-button
+        class="backButton"
+        [text]="'Voltar'"
+        color="light"
+        (click)="voltar()"
+      ></ion-back-button>
+    </ion-buttons>
+    <ion-title><strong>Passo 1</strong> / 5</ion-title>
+  </ion-toolbar>
 </ion-header>
 <ion-content>
-    <ss-title-passos pagina="Registro" title="Conta" icon="settings" urlBase="off" urlSecundaria="off"></ss-title-passos>
-    <form class="form" [formGroup]="formConta">
+  <ss-title-passos
+    pagina="Registro"
+    title="Conta"
+    icon="settings"
+    urlBase="off"
+    urlSecundaria="off"
+  ></ss-title-passos>
+  <form class="form" [formGroup]="formConta">
+    <ss-input label="CPF">
+      <input
+        class="form-control"
+        type="tel"
+        mask="000.000.000-00"
+        formControlName="cpf"
+      />
+      <ss-validacao
+        [validacao]="formConta.value.cpf.length === 11"
+      ></ss-validacao>
+    </ss-input>
+    <ss-input label="Senha">
+      <input
+        class="form-control"
+        type="password"
+        formControlName="senha"
+      />
+      <ss-validacao
+        [validacao]="formConta.value.senha.length >= 6"
+      ></ss-validacao>
+    </ss-input>
+    <ss-input label="Confirmar Senha">
+      <input
+        class="form-control"
+        type="password"
+        minlength="6"
+        formControlName="confSenha"
+      />
+      <ss-validacao
+        [validacao]="
+          formConta.value.senha === formConta.value.confSenha &&
+          formConta.value.senha !== '' &&
+          formConta.value.confSenha !== ''
+        "
+      ></ss-validacao>
+    </ss-input>
 
-        <ss-input label="CPF">
-            <input class="form-control" type="tel" mask="000.000.000-00" formControlName="cpf"/>
-            <ss-validacao [validacao]="formConta.value.cpf.length === 11"></ss-validacao>
-        </ss-input>
-        <ss-input label="Senha">
-            <input class="form-control" type="password" formControlName="senha"/>
-            <ss-validacao [validacao]="formConta.value.senha === formConta.value.confSenha && formConta.value.senha !== '' && formConta.value.confSenha !== ''"></ss-validacao>
-        </ss-input>
-        <ss-input label="Confirmar Senha">
-            <input class="form-control" type="password" formControlName="confSenha"/>
-            <ss-validacao [validacao]="formConta.value.senha === formConta.value.confSenha && formConta.value.senha !== '' && formConta.value.confSenha !== ''"></ss-validacao>
-        </ss-input>
-
-        <ion-button shape="round" [disabled]="!formConta.valid" expand="full" (click)="gravar()">Próximo</ion-button>
-    </form>
+    <ion-button
+      shape="round"
+      [disabled]="!formConta.valid"
+      expand="full"
+      (click)="gravar()"
+      >Próximo</ion-button
+    >
+  </form>
 </ion-content>

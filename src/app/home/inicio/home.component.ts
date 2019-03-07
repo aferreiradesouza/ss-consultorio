@@ -1,4 +1,10 @@
-import { Component, OnInit } from '@angular/core';
+import {
+  Component,
+  OnInit,
+  AfterContentChecked,
+  ViewChild,
+  ElementRef
+} from '@angular/core';
 import { Router, ActivatedRoute, Event, NavigationEnd } from '@angular/router';
 import { LocalStorageService } from 'src/shared/service/local-storage.service';
 import {
@@ -10,6 +16,7 @@ import { DetalhesComponent } from '../modal/detalhes.component';
 import { HomeService } from '../services/home.service';
 import { UtilHomeService } from '../services/util.service';
 import { CurrentUserService } from 'src/shared/service/currentUser.service';
+import { PlatformLocation } from '@angular/common';
 
 @Component({
   selector: 'home-page',
@@ -17,6 +24,7 @@ import { CurrentUserService } from 'src/shared/service/currentUser.service';
   styleUrls: ['./home.component.scss']
 })
 export class HomeComponent implements OnInit {
+  @ViewChild('homeElement') homeElement: ElementRef;
   public dados: any;
   public menu: any[];
   public tabs: any[];
@@ -47,19 +55,35 @@ export class HomeComponent implements OnInit {
       { label: 'Próximas consultas', id: '1' },
       { label: 'Consultas finalizadas', id: '2' }
     ];
+  }
 
-    route.paramMap.subscribe(params => {
-      if (params.get('reload') === 'reload') {
-        console.log('reload');
-        this.obterConsultas();
-      }
-    });
+  verificar() {
+    const options = {
+      root: null,
+      rootMargin: '0px',
+      threshold: 1.0
+    };
+
+    const observer = new IntersectionObserver(entries => {
+      entries.forEach(entry => {
+        if (entry.intersectionRatio > 0) {
+          if (this.router.url === '/home/reload') {
+            console.log('reload');
+            this.obterConsultas();
+          }
+        }
+      });
+    }, options);
+
+    observer.observe(this.homeElement.nativeElement);
   }
 
   ngOnInit() {
     if (this.router.url !== '/home/reload') {
       this.obterConsultas();
     }
+
+    this.verificar();
   }
 
   async obterConsultas() {

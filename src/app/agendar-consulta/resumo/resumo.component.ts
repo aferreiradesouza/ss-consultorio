@@ -60,7 +60,7 @@ export class ResumoComponent implements OnInit {
 
   fechar() {
     sessionStorage.clear();
-    this.router.navigate(['home']);
+    this.navController.navigateBack('home');
   }
 
   async criarConsulta() {
@@ -104,7 +104,7 @@ export class ResumoComponent implements OnInit {
                 });
                 toast.present();
                 sessionStorage.clear();
-                this.router.navigate(['home/reload']);
+                this.navController.navigateBack('home/reload');
               } else {
                 const toast = await this.toastController.create({
                   message: consulta.mensagens[0] || 'Aconteceu algo de errado',

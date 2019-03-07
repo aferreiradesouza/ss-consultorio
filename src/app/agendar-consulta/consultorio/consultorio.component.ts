@@ -50,7 +50,7 @@ export class ConsultorioComponent implements OnInit {
 
   fechar() {
     sessionStorage.clear();
-    this.router.navigate(['home']);
+    this.navController.navigateBack('home');
   }
 
 }
