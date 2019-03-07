@@ -67,8 +67,8 @@
         </ion-col>
         <ion-col class="individual">
           TELEFONE
-          <div class="texto">
-            <a [href]="'tel:+55' + value.consultorio.telefone1">{{
+          <div class="texto" (click)="ligarCel(value.consultorio.telefone1)">
+            <a>{{
               value.consultorio.telefone1 | mask: "(00) 0000-0000"
             }}</a>
           </div>

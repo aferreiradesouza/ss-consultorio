@@ -21,6 +21,14 @@ export class AccordionComponent implements OnInit {
     this.itemSelecionado = this.itens[0].consultorio;
   }
 
+  ligarCel(tel) {
+    window.open(
+      'tel:+55' + tel,
+      '_system',
+      'location=yes'
+    );
+  }
+
   selecionarItem(consultorio) {
     if (consultorio === this.itemSelecionado) {
       this.itemSelecionado = null;

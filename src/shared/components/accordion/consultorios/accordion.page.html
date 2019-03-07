@@ -1,48 +1,62 @@
 <div class="accordion" *ngFor="let item of itens">
-    <div class="header" (click)="selecionarItem(item.consultorio)">
-        <div class="subTitulo">{{item.consultorio.bairro | uppercase}}</div>
-        <div class="titulo">{{item.consultorio.nome}}</div>
-        <ion-icon [name]="itemSelecionado == item.consultorio ? 'arrow-up' : 'arrow-down'"></ion-icon>
-    </div>
-    <div class="conteudo" *ngIf="itemSelecionado == item.consultorio">
-        <img [src]="itemSelecionado.urlFoto">
-        <div class="content">
-            <div class="categoria">
-                <ion-icon name="pin"></ion-icon>
-                <span>Endereço</span>
-            </div>
-            <div class="endereco">
-                <div class="logradouro">
-                    {{itemSelecionado.logradouro+', '}}
-                    {{itemSelecionado.numero}}
-                    {{itemSelecionado.complemento ? ', '+itemSelecionado.complemento+', ' : ' - '}}
-                    {{itemSelecionado.bairro+', '}}
-                    {{itemSelecionado.cidade+' - '}}
-                    {{itemSelecionado.estado+', '}}
-                    {{itemSelecionado.cep | mask:'00000-000'}}
-                </div>
-            </div>
-
-            <div class="categoria">
-                <ion-icon name="contact"></ion-icon>
-                <span>Contato</span>
-            </div>
-            <ion-item lines="none" *ngIf="itemSelecionado.telefone1">
-              <ion-icon name="call" slot="start"></ion-icon>
-              <ion-label><a [href]="'tel:+55'+itemSelecionado.telefone1">{{itemSelecionado.telefone1 | mask:maskTelefone}}</a></ion-label>
-            </ion-item>
-            <ion-item lines="none" *ngIf="itemSelecionado.telefone2">
-              <ion-icon name="call" slot="start"></ion-icon>
-              <ion-label><a [href]="'tel:+55'+itemSelecionado.telefone2">{{itemSelecionado.telefone2 | mask:maskTelefone}}</a></ion-label>
-            </ion-item>
-            <ion-item lines="none" *ngIf="itemSelecionado.celular1">
-              <ion-icon name="phone-portrait" slot="start"></ion-icon>
-              <ion-label><a [href]="'tel:+55'+itemSelecionado.celular1">{{itemSelecionado.celular1 | mask:maskCelular}}</a></ion-label>
-            </ion-item>
-            <ion-item lines="none" *ngIf="itemSelecionado.celular2">
-              <ion-icon name="phone-portrait" slot="start"></ion-icon>
-              <ion-label><a [href]="'tel:+55'+itemSelecionado.celular2">{{itemSelecionado.celular2 | mask:maskCelular}}</a></ion-label>
-            </ion-item>
+  <div class="header" (click)="selecionarItem(item.consultorio)">
+    <div class="subTitulo">{{ item.consultorio.bairro | uppercase }}</div>
+    <div class="titulo">{{ item.consultorio.nome }}</div>
+    <ion-icon
+      [name]="itemSelecionado == item.consultorio ? 'arrow-up' : 'arrow-down'"
+    ></ion-icon>
+  </div>
+  <div class="conteudo" *ngIf="itemSelecionado == item.consultorio">
+    <img [src]="itemSelecionado.urlFoto" />
+    <div class="content">
+      <div class="categoria">
+        <ion-icon name="pin"></ion-icon>
+        <span>Endereço</span>
+      </div>
+      <div class="endereco">
+        <div class="logradouro">
+          {{ itemSelecionado.logradouro + ', ' }}
+          {{ itemSelecionado.numero }}
+          {{
+            itemSelecionado.complemento
+              ? ', ' + itemSelecionado.complemento + ', '
+              : ' - '
+          }}
+          {{ itemSelecionado.bairro + ', ' }}
+          {{ itemSelecionado.cidade + ' - ' }}
+          {{ itemSelecionado.estado + ', ' }}
+          {{ itemSelecionado.cep | mask: '00000-000' }}
         </div>
+      </div>
+
+      <div class="categoria">
+        <ion-icon name="contact"></ion-icon>
+        <span>Contato</span>
+      </div>
+      <ion-item lines="none" *ngIf="itemSelecionado.telefone1">
+        <ion-icon name="call" slot="start"></ion-icon>
+        <ion-label (click)="ligarCel(itemSelecionado.telefone1)"><a>{{
+          itemSelecionado.telefone1 | mask: maskTelefone
+        }}</a></ion-label>
+      </ion-item>
+      <ion-item lines="none" *ngIf="itemSelecionado.telefone2">
+        <ion-icon name="call" slot="start"></ion-icon>
+        <ion-label (click)="ligarCel(itemSelecionado.telefone2)"><a>{{
+          itemSelecionado.telefone2 | mask: maskTelefone
+        }}</a></ion-label>
+      </ion-item>
+      <ion-item lines="none" *ngIf="itemSelecionado.celular1">
+        <ion-icon name="phone-portrait" slot="start"></ion-icon>
+        <ion-label (click)="ligarCel(itemSelecionado.celular1)"><a>{{
+          itemSelecionado.celular1 | mask: maskCelular
+        }}</a></ion-label>
+      </ion-item>
+      <ion-item lines="none" *ngIf="itemSelecionado.celular2">
+        <ion-icon name="phone-portrait" slot="start"></ion-icon>
+        <ion-label (click)="ligarCel(itemSelecionado.celular2)"><a>{{
+          itemSelecionado.celular2 | mask: maskCelular
+        }}</a></ion-label>
+      </ion-item>
     </div>
+  </div>
 </div>
