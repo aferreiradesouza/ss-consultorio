@@ -15,97 +15,107 @@
     urlSecundaria="consultorio"
   >
   </ss-title-passos>
-  <div class="titulo">Informações do médico</div>
-  <div class="medicoInfo">
-    <div class="imagem">
-      <img [src]="data.urlFotoMedico" />
+  <div class="content">
+    <div class="titulo">Informações do médico</div>
+    <div class="medicoInfo">
+      <div class="imagem">
+        <img [src]="data.urlFotoMedico" />
+      </div>
+      <div class="info">
+        <div class="section">MÉDICO</div>
+        <div class="nomeMedico">{{ data.medico }}</div>
+      </div>
     </div>
-    <div class="info">
-      <div class="section">MÉDICO</div>
-      <div class="nomeMedico">{{ data.medico }}</div>
+    <div class="especialidade">
+      <span>ESPECIALIDADE</span>
+      <div>{{ data.especialidade }}</div>
     </div>
-  </div>
-  <div class="especialidade">
-    <span>ESPECIALIDADE</span>
-    <div>{{ data.especialidade }}</div>
-  </div>
 
-  <div class="titulo" style="padding-bottom: 5px;">Informações da consulta</div>
+    <div class="titulo" style="padding-bottom: 5px;">
+      Informações da consulta
+    </div>
 
-  <div class="infoConsulta">
-    <ion-grid>
-      <ion-row>
-        <ion-col>
-          <div class="section">DIA</div>
-          <div>{{ pegarData }}</div>
-        </ion-col>
-        <ion-col>
-          <div class="section">HORA</div>
-          <div>{{ data.horario }}</div>
-        </ion-col>
-      </ion-row>
-    </ion-grid>
-  </div>
+    <div class="infoConsulta">
+      <ion-grid>
+        <ion-row>
+          <ion-col>
+            <div class="section">DIA</div>
+            <div>{{ pegarData }}</div>
+          </ion-col>
+          <ion-col>
+            <div class="section">HORA</div>
+            <div>{{ data.horario }}</div>
+          </ion-col>
+        </ion-row>
+      </ion-grid>
+    </div>
 
-  <div class="titulo">Informações da consultório</div>
+    <div class="titulo">Informações da consultório</div>
 
-  <div class="imagemLocal" *ngIf="lugar">
-    <div class="card">
-      <img [src]="data.urlFotoLocal" />
-      <div class="conteudo">
-        <div class="lugarTitulo">{{ data.local }}</div>
-        {{ lugar.consultorio.logradouro + ', ' }}
-        {{ lugar.consultorio.numero }}
-        {{
-          lugar.consultorio.complemento
-            ? ', ' + lugar.consultorio.complemento + ', '
-            : ' - '
-        }}
-        {{ lugar.consultorio.bairro + ', ' }}
-        {{ lugar.consultorio.cidade + ' - ' }}
-        {{ lugar.consultorio.estado + ', ' }}
-        {{ lugar.consultorio.cep | mask: '00000-000' }}
+    <div class="imagemLocal" *ngIf="lugar">
+      <div class="card">
+        <img [src]="data.urlFotoLocal" />
+        <div class="conteudo">
+          <div class="lugarTitulo">{{ data.local }}</div>
+          {{ lugar.consultorio.logradouro + ', ' }}
+          {{ lugar.consultorio.numero }}
+          {{
+            lugar.consultorio.complemento
+              ? ', ' + lugar.consultorio.complemento + ', '
+              : ' - '
+          }}
+          {{ lugar.consultorio.bairro + ', ' }}
+          {{ lugar.consultorio.cidade + ' - ' }}
+          {{ lugar.consultorio.estado + ', ' }}
+          {{ lugar.consultorio.cep | mask: '00000-000' }}
 
-        <div class="categoria">
-          <ion-icon name="contact"></ion-icon>
-          <span>Contato</span>
+          <div class="categoria">
+            <ion-icon name="contact"></ion-icon>
+            <span>Contato</span>
+          </div>
+          <ion-item lines="none" *ngIf="lugar.consultorio.telefone1">
+            <ion-icon name="call" slot="start"></ion-icon>
+            <ion-label
+              ><a [href]="'tel:+55' + lugar.consultorio.telefone1">{{
+                lugar.consultorio.telefone1 | mask: maskTelefone
+              }}</a></ion-label
+            >
+          </ion-item>
+          <ion-item lines="none" *ngIf="lugar.consultorio.telefone2">
+            <ion-icon name="call" slot="start"></ion-icon>
+            <ion-label
+              ><a [href]="'tel:+55' + lugar.consultorio.telefone2">{{
+                lugar.consultorio.telefone2 | mask: maskTelefone
+              }}</a></ion-label
+            >
+          </ion-item>
+          <ion-item lines="none" *ngIf="lugar.consultorio.celular1">
+            <ion-icon name="phone-portrait" slot="start"></ion-icon>
+            <ion-label
+              ><a [href]="'tel:+55' + lugar.consultorio.celular1">{{
+                lugar.consultorio.celular1 | mask: maskCelular
+              }}</a></ion-label
+            >
+          </ion-item>
+          <ion-item lines="none" *ngIf="lugar.consultorio.celular2">
+            <ion-icon name="phone-portrait" slot="start"></ion-icon>
+            <ion-label
+              ><a [href]="'tel:+55' + lugar.consultorio.celular2">{{
+                lugar.consultorio.celular2 | mask: maskCelular
+              }}</a></ion-label
+            >
+          </ion-item>
         </div>
-        <ion-item lines="none" *ngIf="lugar.consultorio.telefone1">
-          <ion-icon name="call" slot="start"></ion-icon>
-          <ion-label
-            ><a [href]="'tel:+55' + lugar.consultorio.telefone1">{{
-              lugar.consultorio.telefone1 | mask: maskTelefone
-            }}</a></ion-label
-          >
-        </ion-item>
-        <ion-item lines="none" *ngIf="lugar.consultorio.telefone2">
-          <ion-icon name="call" slot="start"></ion-icon>
-          <ion-label
-            ><a [href]="'tel:+55' + lugar.consultorio.telefone2">{{
-              lugar.consultorio.telefone2 | mask: maskTelefone
-            }}</a></ion-label
-          >
-        </ion-item>
-        <ion-item lines="none" *ngIf="lugar.consultorio.celular1">
-          <ion-icon name="phone-portrait" slot="start"></ion-icon>
-          <ion-label
-            ><a [href]="'tel:+55' + lugar.consultorio.celular1">{{
-              lugar.consultorio.celular1 | mask: maskCelular
-            }}</a></ion-label
-          >
-        </ion-item>
-        <ion-item lines="none" *ngIf="lugar.consultorio.celular2">
-          <ion-icon name="phone-portrait" slot="start"></ion-icon>
-          <ion-label
-            ><a [href]="'tel:+55' + lugar.consultorio.celular2">{{
-              lugar.consultorio.celular2 | mask: maskCelular
-            }}</a></ion-label
-          >
-        </ion-item>
       </div>
     </div>
   </div>
 </ion-content>
 <ion-footer>
-  <ss-button [disabled]="false" [footer]="true" type="button-passos" (click)="criarConsulta()">Confirmar</ss-button>
+  <ss-button
+    [disabled]="false"
+    [footer]="true"
+    type="button-passos"
+    (click)="criarConsulta()"
+    >Confirmar</ss-button
+  >
 </ion-footer>

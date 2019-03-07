@@ -19,6 +19,11 @@
   }
 }
 
+form {
+  margin: auto;
+  max-width: 800px;
+}
+
 .imgUsuario {
   height: 40px;
   border-radius: 25px;
@@ -27,7 +32,9 @@
 }
 
 .buttonSelecionarTodos{
+  cursor: pointer;
   width: calc(100% - 30px);
+  max-width: 800px;
   margin: 20px auto 0px;
   text-align: center;
   padding: 7px;

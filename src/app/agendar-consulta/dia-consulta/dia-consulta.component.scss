@@ -19,10 +19,16 @@
   }
 }
 
+form {
+  margin: auto;
+  max-width: 800px;
+}
 //CALENDARIO
 
 .wrapper {
   width: 100%;
+  max-width: 800px;
+  margin: auto;
 
   .banner {
     width: 100%;
@@ -55,6 +61,7 @@
     position: relative;
 
     .arrow-left {
+      cursor: pointer;
       float: left;
       font-size: 21px;
       color: var(--azulPadrao);
@@ -65,6 +72,7 @@
     }
 
     .arrow-right {
+      cursor: pointer;
       float: right;
       font-size: 21px;
       color: var(--azulPadrao);
@@ -87,6 +95,7 @@
       opacity: 0.6;
       text-align: center;
       font-size: 11px;
+      cursor: pointer;
     }
   }
 
@@ -95,6 +104,7 @@
       text-align: center;
       padding-top: 9px;
       padding-bottom: 9px;
+      cursor: pointer;
     }
 
     .dataSelecionada {
@@ -116,6 +126,8 @@
 .medicos {
   padding: 15px;
   padding-top: 0;
+  margin: auto;
+  max-width: 800px;
 
   .titulo {
     padding-top: 15px;
