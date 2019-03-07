@@ -1,14 +1,32 @@
 <ion-content>
-        <div class="msgBemVindo">
-            Bem vindo ao<br> <strong>SS Consultório</strong>
-        </div>
-        <div class="background"><img src="../../../assets/img/background.png"></div>
+  <div class="msgBemVindo">
+    <div style="height: 40px;
+    width: 40px;
+    margin: auto;
+    margin-right: 10px;
+    display: inline-block;
+    vertical-align: middle;">
+      <img src="../../../assets/img/ss.png" />
+    </div>
 
-        <div class="painel-login">
-          <div class="subTitle">Agende, organize, e cancele suas consultas aonde estiver.</div>
-        </div>
-          <div class="buttons">
-              <ion-button shape="round" color="primary" size="large" (click)="registro()">Primeiro acesso </ion-button><br>
-              <ion-button shape="round" fill="clear" color="primary" (click)="login()">Entrar</ion-button>
-          </div>
+    <div style="display: inline-block; vertical-align: text-top;">
+      Bem vindo ao<br />
+      <strong>Consultório</strong>
+    </div>
+  </div>
+  <div class="background"><img src="../../../assets/img/background.png" /></div>
+
+  <div class="painel-login">
+    <div class="subTitle">
+      Agende, organize, e cancele suas consultas aonde estiver.
+    </div>
+  </div>
+  <div class="buttons">
+    <ion-button shape="round" color="primary" size="large" (click)="registro()"
+      >Primeiro acesso </ion-button
+    ><br />
+    <ion-button shape="round" fill="clear" color="primary" (click)="login()"
+      >Entrar</ion-button
+    >
+  </div>
 </ion-content>

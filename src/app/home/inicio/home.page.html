@@ -1,5 +1,16 @@
 <ion-header>
   <ion-toolbar class="header">
+    <ion-button slot="start" fill="clear" color="light" (click)="abrirSite()">
+      <div
+        style="height: 30px;
+        width: 30px;
+        margin: auto;
+        display: inline-block;
+        vertical-align: middle;"
+      >
+        <img style="height: 100%;" src="../../../assets/img/ss_branco.png" />
+      </div>
+    </ion-button>
     <ion-title>
       Bem vindo, <strong>{{ formatarNome || '' }}</strong>
     </ion-title>

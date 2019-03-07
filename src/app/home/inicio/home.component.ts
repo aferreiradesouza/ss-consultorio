@@ -89,6 +89,10 @@ export class HomeComponent implements OnInit {
     }
   }
 
+  abrirSite() {
+    window.open('http://drandredomarco.com.br', '_system', 'location=yes');
+  }
+
   async obterTabAtual(id) {
     if (id === '1') {
       this.idAtual = '1';
