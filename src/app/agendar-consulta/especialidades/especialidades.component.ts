@@ -38,9 +38,6 @@ export class EspecialidadeComponent implements OnInit {
 
   ngOnInit() {
     this.obterDadosConsultas();
-    if (this.sessionStorage.getJson('agendar-consulta/especialidade')) {
-      this.preencherPasso();
-    }
   }
 
   async obterDadosConsultas() {

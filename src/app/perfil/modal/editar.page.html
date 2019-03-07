@@ -34,7 +34,7 @@
 
   <form class="form" *ngIf="action == 'celular'" [formGroup]="formCelular">
     <ss-input label="Celular">
-      <input class="form-control" type="text" mask="(00) 00000-0000" formControlName="celular" />
+      <input class="form-control" type="tel" mask="(00) 00000-0000" formControlName="celular" />
       <ss-validacao [validacao]="formCelular.valid"></ss-validacao>
     </ss-input>
     <ion-button shape="round" [disabled]="!formCelular.valid" expand="full" (click)="editar(formCelular.value)">Próximo</ion-button>

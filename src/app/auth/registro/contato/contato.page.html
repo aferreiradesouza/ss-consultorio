@@ -16,11 +16,11 @@
     urlSecundaria="perfil"
   ></ss-title-passos>
   <form class="form" [formGroup]="formContato">
-    <ss-input label="Celular" type="text">
+    <ss-input label="Celular">
       <input
         class="form-control"
         mask="(00) 00000-0000"
-        type="text"
+        type="tel"
         formControlName="celular"
       />
       <ss-validacao
@@ -30,7 +30,7 @@
     <ss-input label="Telefone" [opcional]="true">
       <input
         class="form-control"
-        type="text"
+        type="tel"
         mask="(00) 0000-0000"
         formControlName="telefone"
       />

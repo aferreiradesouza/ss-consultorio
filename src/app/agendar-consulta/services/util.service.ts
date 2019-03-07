@@ -8,7 +8,7 @@ export class UtilAgendarConsulta {
 
     constructor() { }
 
-    async obterEspecialidades(data: Consultorios) {
+    async obterEspecialidades(data: any) {
         const especialidades = data.objeto.map(e => {
             return {
                 idEspecialidade: e.idEspecialidade,
@@ -37,7 +37,7 @@ export class UtilAgendarConsulta {
         return newData;
     }
 
-    async obterMedicos(data: Consultorios, idEspecialidade: number) {
+    async obterMedicos(data: any, idEspecialidade: number) {
         const usuario = data.objeto.map(e => {
             return {
                 idUsuario: e.idUsuario,
@@ -69,7 +69,7 @@ export class UtilAgendarConsulta {
         return newData;
     }
 
-    async obterLugares(data: Consultorios, idEspecialidade: number, idMedicos: any[]) {
+    async obterLugares(data: any, idEspecialidade: number, idMedicos: any[]) {
         let lugar = data.objeto.map(e => {
             return {
                 idUsuario: e.idUsuario,

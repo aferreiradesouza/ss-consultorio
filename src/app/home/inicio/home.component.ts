@@ -50,6 +50,7 @@ export class HomeComponent implements OnInit {
 
     route.paramMap.subscribe(params => {
       if (params.get('reload') === 'reload') {
+        console.log('reload');
         this.obterConsultas();
       }
     });
@@ -68,8 +69,11 @@ export class HomeComponent implements OnInit {
     await loading.present();
     try {
       this.dados = await this.homeService.obterConsultas();
-      this.tentarNovamente = false;
-      this.obterTabAtual('1');
+
+      if (this.dados !== undefined) {
+        this.tentarNovamente = false;
+        this.obterTabAtual('1');
+      }
     } catch (err) {
       this.tentarNovamente = true;
       const erro = await this.toastController.create({
@@ -142,7 +146,11 @@ export class HomeComponent implements OnInit {
   }
 
   get formatarNome() {
-    return this.userService.user.nome.split(' ')[0] || '';
+    if (this.userService.user != null) {
+      return this.userService.user.nome.split(' ')[0] || '';
+    } else {
+      return '';
+    }
   }
 
   tentarNovamenteAction() {

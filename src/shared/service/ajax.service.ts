@@ -2,6 +2,7 @@ import { Injectable } from '@angular/core';
 import { HttpClient } from '@angular/common/http';
 import { LocalStorageService } from './local-storage.service';
 import { timeout } from 'rxjs/operators';
+import { reject } from 'q';
 
 @Injectable({
   providedIn: 'root'
@@ -25,7 +26,13 @@ export class AjaxService {
       Authorization: 'bearer ' + token
     };
 
-    return this.http.get<T>(url, { params, headers }).pipe(timeout(15000)).toPromise();
+    return this.http
+      .get<T>(url, { params, headers })
+      .pipe(timeout(15000))
+      .toPromise()
+      .catch(error => {
+       reject(error);
+      });
   }
   public async post<T>(url: string, body: any = {}) {
     const token =
@@ -39,7 +46,13 @@ export class AjaxService {
       }
     };
 
-    return this.http.post<T>(url, body, options).pipe(timeout(15000)).toPromise();
+    return this.http
+      .post<T>(url, body, options)
+      .pipe(timeout(15000))
+      .toPromise()
+      .catch(error => {
+        reject(error);
+      });
   }
 
   public async put<T>(url: string, body: any = {}) {
@@ -54,6 +67,12 @@ export class AjaxService {
       }
     };
 
-    return this.http.put<T>(url, body, options).pipe(timeout(15000)).toPromise();
+    return this.http
+      .put<T>(url, body, options)
+      .pipe(timeout(15000))
+      .toPromise()
+      .catch(error => {
+        reject(error);
+      });
   }
 }

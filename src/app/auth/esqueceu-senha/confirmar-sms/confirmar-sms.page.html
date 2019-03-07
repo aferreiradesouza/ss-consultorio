@@ -18,8 +18,8 @@
   <form class="form" [formGroup]="formSms">
     <div class="texto">Um SMS foi enviado para seu número.</div>
     <div class="sms">
-      <ss-input label="" type="text" mode="sms">
-        <input class="form-control" type="text" formControlName="sms" />
+      <ss-input label="" mode="sms">
+        <input class="form-control" type="tel" formControlName="sms" />
       </ss-input>
     </div>
     <ion-button class="btnSms" size="small" fill="clear" (click)="reenviar()"

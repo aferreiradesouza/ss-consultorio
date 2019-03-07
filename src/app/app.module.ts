@@ -1,4 +1,4 @@
-import { NgModule } from '@angular/core';
+import { NgModule, ErrorHandler } from '@angular/core';
 import { BrowserModule } from '@angular/platform-browser';
 import { RouteReuseStrategy } from '@angular/router';
 
@@ -19,6 +19,7 @@ import { CurrentUserService } from 'src/shared/service/currentUser.service';
 import { PerfilModule } from './perfil/perfil.module';
 import { SplashComponent } from './splashscreen/splash.component';
 import { AgendarConsultaModule } from './agendar-consulta/agendar-consulta.module';
+import { GlobalErrorHandler } from 'src/shared/globalErrorHandler';
 
 @NgModule({
   declarations: [AppComponent, SplashComponent],
@@ -41,7 +42,11 @@ import { AgendarConsultaModule } from './agendar-consulta/agendar-consulta.modul
     AutenticacaoService,
     GuardService,
     CurrentUserService,
-    { provide: RouteReuseStrategy, useClass: IonicRouteStrategy }
+    { provide: RouteReuseStrategy, useClass: IonicRouteStrategy },
+    {
+      provide: ErrorHandler,
+      useClass: GlobalErrorHandler
+    }
   ],
   bootstrap: [AppComponent]
 })

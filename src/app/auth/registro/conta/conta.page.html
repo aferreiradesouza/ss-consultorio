@@ -11,7 +11,7 @@
     <form class="form" [formGroup]="formConta">
 
         <ss-input label="CPF">
-            <input class="form-control" type="text" mask="000.000.000-00" formControlName="cpf"/>
+            <input class="form-control" type="tel" mask="000.000.000-00" formControlName="cpf"/>
             <ss-validacao [validacao]="formConta.value.cpf.length === 11"></ss-validacao>
         </ss-input>
         <ss-input label="Senha">

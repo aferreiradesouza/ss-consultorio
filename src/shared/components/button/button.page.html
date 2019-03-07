@@ -1,7 +1,12 @@
 <div class="agenda-button" *ngIf="type == 'button-lista'">
-    <div class="button-card" (click)="irAgendaCompleta()">{{label}}</div>
+  <div class="button-card" (click)="irAgendaCompleta()">{{ label }}</div>
 </div>
 
-<button class="buttonPassos" *ngIf="type == 'button-passos'" [disabled]="disabled">
-    <ng-content></ng-content>
+<button
+  class="buttonPassos"
+  [ngClass]="{ footer: footer }"
+  *ngIf="type == 'button-passos'"
+  [disabled]="disabled"
+>
+  <ng-content></ng-content>
 </button>
