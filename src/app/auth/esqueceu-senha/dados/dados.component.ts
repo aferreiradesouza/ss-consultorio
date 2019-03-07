@@ -34,7 +34,12 @@ export class DadosComponent implements OnInit {
   }
 
   voltar() {
-    this.navController.pop();
+    this.router.navigate(['auth']);
+  }
+
+  fechar() {
+    sessionStorage.clear();
+    this.router.navigate(['auth', 'login']);
   }
 
   gravar() {

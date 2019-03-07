@@ -30,7 +30,7 @@ export class ConfirmarSMSComponent implements OnInit {
   }
 
   voltar() {
-    this.router.navigate(['auth']);
+    this.router.navigate(['auth', 'esqueceu-senha', 'dados']);
   }
 
   gravar() {
@@ -38,6 +38,11 @@ export class ConfirmarSMSComponent implements OnInit {
         this.sessionStorage.setJson('esqueceu-senha/codigo-sms', this.formSms.value);
         this.proximo();
     }
+  }
+
+  fechar() {
+    sessionStorage.clear();
+    this.router.navigate(['auth', 'login']);
   }
 
   async reenviar() {

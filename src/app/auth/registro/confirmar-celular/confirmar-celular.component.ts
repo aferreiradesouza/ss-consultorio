@@ -73,7 +73,12 @@ export class ConfirmarCelularComponent implements OnInit {
   }
 
   voltar() {
-    this.navController.pop();
+    this.router.navigate(['auth', 'registro', 'contato']);
+  }
+
+  fechar() {
+    sessionStorage.clear();
+    this.router.navigate(['auth']);
   }
 
   public get registro_conta() {

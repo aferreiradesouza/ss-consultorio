@@ -29,7 +29,7 @@ export class ContaComponent implements OnInit {
   }
 
   voltar() {
-    this.navController.pop();
+    this.router.navigate(['auth']);
   }
 
   gravar() {
@@ -47,6 +47,11 @@ export class ContaComponent implements OnInit {
     if (this.sessionStorage.getJson('registro/conta')) {
       this.formConta.setValue(this.sessionStorage.getJson('registro/conta'));
     }
+  }
+
+  fechar() {
+    sessionStorage.clear();
+    this.router.navigate(['auth']);
   }
 
   public validateSenha(c: FormControl) {

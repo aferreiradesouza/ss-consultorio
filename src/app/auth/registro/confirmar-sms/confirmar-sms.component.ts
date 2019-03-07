@@ -44,6 +44,11 @@ export class ConfirmarSMSComponent implements OnInit {
     this.router.navigate(['auth']);
   }
 
+  fechar() {
+    sessionStorage.clear();
+    this.router.navigate(['auth']);
+  }
+
   async enviar() {
     if (this.data.action) {
       const loading = await this.loadingController.create({

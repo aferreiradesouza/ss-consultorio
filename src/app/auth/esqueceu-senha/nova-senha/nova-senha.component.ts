@@ -37,6 +37,11 @@ export class NovaSenhaComponent implements OnInit {
     this.router.navigate(['auth', 'confirmacao'], { queryParams });
   }
 
+  fechar() {
+    sessionStorage.clear();
+    this.router.navigate(['auth', 'login']);
+  }
+
   async alterarSenha() {
     const loading = await this.loadingController.create({
       message: 'Carregando',

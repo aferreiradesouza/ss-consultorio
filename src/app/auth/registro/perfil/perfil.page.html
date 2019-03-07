@@ -1,24 +1,49 @@
 <ion-header>
-    <ion-toolbar class="header">
-        <ion-title><strong>Passo 2</strong> / 5</ion-title>
-    </ion-toolbar>
+  <ion-toolbar class="header">
+    <ion-buttons slot="end" (click)="fechar()">
+      <ion-icon slot="icon-only" name="close"></ion-icon>
+    </ion-buttons>
+    <ion-title><strong>Passo 2</strong> / 5</ion-title>
+  </ion-toolbar>
 </ion-header>
 
 <ion-content>
-    <ss-title-passos pagina="Registro" title="Perfil" icon="person" urlBase="registro" urlSecundaria="conta"></ss-title-passos>
-    <form class="form" [formGroup]="formPerfil">
-        <ss-input label="Nome">
-            <input class="form-control" type="text" formControlName="nome" />
-            <ss-validacao [validacao]="formPerfil.controls.nome.valid"></ss-validacao>
-        </ss-input>
-        <ss-input label="E-mail">
-            <input class="form-control" type="email" formControlName="email" />
-            <ss-validacao [validacao]="formPerfil.controls.email.valid"></ss-validacao>
-        </ss-input>
-        <ss-input label="Data de nascimento">
-            <input mask="d0/m0/0000" [dropSpecialCharacters]="false" class="form-control" type="text" formControlName="nascimento" />
-            <ss-validacao [validacao]="formPerfil.controls.nascimento.valid"></ss-validacao>
-        </ss-input>
-        <ion-button shape="round" [disabled]="!formPerfil.valid" expand="full" (click)="gravar()">Próximo</ion-button>
-    </form>
+  <ss-title-passos
+    pagina="Registro"
+    title="Perfil"
+    icon="person"
+    urlBase="registro"
+    urlSecundaria="conta"
+  ></ss-title-passos>
+  <form class="form" [formGroup]="formPerfil">
+    <ss-input label="Nome">
+      <input class="form-control" type="text" formControlName="nome" />
+      <ss-validacao [validacao]="formPerfil.controls.nome.valid"></ss-validacao>
+    </ss-input>
+    <ss-input label="E-mail">
+      <input class="form-control" type="email" formControlName="email" />
+      <ss-validacao
+        [validacao]="formPerfil.controls.email.valid"
+      ></ss-validacao>
+    </ss-input>
+    <ss-input label="Data de nascimento">
+      <input
+        mask="d0/m0/0000"
+        [dropSpecialCharacters]="false"
+        class="form-control"
+        type="text"
+        formControlName="nascimento"
+      />
+      <ss-validacao
+        [validacao]="formPerfil.controls.nascimento.valid"
+      ></ss-validacao>
+    </ss-input>
+    <ion-button
+      shape="round"
+      [disabled]="!formPerfil.valid"
+      expand="full"
+      (click)="gravar()"
+      >Próximo</ion-button
+    >
+  </form>
 </ion-content>

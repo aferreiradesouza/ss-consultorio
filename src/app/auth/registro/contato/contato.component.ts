@@ -40,4 +40,13 @@ export class ContatoComponent implements OnInit {
       this.formContato.setValue(this.sessionStorage.getJson('registro/contato'));
     }
   }
+
+  fechar() {
+    sessionStorage.clear();
+    this.router.navigate(['auth']);
+  }
+
+  voltar() {
+    this.router.navigate(['auth', 'registro', 'perfil']);
+  }
 }

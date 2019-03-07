@@ -81,6 +81,6 @@ export class LoginComponent implements OnInit {
   }
 
   voltar() {
-    this.navController.pop();
+    this.router.navigate(['auth']);
   }
 }

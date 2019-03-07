@@ -1,14 +1,30 @@
 <ion-header>
-    <ion-toolbar class="header">
-        <ion-title><strong>Passo 4</strong> / 5</ion-title>
-    </ion-toolbar>
+  <ion-toolbar class="header">
+    <ion-buttons slot="end" (click)="fechar()">
+      <ion-icon slot="icon-only" name="close"></ion-icon>
+    </ion-buttons>
+    <ion-title><strong>Passo 4</strong> / 5</ion-title>
+  </ion-toolbar>
 </ion-header>
 <ion-content>
-    <ss-title-passos pagina="Registro" title="Confirmar celular" icon="phone-portrait" urlBase="registro" urlSecundaria="contato"></ss-title-passos>
-    <div class="form">
-        <div class="telefone">{{preencherTelefone | mask: maskCelular}}</div>
-        <div class="texto">É necessário um número de celular válido, iremos enviar um SMS de confirmação para este número.</div>
-        <ion-button shape="round" color="light" (click)="voltar()">Corrigir</ion-button>
-        <ion-button shape="round" color="primary" (click)="ir()">Próximo</ion-button>
+  <ss-title-passos
+    pagina="Registro"
+    title="Confirmar celular"
+    icon="phone-portrait"
+    urlBase="registro"
+    urlSecundaria="contato"
+  ></ss-title-passos>
+  <div class="form">
+    <div class="telefone">{{ preencherTelefone | mask: maskCelular }}</div>
+    <div class="texto">
+      É necessário um número de celular válido, iremos enviar um SMS de
+      confirmação para este número.
     </div>
+    <ion-button shape="round" color="light" (click)="voltar()"
+      >Corrigir</ion-button
+    >
+    <ion-button shape="round" color="primary" (click)="ir()"
+      >Próximo</ion-button
+    >
+  </div>
 </ion-content>

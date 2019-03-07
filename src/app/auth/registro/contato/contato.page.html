@@ -1,19 +1,46 @@
 <ion-header>
-    <ion-toolbar class="header">
-        <ion-title><strong>Passo 3</strong> / 5</ion-title>
-    </ion-toolbar>
+  <ion-toolbar class="header">
+    <ion-buttons slot="end" (click)="fechar()">
+      <ion-icon slot="icon-only" name="close"></ion-icon>
+    </ion-buttons>
+    <ion-title><strong>Passo 3</strong> / 5</ion-title>
+  </ion-toolbar>
 </ion-header>
 
 <ion-content>
-    <ss-title-passos pagina="Registro" title="Contato" icon="call" urlBase="registro" urlSecundaria="perfil"></ss-title-passos>
-    <form class="form" [formGroup]="formContato">
-        <ss-input label="Celular" type="text">
-            <input class="form-control" mask="(00) 00000-0000" type="text" formControlName="celular"/>
-            <ss-validacao [validacao]="formContato.controls.celular.valid"></ss-validacao>
-        </ss-input>
-        <ss-input label="Telefone" [opcional]="true">
-            <input class="form-control" type="text" mask="(00) 0000-0000" formControlName="telefone"/>
-        </ss-input>
-        <ion-button shape="round" expand="full" [disabled]="!formContato.valid" (click)="gravar()">Próximo</ion-button>
-    </form>
+  <ss-title-passos
+    pagina="Registro"
+    title="Contato"
+    icon="call"
+    urlBase="registro"
+    urlSecundaria="perfil"
+  ></ss-title-passos>
+  <form class="form" [formGroup]="formContato">
+    <ss-input label="Celular" type="text">
+      <input
+        class="form-control"
+        mask="(00) 00000-0000"
+        type="text"
+        formControlName="celular"
+      />
+      <ss-validacao
+        [validacao]="formContato.controls.celular.valid"
+      ></ss-validacao>
+    </ss-input>
+    <ss-input label="Telefone" [opcional]="true">
+      <input
+        class="form-control"
+        type="text"
+        mask="(00) 0000-0000"
+        formControlName="telefone"
+      />
+    </ss-input>
+    <ion-button
+      shape="round"
+      expand="full"
+      [disabled]="!formContato.valid"
+      (click)="gravar()"
+      >Próximo</ion-button
+    >
+  </form>
 </ion-content>

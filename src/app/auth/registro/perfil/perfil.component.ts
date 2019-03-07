@@ -51,4 +51,13 @@ export class PerfilComponent implements OnInit {
     }
   };
   }
+
+  fechar() {
+    sessionStorage.clear();
+    this.router.navigate(['auth']);
+  }
+
+  voltar() {
+    this.router.navigate(['auth', 'registro', 'conta']);
+  }
 }

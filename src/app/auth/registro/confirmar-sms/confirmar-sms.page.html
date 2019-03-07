@@ -1,24 +1,44 @@
 <ion-header>
-    <ion-toolbar class="header">
-        <ion-buttons mode="ios" color="light" slot="start">
-            <ion-back-button class="backButton" [text]="'Voltar'" color="light" (click)="voltar()"></ion-back-button>
-        </ion-buttons>
-        <ion-title>
-            <strong>{{data.action ? 'Confirmar SMS' : 'Passo 5'}}</strong>
-            {{data.action ? '' : '/ 5'}}
-        </ion-title>
-    </ion-toolbar>
+  <ion-toolbar class="header">
+    <ion-buttons slot="end" (click)="fechar()">
+      <ion-icon slot="icon-only" name="close"></ion-icon>
+    </ion-buttons>
+    <ion-title>
+      <strong>{{ data.action ? 'Confirmar SMS' : 'Passo 5' }}</strong>
+      {{ data.action ? '' : '/ 5' }}
+    </ion-title>
+  </ion-toolbar>
 </ion-header>
 <ion-content>
-    <ss-title-passos pagina="Registro" title="Confirmar SMS" icon="mail" urlBase="off" urlSecundaria="off"></ss-title-passos>
-    <form class="form" [formGroup]="formSms">
-        <div class="texto">Um SMS foi enviado para seu número.</div>
-        <div class="sms">
-            <ss-input label="" type="text" mode="sms">
-                <input class="form-control" type="text" formControlName="sms" mask="000000"/>
-            </ss-input>
-        </div>
-        <ion-button class="btnSms" size="small" fill="clear" (click)="reenviar()">Não recebeu sms? Enviar novamente!</ion-button>
-        <ion-button shape="round" color="primary" [disabled]="!formSms.valid" expand="full" (click)="enviar()">Confirmar</ion-button>
-    </form>
+  <ss-title-passos
+    pagina="Registro"
+    title="Confirmar SMS"
+    icon="mail"
+    urlBase="off"
+    urlSecundaria="off"
+  ></ss-title-passos>
+  <form class="form" [formGroup]="formSms">
+    <div class="texto">Um SMS foi enviado para seu número.</div>
+    <div class="sms">
+      <ss-input label="" type="text" mode="sms">
+        <input
+          class="form-control"
+          type="text"
+          formControlName="sms"
+          mask="000000"
+        />
+      </ss-input>
+    </div>
+    <ion-button class="btnSms" size="small" fill="clear" (click)="reenviar()"
+      >Não recebeu sms? Enviar novamente!</ion-button
+    >
+    <ion-button
+      shape="round"
+      color="primary"
+      [disabled]="!formSms.valid"
+      expand="full"
+      (click)="enviar()"
+      >Confirmar</ion-button
+    >
+  </form>
 </ion-content>

@@ -1,19 +1,37 @@
 <ion-header>
-    <ion-toolbar class="header">
-        <ion-title><strong>Passo 2</strong> / 3</ion-title>
-    </ion-toolbar>
+  <ion-toolbar class="header">
+    <ion-buttons slot="end" (click)="fechar()">
+      <ion-icon slot="icon-only" name="close"></ion-icon>
+    </ion-buttons>
+    <ion-title><strong>Passo 2</strong> / 3</ion-title>
+  </ion-toolbar>
 </ion-header>
 
 <ion-content>
-    <ss-title-passos pagina="Esqueceu senha" title="Confirmar SMS" icon="mail" urlBase="esqueceu-senha" urlSecundaria="dados"></ss-title-passos>
-    <form class="form" [formGroup]="formSms">
-        <div class="texto">Um SMS foi enviado para seu número.</div>
-        <div class="sms">
-            <ss-input label="" type="text" mode="sms">
-                <input class="form-control" type="text" formControlName="sms"/>
-            </ss-input>
-        </div>
-        <ion-button class="btnSms" size="small" fill="clear" (click)="reenviar()">Não recebeu sms? Enviar novamente!</ion-button>
-        <ion-button shape="round" color="primary" [disabled]="!formSms.valid" expand="full" (click)="enviar()">Confirmar</ion-button>
-    </form>
+  <ss-title-passos
+    pagina="Esqueceu senha"
+    title="Confirmar SMS"
+    icon="mail"
+    urlBase="esqueceu-senha"
+    urlSecundaria="dados"
+  ></ss-title-passos>
+  <form class="form" [formGroup]="formSms">
+    <div class="texto">Um SMS foi enviado para seu número.</div>
+    <div class="sms">
+      <ss-input label="" type="text" mode="sms">
+        <input class="form-control" type="text" formControlName="sms" />
+      </ss-input>
+    </div>
+    <ion-button class="btnSms" size="small" fill="clear" (click)="reenviar()"
+      >Não recebeu sms? Enviar novamente!</ion-button
+    >
+    <ion-button
+      shape="round"
+      color="primary"
+      [disabled]="!formSms.valid"
+      expand="full"
+      (click)="enviar()"
+      >Confirmar</ion-button
+    >
+  </form>
 </ion-content>
