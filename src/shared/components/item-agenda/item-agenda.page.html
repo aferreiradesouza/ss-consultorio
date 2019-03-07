@@ -14,7 +14,7 @@
         <div class="status" [ngClass]="{'red' : item.statusConsulta.codigo == 'cancelado', 'orange' : item.statusConsulta.codigo == 'pre_agendamento', 'green' : item.statusConsulta.codigo == 'confirmado'}">
             <ion-icon name="radio-button-on"></ion-icon>
         </div>
-        <ion-chip>
+        <ion-chip (click)="abrirMapa(item.consultorio)">
             <ion-icon name="pin"></ion-icon>
             <ion-label>{{item.consultorio.nome}}</ion-label>
         </ion-chip>

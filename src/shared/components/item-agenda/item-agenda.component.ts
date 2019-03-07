@@ -3,23 +3,19 @@ import { Router } from '@angular/router';
 import * as moment from 'moment';
 import { ModalController } from '@ionic/angular';
 
-
 @Component({
   selector: 'ss-item-agenda',
   templateUrl: './item-agenda.page.html',
   styleUrls: ['./item-agenda.component.scss']
 })
-
 export class ItemAgendaComponent implements OnInit {
-
   @Input() itens: any[];
 
   @Output() detalhes = new EventEmitter();
 
   constructor(public router: Router, public modalController: ModalController) {}
 
-  ngOnInit() {
-  }
+  ngOnInit() {}
 
   public formatarStatus(codigo) {
     let status;
@@ -43,6 +39,25 @@ export class ItemAgendaComponent implements OnInit {
     return dia;
   }
 
+  abrirMapa(consultorio) {
+    const endereco =
+      consultorio.logradouro +
+      ', ' +
+      consultorio.numero +
+      ', ' +
+          consultorio.bairro +
+          ', ' +
+          consultorio.cidade +
+          ' - ' +
+          consultorio.estado;
+
+    window.open(
+      'https://www.google.com/maps/place/' + endereco,
+      '_system',
+      'location=yes'
+    );
+  }
+
   public obterDetalhes(objeto) {
     this.detalhes.emit(objeto);
   }
@@ -52,51 +67,51 @@ export class ItemAgendaComponent implements OnInit {
     let mesFormatado;
     switch (mes - 1) {
       case 0:
-      mesFormatado = 'Janeiro';
+        mesFormatado = 'Janeiro';
         break;
 
       case 1:
-      mesFormatado = 'Fevereiro';
+        mesFormatado = 'Fevereiro';
         break;
 
       case 2:
-      mesFormatado = 'Março';
+        mesFormatado = 'Março';
         break;
 
       case 3:
-      mesFormatado = 'Abril';
+        mesFormatado = 'Abril';
         break;
 
       case 4:
-      mesFormatado = 'maio';
+        mesFormatado = 'maio';
         break;
 
       case 5:
-      mesFormatado = 'Junho';
+        mesFormatado = 'Junho';
         break;
 
       case 6:
-      mesFormatado = 'Julho';
+        mesFormatado = 'Julho';
         break;
 
       case 7:
-      mesFormatado = 'Agosto';
+        mesFormatado = 'Agosto';
         break;
 
       case 8:
-      mesFormatado = 'Setembro';
+        mesFormatado = 'Setembro';
         break;
 
       case 9:
-      mesFormatado = 'Outubro';
+        mesFormatado = 'Outubro';
         break;
 
       case 10:
-      mesFormatado = 'Novembro';
+        mesFormatado = 'Novembro';
         break;
 
       case 11:
-      mesFormatado = 'Dezembro';
+        mesFormatado = 'Dezembro';
         break;
     }
     return mesFormatado;
