@@ -27,7 +27,7 @@ export class DetalhesComponent implements OnInit {
 
   ngOnInit() {
   }
-  
+
   ligarCel(tel) {
     window.open(
       'tel:+55' + tel,
