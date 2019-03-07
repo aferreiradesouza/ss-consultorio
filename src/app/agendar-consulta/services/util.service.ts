@@ -1,5 +1,4 @@
 import { Injectable } from '@angular/core';
-import { Consultorios, DiaConsulta } from 'src/shared/dto';
 import * as moment from 'moment';
 
 @Injectable()
@@ -106,7 +105,7 @@ export class UtilAgendarConsulta {
         return newData;
     }
 
-    async obterDiasDisponiveis(data: DiaConsulta) {
+    async obterDiasDisponiveis(data: any) {
         const newData = [];
         data.objeto.forEach(element => {
             const dias = element.dataHorarios.map(e => {
@@ -139,7 +138,7 @@ export class UtilAgendarConsulta {
         return newData;
     }
 
-    async obterMedicosDaDataSelecionada(dados: DiaConsulta, dataSelecionada: any, ) {
+    async obterMedicosDaDataSelecionada(dados: any, dataSelecionada: any, ) {
         const dataFormatada = moment(dataSelecionada.dataCompleta).utc().format('YYYY-MM-DD');
 
         const newData = [];

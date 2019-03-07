@@ -56,7 +56,7 @@ export class ItemAgendaComponent implements OnInit {
       '_system',
       'location=yes'
     );
-  }  
+  }
 
   public obterDetalhes(objeto) {
     this.detalhes.emit(objeto);
