@@ -14,11 +14,20 @@ export class AccordionAgendarComponent implements OnInit {
   public lugarSelecionado: any;
 
   @Input() itens: any[];
+  @Input() permitirAbrir: boolean;
+
   @Output() select = new EventEmitter();
 
   constructor(public router: Router, public sessionStorage: SessionStorageService) { }
 
   ngOnInit() {
+    if (this.itens.length === 1) {
+      this.medicoSelecionado = this.itens[0];
+
+      if (this.medicoSelecionado.locais.length === 1) {
+        this.lugarSelecionado = this.medicoSelecionado.locais[0];
+      }
+    }
   }
 
   selecionarItem(consultorio) {

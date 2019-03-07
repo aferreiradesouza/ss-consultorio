@@ -70,10 +70,9 @@ export class HomeComponent implements OnInit {
     await loading.present();
     try {
       this.dados = await this.homeService.obterConsultas();
-
       if (this.dados !== undefined) {
-        this.tentarNovamente = false;
         this.obterTabAtual('1');
+        this.tentarNovamente = false;
       }
     } catch (err) {
       this.tentarNovamente = true;

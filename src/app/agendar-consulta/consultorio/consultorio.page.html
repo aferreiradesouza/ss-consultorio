@@ -7,24 +7,12 @@
   </ion-toolbar>
 </ion-header>
 <ion-content>
-  <ss-title-passos
-    pagina="Agendar consulta"
-    title="Escolha o seu horário"
-    icon="time"
-    urlBase="agendar-consulta"
-    urlSecundaria="dia-consulta"
-  >
+  <ss-title-passos pagina="Agendar consulta" title="Escolha o seu horário" icon="time" urlBase="agendar-consulta"
+    urlSecundaria="dia-consulta">
   </ss-title-passos>
-  <ss-accordion-agendar
-    [itens]="itens"
-    (select)="salvarSelect($event)"
-  ></ss-accordion-agendar>
+  <ss-accordion-agendar *ngIf="itens" [itens]="itens" (select)="salvarSelect($event)"></ss-accordion-agendar>
 </ion-content>
 <ion-footer>
-  <ss-button
-    [disabled]="!horarioSelecionado" [footer]="true"
-    type="button-passos"
-    (click)="proximoPasso()"
-    >Confirmar</ss-button
-  >
+  <ss-button [disabled]="!horarioSelecionado" [footer]="true" type="button-passos" (click)="proximoPasso()">Confirmar
+  </ss-button>
 </ion-footer>

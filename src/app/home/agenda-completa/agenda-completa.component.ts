@@ -55,11 +55,8 @@ export class AgendaCompletaComponent implements OnInit {
       this.idAtual = '2';
       this.agenda = await this.utilService.formatarConsultas(this.dados.objeto, 'anteriores');
     }
-    if (this.agenda.length === 0) {
-      this.nenhumaConsulta = true;
-    } else {
-      this.nenhumaConsulta = false;
-    }
+
+    this.nenhumaConsulta = this.agenda.length === 0;
   }
 
   voltar() {
