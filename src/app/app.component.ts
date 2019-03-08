@@ -24,6 +24,7 @@ export class AppComponent {
     const url = window.location.pathname.substring(1) + window.location.search;
     this.router.navigate(['splash', url]);
 
+    this.statusBar.styleDefault();
     this.splashScreen.show();
     this.platform.ready().then(() => {
       this.statusBar.styleBlackOpaque();
