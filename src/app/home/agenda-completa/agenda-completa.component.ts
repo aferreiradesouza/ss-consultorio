@@ -77,9 +77,13 @@ export class AgendaCompletaComponent implements OnInit {
     });
     await loading.present();
     try {
-      this.dados = await this.homeService.obterConsultas();
       this.tentarNovamente = false;
-      this.obterTabAtual('1');
+      this.dados = await this.homeService.obterConsultas();
+      if (!this.dados) {
+        this.tentarNovamente = true;
+      } else {
+        this.obterTabAtual('1');
+      }
     } catch (err) {
       this.tentarNovamente = true;
       const erro = await this.toastController.create({

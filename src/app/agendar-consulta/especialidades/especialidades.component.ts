@@ -53,12 +53,14 @@ export class EspecialidadeComponent implements OnInit {
       });
       await loading.present();
       try {
-        const consultas = await this.agendarConsultaService.obterConsultorios();
-        this.sessionStorage.setJson('consultorios', consultas);
+        const consultas: any = await this.agendarConsultaService.obterConsultorios();
+        if (consultas.sucesso) {
+          this.sessionStorage.setJson('consultorios', consultas);
 
-        this.especialidades = await this.utilService.obterEspecialidades(
-          consultas
-        );
+          this.especialidades = await this.utilService.obterEspecialidades(
+            consultas
+          );
+        }
       } catch (err) {
         const toastErro = await this.toastController.create({
           message: 'Algo de errado aconteceu, tente novamente mais tarde.',

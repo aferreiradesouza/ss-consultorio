@@ -74,8 +74,10 @@ export class HomeComponent implements OnInit {
         this.obterTabAtual('1');
         this.tentarNovamente = false;
       }
+      if (!this.dados) {
+        this.tentarNovamente = true;
+      }
     } catch (err) {
-      this.tentarNovamente = true;
       const erro = await this.toastController.create({
         message: 'Algo de errado aconteceu, tente novamente mais tarde',
         color: 'dark',
@@ -130,7 +132,11 @@ export class HomeComponent implements OnInit {
       try {
         this.tentarNovamente = false;
         this.dados = await this.homeService.obterConsultas();
-        this.obterTabAtual(this.idAtual);
+        if (this.dados) {
+          this.obterTabAtual(this.idAtual);
+        } else {
+          this.tentarNovamente = true;
+        }
         event.target.complete();
       } catch (err) {
         this.tentarNovamente = true;
