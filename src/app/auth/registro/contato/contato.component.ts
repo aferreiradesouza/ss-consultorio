@@ -2,6 +2,7 @@ import { Component, OnInit } from '@angular/core';
 import { Router } from '@angular/router';
 import { FormGroup, FormBuilder, Validators } from '@angular/forms';
 import { SessionStorageService } from 'src/shared/service/session-storage.service';
+import { StatusBar } from '@ionic-native/status-bar/ngx';
 
 @Component({
   selector: 'contato-page',
@@ -13,7 +14,8 @@ export class ContatoComponent implements OnInit {
 
   public formContato: FormGroup;
 
-  constructor(public router: Router, private fb: FormBuilder, public sessionStorage: SessionStorageService) {}
+  constructor(public router: Router, private fb: FormBuilder, public sessionStorage: SessionStorageService,
+    private statusBar: StatusBar) {}
 
   ngOnInit() {
     this.formContato = this.fb.group({
@@ -42,6 +44,7 @@ export class ContatoComponent implements OnInit {
   }
 
   fechar() {
+    this.statusBar.styleDefault();
     sessionStorage.clear();
     this.router.navigate(['auth']);
   }

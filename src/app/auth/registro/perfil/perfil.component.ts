@@ -2,6 +2,7 @@ import { Component, OnInit } from '@angular/core';
 import { Router } from '@angular/router';
 import { FormGroup, FormBuilder, Validators, FormControl } from '@angular/forms';
 import { SessionStorageService } from 'src/shared/service/session-storage.service';
+import { StatusBar } from '@ionic-native/status-bar/ngx';
 
 @Component({
   selector: 'perfil-page',
@@ -14,7 +15,8 @@ export class PerfilComponent implements OnInit {
   public formPerfil: FormGroup;
   public regexEmail: any = /^[a-z0-9.]+@[a-z0-9]+\.[a-z]+(\.[a-z]+)?$/;
 
-  constructor(public router: Router, private fb: FormBuilder, public sessionStorage: SessionStorageService) {}
+  constructor(public router: Router, private fb: FormBuilder, public sessionStorage: SessionStorageService,
+    private statusBar: StatusBar) {}
 
   ngOnInit() {
     this.formPerfil = this.fb.group({
@@ -53,6 +55,7 @@ export class PerfilComponent implements OnInit {
   }
 
   fechar() {
+    this.statusBar.styleDefault();
     sessionStorage.clear();
     this.router.navigate(['auth']);
   }

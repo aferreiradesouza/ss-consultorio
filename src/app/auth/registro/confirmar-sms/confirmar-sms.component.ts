@@ -11,6 +11,7 @@ import { AuthService } from '../../service/auth.service';
 import { LocalStorageService } from 'src/shared/service/local-storage.service';
 import * as moment from 'moment';
 import { IConfirmarSms } from 'src/shared/dto';
+import { StatusBar } from '@ionic-native/status-bar/ngx';
 
 @Component({
   selector: 'confirmar-sms-page',
@@ -30,7 +31,8 @@ export class ConfirmarSMSComponent implements OnInit {
     public storageService: LocalStorageService,
     public route: ActivatedRoute,
     public loadingController: LoadingController,
-    public navController: NavController
+    public navController: NavController,
+    private statusBar: StatusBar
   ) { }
 
   ngOnInit() {
@@ -45,6 +47,7 @@ export class ConfirmarSMSComponent implements OnInit {
   }
 
   fechar() {
+    this.statusBar.styleDefault();
     sessionStorage.clear();
     this.router.navigate(['auth']);
   }

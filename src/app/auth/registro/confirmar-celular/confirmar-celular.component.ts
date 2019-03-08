@@ -4,6 +4,7 @@ import { SessionStorageService } from 'src/shared/service/session-storage.servic
 import * as moment from 'moment';
 import { AuthService } from '../../service/auth.service';
 import { ToastController, LoadingController, NavController } from '@ionic/angular';
+import { StatusBar } from '@ionic-native/status-bar/ngx';
 
 @Component({
   selector: 'confirmar-celular-page',
@@ -19,7 +20,8 @@ export class ConfirmarCelularComponent implements OnInit {
     public authService: AuthService,
     public toastController: ToastController,
     public loadingController: LoadingController,
-    public navController: NavController
+    public navController: NavController,
+    private statusBar: StatusBar
   ) { }
 
   ngOnInit() { }
@@ -77,6 +79,7 @@ export class ConfirmarCelularComponent implements OnInit {
   }
 
   fechar() {
+    this.statusBar.styleDefault();
     sessionStorage.clear();
     this.router.navigate(['auth']);
   }
