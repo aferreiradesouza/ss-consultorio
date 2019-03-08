@@ -7,13 +7,13 @@
     position: absolute;
     left: 50%;
     top: 50%;
-    transform: translate(-50%, -50%);
+    transform: translate(-50%, calc(-50% + 21px));
     width: 25%;
     max-width: 100px;
     text-align: center;
 
     .logo-img {
-      height: 60px;
+      height: 61px;
       display: block;
       margin: auto;
       margin-bottom: 10px;
