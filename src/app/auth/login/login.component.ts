@@ -5,6 +5,7 @@ import { SessionStorageService } from 'src/shared/service/session-storage.servic
 import { AuthService } from '../service/auth.service';
 import { LocalStorageService } from 'src/shared/service/local-storage.service';
 import { ToastController, LoadingController, NavController } from '@ionic/angular';
+import { StatusBar } from '@ionic-native/status-bar/ngx';
 
 @Component({
   selector: 'login-page',
@@ -22,7 +23,8 @@ export class LoginComponent implements OnInit {
     public authService: AuthService,
     public storageService: LocalStorageService,
     public loadingController: LoadingController,
-    public navController: NavController) { }
+    public navController: NavController,
+    private statusBar: StatusBar) { }
 
   ngOnInit() {
     this.formEntrar = this.fb.group({
@@ -81,6 +83,7 @@ export class LoginComponent implements OnInit {
   }
 
   voltar() {
+    this.statusBar.styleDefault();
     this.router.navigate(['auth']);
   }
 }

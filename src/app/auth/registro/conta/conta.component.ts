@@ -3,6 +3,7 @@ import { Router } from '@angular/router';
 import { FormGroup, FormBuilder, Validators, FormControl } from '@angular/forms';
 import { SessionStorageService } from 'src/shared/service/session-storage.service';
 import { NavController } from '@ionic/angular';
+import { StatusBar } from '@ionic-native/status-bar/ngx';
 
 @Component({
   selector: 'conta-page',
@@ -16,7 +17,8 @@ export class ContaComponent implements OnInit {
 
   constructor(public router: Router, private fb: FormBuilder,
     public sessionStorage: SessionStorageService,
-    public navController: NavController) {}
+    public navController: NavController,
+    private statusBar: StatusBar) {}
 
   ngOnInit() {
     this.formConta = this.fb.group({
@@ -29,6 +31,7 @@ export class ContaComponent implements OnInit {
   }
 
   voltar() {
+    this.statusBar.styleDefault();
     this.router.navigate(['auth']);
   }
 
