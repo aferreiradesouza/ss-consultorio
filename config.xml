@@ -81,9 +81,13 @@
     <plugin name="cordova-plugin-statusbar" spec="2.4.2" />
     <plugin name="cordova-plugin-device" spec="2.0.2" />
     <plugin name="cordova-plugin-splashscreen" spec="5.0.2" />
+<<<<<<< HEAD
     <plugin name="cordova-plugin-ionic-webview" spec="^4.0.0" />
+=======
+>>>>>>> cc869676b812c19a3132e1e87ab2fded9126060d
     <plugin name="cordova-plugin-ionic-keyboard" spec="^2.0.5" />
     <plugin name="cordova-plugin-inappbrowser" spec="^3.0.0" />
+    <plugin name="cordova-plugin-ionic-webview" spec="^4.0.0" />
     <engine name="ios" spec="4.5.5" />
     <engine name="android" spec="7.0.0" />
 </widget>
