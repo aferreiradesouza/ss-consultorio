@@ -51,6 +51,14 @@ export class ContatoComponent implements OnInit, AfterViewInit {
       const consultas = await this.contatoService.obterConsultorios();
       if (consultas !== undefined) {
         this.consultorios = this.utilService.formatar(consultas.objeto);
+      } else {
+        const erro = await this.toastController.create({
+          message: 'Algo de errado aconteceu, tente novamente mais tarde',
+          color: 'dark',
+          showCloseButton: true,
+          closeButtonText: 'Entendi'
+        });
+        erro.present();
       }
     } catch (err) {
       const erro = await this.toastController.create({
