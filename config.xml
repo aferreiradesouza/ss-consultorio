@@ -1,7 +1,7 @@
 <?xml version='1.0' encoding='utf-8'?>
 <widget id="com.rsilveiradesouza.ssconsultorio" version="0.0.6" xmlns="http://www.w3.org/ns/widgets" xmlns:cdv="http://cordova.apache.org/ns/1.0">
     <name>SS Consultório</name>
-    <description>Um aplicativo do grupo SS Dr Andre Domarco.</description>
+    <description>Um aplicativo de consultas online.</description>
     <author email="rsilveiradesouza@gmail.com" href="http://rafaelsilveiradesouza.com.br">Rafael Souza</author>
     <content src="index.html" />
     <access origin="*" />
