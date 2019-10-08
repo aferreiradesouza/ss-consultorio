@@ -1,0 +1,7 @@
+{
+  "appId": "com.rsilveiradesouza.ssconsultorio",
+  "appName": "SS Consultório",
+  "bundledWebRuntime": false,
+  "npmClient": "npm",
+  "webDir": "www"
+}
