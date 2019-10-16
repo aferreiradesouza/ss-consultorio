@@ -10,20 +10,9 @@
 <ion-content>
   <div class="subheader">
     <span>Status:</span>
-    <ion-chip
-      outline="true"
-      [color]="
-        value.statusConsulta.codigo == 'pre_agendamento'
-          ? 'warning'
-          : value.statusConsulta.codigo == 'cancelado'
-          ? 'danger'
-          : 'success'
-      "
-    >
-      <ion-label>
-        {{ value.statusConsulta.nome }}
-      </ion-label>
-    </ion-chip>
+    <div class="chip" [ngStyle]="{'background-color': value.statusConsulta.cor}">
+      {{ value.statusConsulta.nome }}
+    </div>
   </div>
 
   <div class="item">
