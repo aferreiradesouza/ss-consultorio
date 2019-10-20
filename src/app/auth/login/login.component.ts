@@ -66,7 +66,6 @@ export class LoginComponent implements OnInit {
         }
       }
     } catch (err) {
-      console.log(err);
       loading.dismiss();
       const erro = await this.toastController.create({
         message: 'Algo de errado aconteceu',

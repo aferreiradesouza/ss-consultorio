@@ -8,11 +8,11 @@ export class UtilAgendarConsulta {
     constructor() { }
 
     async obterEspecialidades(data: any) {
-        const especialidades = data.objeto.map(e => {
-            return {
-                idEspecialidade: e.idEspecialidade,
-                especialidade: e.especialidade
-            };
+        const especialidades = [];
+        data.objeto.forEach(element => {
+            element.usuariosConsultoriosEspecialidades.forEach(ele => {
+                especialidades.push(ele);
+            });
         });
 
         const newData = [];
@@ -37,18 +37,13 @@ export class UtilAgendarConsulta {
     }
 
     async obterMedicos(data: any, idEspecialidade: number) {
-        const usuario = data.objeto.map(e => {
-            return {
-                idUsuario: e.idUsuario,
-                usuario: e.usuario,
-                idEspecialidade: e.idEspecialidade
-            };
-        });
+        // tslint:disable-next-line: max-line-length
+        const usuario = data.objeto.filter(e => e.usuariosConsultoriosEspecialidades.map(f => f.idEspecialidade).indexOf(idEspecialidade) > -1);
 
         const newData: any[] = [];
 
         usuario.forEach(e => {
-            if (e.idEspecialidade === idEspecialidade) {
+            if (e.usuariosConsultoriosEspecialidades.map(f => f.idEspecialidade).indexOf(idEspecialidade) > -1) {
                 if (newData.length === 0) {
                     newData.push(e);
                 } else {
@@ -69,38 +64,11 @@ export class UtilAgendarConsulta {
     }
 
     async obterLugares(data: any, idEspecialidade: number, idMedicos: any[]) {
-        let lugar = data.objeto.map(e => {
-            return {
-                idUsuario: e.idUsuario,
-                consultorio: e.consultorio,
-                idEspecialidade: e.idEspecialidade,
-                idConsultorio: e.idConsultorio
-            };
-        });
+        // tslint:disable-next-line: max-line-length
+        const lugar = data.objeto.filter(e => e.usuariosConsultoriosEspecialidades.map(f => f.idEspecialidade).indexOf(idEspecialidade) > -1 && idMedicos.indexOf(e.idUsuario) > -1);
 
-        const newData: any[] = [];
-
-        lugar = lugar.filter(f => f.idEspecialidade === idEspecialidade);
-
-        lugar.forEach(f => {
-            idMedicos.forEach(id => {
-                if (f.idUsuario === id) {
-                    if (newData.length === 0) {
-                        newData.push(f);
-                    } else {
-                        let count = 0;
-                        newData.forEach(e => {
-                            if (e.idConsultorio === f.idConsultorio) {
-                                count += 1;
-                            }
-                        });
-                        if (count === 0) {
-                            newData.push(f);
-                        }
-                    }
-                }
-            });
-        });
+        let newData: any[] = [];
+        newData = this.getUnique(lugar, 'idConsultorio');
 
         return newData;
     }
@@ -278,6 +246,14 @@ export class UtilAgendarConsulta {
                 break;
         }
         return dias;
+    }
+
+    public getUnique(arr, comp) {
+        const unique = arr
+            .map(e => e[comp])
+            .map((e, i, final) => final.indexOf(e) === i && i)
+            .filter(e => arr[e]).map(e => arr[e]);
+        return unique;
     }
 
     obterDiasSemana() {

@@ -202,6 +202,5 @@ export class HomeComponent implements OnInit {
         await loading.dismiss();
       }
     }
-    console.log(data);
   }
 }

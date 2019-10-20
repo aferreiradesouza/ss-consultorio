@@ -31,7 +31,6 @@ export class UtilContatoService {
             }
         });
 
-        console.log(newData);
 
         return newData;
     }

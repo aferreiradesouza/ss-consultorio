@@ -203,7 +203,6 @@ export class DiaConsultaComponent implements OnInit {
       this.agenda,
       this.dataSelecionada
     );
-    console.log(this.listaMedicos);
   }
 
   updateMes(novoMes) {

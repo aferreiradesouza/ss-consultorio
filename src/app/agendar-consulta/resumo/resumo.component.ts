@@ -33,7 +33,6 @@ export class ResumoComponent implements OnInit {
 
   async ngOnInit() {
     this.lugar = await this.obterLugares();
-    console.log(this.lugar);
   }
 
   get pegarData() {
