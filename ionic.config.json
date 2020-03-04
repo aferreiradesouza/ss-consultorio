@@ -1,7 +1,8 @@
 {
   "name": "ss-consultorio",
   "integrations": {
-    "cordova": {}
+    "cordova": {},
+    "capacitor": {}
   },
   "type": "angular"
 }

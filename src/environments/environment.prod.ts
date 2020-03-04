@@ -1,4 +1,4 @@
 export const environment = {
   production: true,
-  apiBase: 'http://rafaelsilveiradesouza.com.br:2001/api/'
+  apiBase: 'http://54.165.201.177:2001/api/'
 };
