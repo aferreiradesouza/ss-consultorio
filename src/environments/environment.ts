@@ -4,7 +4,7 @@
 
 export const environment = {
   production: false,
-  apiBase: 'http://54.165.201.177:2001/api/'
+  apiBase: 'http://api.ssistema.com.br/api/'
 };
 
 /*
